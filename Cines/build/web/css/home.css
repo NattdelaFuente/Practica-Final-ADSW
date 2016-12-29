@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29-dic-2016, 20:38:50
+    Author     : fran_
+*/
+
+.wet-asphalt {
+  color: #d9534f;
+}
+
+.wet-asphalt {
+  background-color:#34495e  /*#34495e   #0076EC*/;
+}
+.wet-asphalt a:not(.btn) {
+  color: #bdc3c7;
+}
+.wet-asphalt a:not(.btn):hover {
+  color: yellow;
+}
+
+.navbar-inverse .navbar-nav{
+    margin-top: 40px;
+}
+
+.navbar-nav > li > a{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.altura{
+    height: 500px;
+}
+
+.emerald2{
+    background-color: #314456;
+    color: whitesmoke;
+}
+
+.btn-success{
+    background-color: yellow;
+    border-color: #fbff1e;
+    color:#314456;
+    border-style: solid;
+}
+.btn-success:hover{
+    background-color: #34495e;
+    border-color: #2a3c4f;
+    border-style: solid;
+    color:white;
+}
