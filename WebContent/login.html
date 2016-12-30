@@ -226,6 +226,15 @@
 	
 	    $.post($form.attr("action"), $form.serialize(), function(response) {
 	        // ...
+	        if (response)
+        	{
+	        	swal("Error login", "Usuario o contraseña incorrectos", "error");
+        	}
+	        else
+        	{
+	        	swal("login", "s", "error");
+        	}
+	    	
 	    });
 	
 
