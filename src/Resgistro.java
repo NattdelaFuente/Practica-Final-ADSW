@@ -28,17 +28,16 @@ public class Resgistro extends HttpServlet {
 		// ...
 
 		if (ajax) { // Handle ajax (JSON or XML) response.
-			CineDAO dao = new CineDAO();
-			if (dao.login(username, password)) {
-				// mirar para redireccionar en ajax
-			}
-
-			else {
-
-			}
 
 		} else {
 			// Handle regular (JSP) response.
+
+			CineDAO dao = new CineDAO();
+			if (dao.login(username, password)) {
+				// mirar para redireccionar en ajax
+			} else {
+
+			}
 		}
 	}
 
