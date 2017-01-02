@@ -1,61 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Francisco Aguielera">
-    <title>CINESA - CINES - Inicio</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="css/prettyPhoto.css" rel="stylesheet" type="text/css">
-    <link href="css/animate.css" rel="stylesheet" type="text/css">
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-    <link href="css/home.css" rel="stylesheet" type="text/css">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-</head><!--/head-->
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>CINESA - CINES | Inicio</title>
+<%@ include file="principales/elementshead.jsp" %>
+</head>
 <body>
-    <header class="navbar navbar-inverse navbar-fixed-top wet-asphalt " role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle center" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo" style="height:80px"></a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="index.html">Inicio</a></li>
-                    <li><a href="about-us.html">Cartelera</a></li>
-                    <li><a href="portfolio.html">Quienes Somos</a></li>
-                    <!-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="icon-angle-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="career.html">Career</a></li>
-                            <li><a href="blog-item.html">Blog Single</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="404.html">404</a></li>
-                            <li><a href="registration.html">Registration</a></li>
-                            <li class="divider"></li>
-                            <li><a href="privacy.html">Privacy Policy</a></li>
-                            <li><a href="terms.html">Terms of Use</a></li>
-                        </ul>
-                    </li>-->
-                    <li><a href="contact-us.html">Contacto</a></li>
-                    <li><a class="loginR" href="login.html" style="color:yellow; font-weight: bolder;">Login/Registro</a></li>
-                </ul>
-            </div>
-        </div>
-    </header><!--/header-->
-    <section id="main-slider" class="no-margin"  >
+<%@ include file="principales/cabecera.jsp" %>
+
+<section id="main-slider" class="no-margin"  >
         <div class="carousel slide wet-asphalt altura">
             <ol class="carousel-indicators">
                 <li data-target="#main-slider" data-slide-to="0" class="active"></li>
@@ -68,7 +23,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="carousel-content centered">
-                                    <h2 class="animation animated-item-1">La mirada del tigre</h2>
+                                    <h2 class="animation animated-item-1">La mirada del tigre 2</h2>
                                     <p class="animation animated-item-2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
                                 </div>
                             </div>
@@ -122,7 +77,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4"></div>
-                <div class="col-lg-4"><h2 class="center">PelÃ­culas destacas</h2></div>
+                <div class="col-lg-4"><h2 class="center">Películas destacas</h2></div>
                 <div class="col-lg-4"></div>
             </div>
         </div>
@@ -244,7 +199,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Siguenos en Twitter</h3>
-                            <p>Lanzamos muchas ofertas de las que te puedes aprovechar, y un montÃ³n de novedades que no te puedes perder</p>
+                            <p>Lanzamos muchas ofertas de las que te puedes aprovechar, y un montón de novedades que no te puedes perder</p>
                         </div>
                     </div>
                 </div><!--/.col-md-4-->
@@ -255,7 +210,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Siguenos en Facebook</h3>
-                            <p>En nuestra pÃ¡gina de Facebook encontrarÃ¡s las pelÃ­culas de estreno con cupones descuento de los que te puedes aprovechar.</p>
+                            <p>En nuestra página de Facebook encontrarás las películas de estreno con cupones descuento de los que te puedes aprovechar.</p>
                         </div>
                     </div>
                 </div><!--/.col-md-4-->
@@ -266,7 +221,7 @@
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">Siguenos en Google Plus</h3>
-                            <p>La red social con la que estamos mÃ¡s afines y lo cual nuestro patrocinador estrella 'Google' hace diversos sorteos.</p>
+                            <p>La red social con la que estamos más afines y lo cual nuestro patrocinador estrella 'Google' hace diversos sorteos.</p>
                         </div>
                     </div>
                 </div><!--/.col-md-4-->
@@ -309,109 +264,7 @@
         </div>
     </section><!--/#testimonial-->
 
-    <section id="bottom" class="wet-asphalt">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <h4>About Us</h4>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-                    <p>Pellentesque habitant morbi tristique senectus.</p>
-                </div><!--/.col-md-3-->
 
-                <div class="col-md-3 col-sm-6">
-                    <h4>Company</h4>
-                    <div>
-                        <ul class="arrow">
-                            <li><a href="#">Company Overview</a></li>
-                            <li><a href="#">Meet The Team</a></li>
-                            <li><a href="#">Our Awesome Partners</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Frequently Asked Questions</a></li>
-                            <li><a href="#">Conatct Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Copyright</a></li>
-                        </ul>
-                    </div>
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <h4>Latest Blog</h4>
-                    <div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="images/blog/thumb1.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique senectus</a></span>
-                                <small class="muted">Posted 17 Aug 2013</small>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="images/blog/thumb2.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique senectus</a></span>
-                                <small class="muted">Posted 13 Sep 2013</small>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="pull-left">
-                                <img src="images/blog/thumb3.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique senectus</a></span>
-                                <small class="muted">Posted 11 Jul 2013</small>
-                            </div>
-                        </div>
-                    </div>  
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <h4>Address</h4>
-                    <address>
-                        <strong>Twitter, Inc.</strong><br>
-                        795 Folsom Ave, Suite 600<br>
-                        San Francisco, CA 94107<br>
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                    </address>
-                    <h4>Newsletter</h4>
-                    <form role="form">
-                        <div class="input-group">
-                            <input type="text" class="form-control" autocomplete="off" placeholder="Enter your email">
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </form>
-                </div> <!--/.col-md-3-->
-            </div>
-        </div>
-    </section><!--/#bottom-->
-
-    <footer id="footer" class="midnight-blue">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
-                </div>
-                <div class="col-sm-6">
-                    <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li><!--#gototop-->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer><!--/#footer-->
-
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+<%@ include file="principales/footer.jsp" %>
 </body>
 </html>
