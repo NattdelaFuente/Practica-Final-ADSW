@@ -1,7 +1,4 @@
 
-//
-// Encuesta.java
-//
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +46,10 @@ public class Login extends HttpServlet {
 				if (dao.login(username, password)) {
 
 					System.out.println("Usuario " + username + " logueado");
+
+					// variables de sesion
+					request.getSession(true);
+					request.getSession().setAttribute("username", username);
 
 					// mirar para redireccionar en ajax
 					// devolvemos la url

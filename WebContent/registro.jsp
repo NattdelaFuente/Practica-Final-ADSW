@@ -60,11 +60,15 @@
 	    $.post($form.attr("action"), $form.serialize(), function(response) {
 	        
        	    console.log (response);
-       	    $("#formRegistro").trigger('reset');
+       	    
 	        if (response.error)        	
 	        	swal("Error registro", response.error, "error");
 	        else
+        	{
+	        	$("#formRegistro").trigger('reset');  //esto reiniciaria el formulario
 	        	swal("Usuario registrado", response.success, "success");
+        	}
+	        	
         	
 	    	
 	    });

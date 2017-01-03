@@ -1,3 +1,24 @@
+function logout ()
+{
+	$.post("/Practica-Final-ADSW/Logout",  function(response) {
+        
+
+    	
+    	
+    });
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
 jQuery(function($) {
 
 	//#main-slider

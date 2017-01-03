@@ -27,8 +27,27 @@
                             <li><a href="terms.html">Terms of Use</a></li>
                         </ul>
                     </li>-->
-                    <li><a href="contact-us.html">Contacto</a></li>
-                    <li><a class="loginR" href="login.jsp" style="color:yellow; font-weight: bolder;">Login/Registro</a></li>
+                    <li><a href="contact-us.html">Contacto</a></li>                    
+                    
+                        <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals(""))
+						   {						    	
+						  		  	
+						%>  
+								<li><a class="loginR" href="login.jsp" style="color:yellow; font-weight: bolder;">Login/Registro</a></li>
+						<%  	
+						   }
+						   else
+						   {
+					    %>	  
+					    		<li><a onClick=logout() class="loginR" href="" style="color:yellow; font-weight: bolder;">Logout <%=session.getAttribute("username")%> </a></li>
+							  
+						    	 
+						<%    	
+						   }
+    	
+						%>
+                    
+                    
                 </ul>
             </div>
         </div>
