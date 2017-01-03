@@ -1,5 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,300);
 
+
+html {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+}
+
 .clearfix {
   *zoom: 1;
 }

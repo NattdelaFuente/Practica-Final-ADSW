@@ -49,5 +49,28 @@
     </section><!--/#registration-->
 
 <%@ include file="principales/footer.jsp" %>
+    <script>
+    $(document).on("submit", "#formLogin", function(event) {
+	    event.preventDefault(); // Important! Prevents submitting the form.
+	    var $form = $(this);
+	    console.log ("Enviando");
+	
+	    $.post($form.attr("action"), $form.serialize(), function(response) {
+	        // ...
+	        if (response)
+        	{
+	        	swal("Error login", "Usuario o contraseña incorrectos", "error");
+        	}
+	        else
+        	{
+	        	swal("login", "s", "error");
+        	}
+	    	
+	    });
+	
+
+	});
+
+</script>
 </body>
 </html>
