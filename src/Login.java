@@ -25,42 +25,58 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println(request.getHeader("X-Requested-With"));
+		// guardar variables
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+		// json de respuesta (posible: sucess, error, redirect)
+		Map<String, String> data = new HashMap<>();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
 
-		// ...
-
-		if (ajax) { // Handle ajax (JSON or XML) response.
-			CineDAO dao = new CineDAO();
-			if (dao.login(username, password)) {
-				// mirar para redireccionar en ajax
-
-				// devolvemos la url
-				String redirectURL;
-				if (username.equals("admin"))
-					redirectURL = "loqueseaadmin.jsp";
-				else
-					redirectURL = "index.jsp";
-
-				Map<String, String> data = new HashMap<>();
-				data.put("redirect", redirectURL);
-				String json = new Gson().toJson(data);
-
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-				response.getWriter().write(json);
-			}
-
-			else {
-
-			}
+		// comprobar errores en el formulario
+		if (username.equals("") || password.equals("")) {
+			System.out.println("username y/o password vacios");
+			data.put("error", "Rellene todos los campos vacíos");
+			String json = new Gson().toJson(data);
+			response.getWriter().write(json);
 
 		} else {
-			// Handle regular (JSP) response.
+			boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
+
+			if (ajax) { // Handle ajax (JSON or XML) response.
+				CineDAO dao = new CineDAO();
+				if (dao.login(username, password)) {
+
+					System.out.println("Usuario " + username + " logueado");
+
+					// mirar para redireccionar en ajax
+					// devolvemos la url
+					String redirectURL;
+					if (username.equals("admin"))
+						redirectURL = "loqueseaadmin.jsp";
+					else
+						redirectURL = "index.jsp";
+
+					data.put("redirect", redirectURL);
+					// data.put("success", "");
+					String json = new Gson().toJson(data);
+					response.getWriter().write(json);
+				}
+
+				else {
+					System.out.println("Fallo de login");
+					data.put("error", "Usuario o contraseña incorrectos");
+					String json = new Gson().toJson(data);
+					response.getWriter().write(json);
+
+				}
+
+			} else {
+				// Handle regular (JSP) response.
+			}
 		}
+
 	}
 
 }

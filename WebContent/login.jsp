@@ -56,18 +56,13 @@
 
 	
 	    $.post($form.attr("action"), $form.serialize(), function(response) {
-	        // ...
+	        
        	    console.log (response);
-	        if (response)
-        	{
-	            window.location = response.redirect;
-	            return;	 
-
-        	}
-	        else
-        	{
-	        	swal("Error login", "Usuario o contraseña incorrectos", "error");
-        	}
+	        if (response.redirect)     //llevamos a la pagina que corredponda (indexnormal o indexAdmin)   		        	
+	            window.location = response.redirect;         	
+	        else        	
+	        	swal("Error de login", response.error, "error");
+        	
 	    	
 	    });
 	

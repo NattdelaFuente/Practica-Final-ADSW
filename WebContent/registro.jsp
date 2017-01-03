@@ -28,7 +28,7 @@
     </section><!--/#title-->     
     <section id="registration" class="container">
         <h1 class="text-center">Registro</h1>
-        <form class="center" role="form">
+        <form id="formRegistro" class="center" role="form" method="post" action="/Practica-Final-ADSW/Resgistro">
             <fieldset class="registration-form" style="background:#f5f5f5;">
                 <div class="form-group">
                     <input type="text" id="username" name="username" placeholder="Usuario" class="form-control">
@@ -43,7 +43,7 @@
                     <input type="password" id="password_confirm" name="password_confirm" placeholder="Password (Confirm)" class="form-control">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-md btn-block">Aceptar</button>
+                    <button type="submit" class="btn btn-success btn-md btn-block">Aceptar</button>
                 </div>
             </fieldset>
         </form>
@@ -51,5 +51,27 @@
 
 
 <%@ include file="principales/footer.jsp" %>
+    <script>
+    $(document).on("submit", "#formRegistro", function(event) {
+	    event.preventDefault(); // Important! Prevents submitting the form.
+	    var $form = $(this);
+
+	
+	    $.post($form.attr("action"), $form.serialize(), function(response) {
+	        
+       	    console.log (response);
+       	    $("#formRegistro").trigger('reset');
+	        if (response.error)        	
+	        	swal("Error registro", response.error, "error");
+	        else
+	        	swal("Usuario registrado", response.success, "success");
+        	
+	    	
+	    });
+	
+
+	});
+
+</script>
 </body>
 </html>
