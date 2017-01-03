@@ -53,17 +53,20 @@
     $(document).on("submit", "#formLogin", function(event) {
 	    event.preventDefault(); // Important! Prevents submitting the form.
 	    var $form = $(this);
-	    console.log ("Enviando");
+
 	
 	    $.post($form.attr("action"), $form.serialize(), function(response) {
 	        // ...
+       	    console.log (response);
 	        if (response)
         	{
-	        	swal("Error login", "Usuario o contraseña incorrectos", "error");
+	            window.location = response.redirect;
+	            return;	 
+
         	}
 	        else
         	{
-	        	swal("login", "s", "error");
+	        	swal("Error login", "Usuario o contraseña incorrectos", "error");
         	}
 	    	
 	    });

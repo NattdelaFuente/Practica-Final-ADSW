@@ -39,7 +39,11 @@ public class Login extends HttpServlet {
 				// mirar para redireccionar en ajax
 
 				// devolvemos la url
-				String redirectURL = "index.html";
+				String redirectURL;
+				if (username.equals("admin"))
+					redirectURL = "loqueseaadmin.jsp";
+				else
+					redirectURL = "index.jsp";
 
 				Map<String, String> data = new HashMap<>();
 				data.put("redirect", redirectURL);
