@@ -11,7 +11,9 @@ public class ConnectionHelper {
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			url = "jdbc:postgresql://localhost:5432/practicaFinal";
+			// url = "jdbc:postgresql://localhost:5432/practicaFinal";
+			url = "jdbc:postgresql://46.105.101.208:5432/postgres";
+			// url = "jdbc:postgresql://localhost:5432/postgres";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -22,7 +24,8 @@ public class ConnectionHelper {
 			instance = new ConnectionHelper();
 		}
 		try {
-			return DriverManager.getConnection(url, "postgres", "admin");
+			return DriverManager.getConnection(url, "webnarrativa", "n4rr4t1v4");
+			// return DriverManager.getConnection(url, "postgres", "admin");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;

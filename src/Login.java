@@ -47,17 +47,17 @@ public class Login extends HttpServlet {
 
 					System.out.println("Usuario " + username + " logueado");
 
-					// variables de sesion
-					request.getSession(true);
-					request.getSession().setAttribute("username", username);
-
 					// mirar para redireccionar en ajax
 					// devolvemos la url
 					String redirectURL;
 					if (username.equals("admin"))
-						redirectURL = "loqueseaadmin.jsp";
-					else
+						redirectURL = "Admin/production/index.html";
+					else {
+						// variables de sesion
+						request.getSession(true);
+						request.getSession().setAttribute("username", username);
 						redirectURL = "index.jsp";
+					}
 
 					data.put("redirect", redirectURL);
 					// data.put("success", "");

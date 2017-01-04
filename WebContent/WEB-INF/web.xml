@@ -39,4 +39,14 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertarPelicula</display-name>
+    <servlet-name>InsertarPelicula</servlet-name>
+    <servlet-class>InsertarPelicula</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertarPelicula</servlet-name>
+    <url-pattern>/InsertarPelicula</url-pattern>
+  </servlet-mapping>
 </web-app>
