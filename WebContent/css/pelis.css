@@ -1,0 +1,40 @@
+.colorinfo{
+	color:yellow;
+}
+
+.btn-primary:hover{
+	color:#314456;
+	background:yellow !important;
+	border-color:yellow !important;
+}
+
+.btn-primary{
+		margin-bottom: 17px;
+}
+
+.well{
+	background:yellow !important;
+	border-color:yellow !important;
+	color:#1e2a35 !important;
+}
+
+.btn-danger{
+		color:white;
+	background:#314456; !important;
+	border-color:#314456; !important;
+}
+
+.btn-danger:hover{
+	color:white;
+	background:#687989 !important;
+	border-color:#687989 !important;
+}
+
+
+
+.navbar-inverse .navbar-nav > li > a {
+
+padding-bottom: 30px;
+    border-radius: 4px;
+    color: #bdc3c7;
+}
