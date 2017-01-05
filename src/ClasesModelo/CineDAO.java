@@ -1,11 +1,16 @@
+package ClasesModelo;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CineDAO {
 
-	boolean login(String username, String pass) {
+	public boolean login(String username, String pass) {
 
 		Connection c = null;
 
@@ -32,7 +37,7 @@ public class CineDAO {
 		return false;
 	}
 
-	boolean registroUsuario(String username, String pass, String pass2, String email) {
+	public boolean registroUsuario(String username, String pass, String pass2, String email) {
 
 		Connection c = null;
 
@@ -64,7 +69,7 @@ public class CineDAO {
 		return false;
 	}
 
-	boolean insertarPelicula(String name, String sinopsis, String website, String original, String genero,
+	public boolean insertarPelicula(String name, String sinopsis, String website, String original, String genero,
 			String nacionalidad, int duracion, int anyo, String distribuidora, String director, String actores,
 			String edad, String otros, String imagen, String trailer) {
 
@@ -110,6 +115,56 @@ public class CineDAO {
 		}
 
 		return false;
+	}
+
+	// devuelve una lista que contendra todas las peliculas ordenadas por id
+	public List<Pelicula> getListaTodasPeliculas() {
+
+		List<Pelicula> list = new ArrayList<Pelicula>();
+		Connection c = null;
+		String sql = "SELECT * FROM peliculas ORDER BY id";
+
+		try {
+			c = ConnectionHelper.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			while (rs.next()) {
+				list.add(procesarResultSet(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return list;
+
+	}
+
+	// recibimos un resultSet que contiene una pelicula y lo convertimos en un
+	// Objeto de ese tipo, para devolverlo
+	private Pelicula procesarResultSet(ResultSet rs) throws SQLException {
+		Pelicula pelicula = new Pelicula();
+		System.out.println("Resultaset convertido");
+		pelicula.setId(rs.getInt("idpelicula"));
+		pelicula.setName(rs.getString("nombre"));
+		pelicula.setSinopsis(rs.getString("sinopsis"));
+		pelicula.setWebsite(rs.getString("paginaoficial"));
+		pelicula.setOriginal(rs.getString("titulooriginal"));
+		pelicula.setGenero(rs.getString("genero"));
+		pelicula.setNacionalidad(rs.getString("nacionalidad"));
+		pelicula.setDuracion(rs.getInt("duracion"));
+		pelicula.setAnyo(rs.getInt("anio"));
+		pelicula.setDistribuidora(rs.getString("distribuidora"));
+		pelicula.setDirector(rs.getString("director"));
+		pelicula.setActores(rs.getString("actores"));
+		pelicula.setEdad(rs.getString("clasificacion"));
+		pelicula.setOtros(rs.getString("otros"));
+		pelicula.setImagen(rs.getString("imagen"));
+		pelicula.setTrailer(rs.getString("trailer"));
+
+		return pelicula;
 	}
 
 }

@@ -1,3 +1,4 @@
+package Servlets;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+
+import ClasesModelo.CineDAO;
 
 public class InsertarPelicula extends HttpServlet {
 

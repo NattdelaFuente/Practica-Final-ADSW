@@ -1,3 +1,4 @@
+package Servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+
+import ClasesModelo.CineDAO;
 
 public class Resgistro extends HttpServlet {
 

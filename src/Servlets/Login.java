@@ -1,3 +1,4 @@
+package Servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+
+import ClasesModelo.CineDAO;
 
 public class Login extends HttpServlet {
 
@@ -52,12 +55,12 @@ public class Login extends HttpServlet {
 					String redirectURL;
 					if (username.equals("admin"))
 						redirectURL = "Admin/production/index.html";
-					else {
-						// variables de sesion
-						request.getSession(true);
-						request.getSession().setAttribute("username", username);
+					else
 						redirectURL = "index.jsp";
-					}
+
+					// variables de sesion
+					request.getSession(true);
+					request.getSession().setAttribute("username", username);
 
 					data.put("redirect", redirectURL);
 					// data.put("success", "");

@@ -1,4 +1,24 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.List"%>
+<%@page import="ClasesModelo.Pelicula"%>
+<%@page import="ClasesModelo.CineDAO"%>
+
+
+    <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
+    {
+    	response.sendRedirect("../../index.jsp");
+    	
+    }
+    else
+    {
+    	//prueba de sesion;
+    	 
+    	
+    }
+    	
+    	%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +27,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Consultar sesi贸n </title>
+    <title>Consultar Pelicula | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +48,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci贸n</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci髇</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -55,32 +75,32 @@
                   <li><a href="index.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> Gesti贸n Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> Gesti髇 Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-pelicula.html">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Gesti贸n Salas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Gesti髇 Salas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sala.html">Insertar</a></li>
                       <li><a href="consultar-sala.html">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                   <li><a><i class="fa fa-table"></i> Gesti贸n Sesiones <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i> Gesti髇 Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sesion.html">Insertar</a></li>
                       <li><a href="consultar-sesion.html">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti贸n Reservas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti髇 Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reserva-entradas.html">Entradas</a></li>
                       <li><a href="reserva-salas.html">Salas</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-clone"></i>Gesti贸n de Informes<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-clone"></i>Gesti髇 de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a href="generos.html">Por genero</a></li>
                       <li><a href="por-sala.html">Por sala</a></li>
@@ -123,7 +143,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="login.html" class="user-profile button-toggle"  aria-expanded="false">
-                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi贸n
+                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi髇
                     
                   </a>
                   
@@ -163,7 +183,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Sesiones</h2>
+                    <h2>Peliculas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -184,19 +204,29 @@
 
                   <div class="x_content">
 
-                    <p>Sesiones en la base de datos.</p>
+                    <p>Pel韈ulas en la base de datos.</p>
 
                     <div class="table-responsive">
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                       <table class="table table-striped jambo_table bulk_action">
+                      
+                      
                         <thead>
                           <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
-                            <th class="column-title">Sala </th>
-                            <th class="column-title">Fecha </th>
-                            <th class="column-title">Pelicula </th>
-                            <th class="column-title no-link last"><span class="nobr">Acci贸n</span>
+                            <th class="column-title">Nombre </th>
+                            <th class="column-title">Actores </th>
+                            <th class="column-title">Genero </th>
+                            <th class="column-title">A駉 </th>
+                            <th class="column-title">Director </th>
+                            <th class="column-title no-link last"><span class="nobr">Acci髇</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
                               <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
@@ -204,109 +234,56 @@
                           </tr>
                         </thead>
 
+
+
+
+
+
+
+
+
                         <tbody>
+                        
+                        
+                                <%    
+
+							        	CineDAO dao = new CineDAO();      
+							       
+								        List<Pelicula> list = dao.getListaTodasPeliculas();
+								        for (int i=0; i<list.size();i++)
+								        {
+								        	
+								       	%>
+								            <tr class="even pointer">
+								            	<td><%=list.get(i).getName() %></td>
+								            	<td><%=list.get(i).getActores() %></td>
+								            	<td><%=list.get(i).getGenero() %></td>	            									            	
+								            	<td><%=list.get(i).getAnyo() %></td>	            	
+								            	<td><%=list.get(i).getDirector() %></td>
+												<td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
+								            	
+							            	</tr>
+								    	<%
+								        }      
+							        	%>
+							        
+                        
+                        
                           <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
                             <td class=" ">121000040</td>
                             <td class=" ">May 23, 2014 11:47:56 PM </td>
                             <td class=" ">121000210 </td>
-                                                     
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                                                        
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 24, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                                                       
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 24, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
+                            <td class=" ">John Blank L</td>
+                            <td class=" ">Paid</td>
                            
                             <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
                           </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 24, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 26, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
-                            </td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 26, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 26, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            
-                           <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
+                          
+                          
+                          
 
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 27, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 28, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
+                          
+         
                         </tbody>
                       </table>
                     </div>
@@ -321,7 +298,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Cinesa Cines
+          Cinesa Cines
           </div>
           <div class="clearfix"></div>
         </footer>

@@ -11,19 +11,9 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>Login</display-name>
-    <servlet-name>Login</servlet-name>
-    <servlet-class>Login</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Login</servlet-name>
-    <url-pattern>/Login</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>Resgistro</display-name>
     <servlet-name>Resgistro</servlet-name>
-    <servlet-class>Resgistro</servlet-class>
+    <servlet-class>Servlets.Resgistro</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Resgistro</servlet-name>
@@ -31,22 +21,32 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>Logout</display-name>
-    <servlet-name>Logout</servlet-name>
-    <servlet-class>Logout</servlet-class>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>Servlets.Login</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Logout</servlet-name>
-    <url-pattern>/Logout</url-pattern>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>InsertarPelicula</display-name>
     <servlet-name>InsertarPelicula</servlet-name>
-    <servlet-class>InsertarPelicula</servlet-class>
+    <servlet-class>Servlets.InsertarPelicula</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>InsertarPelicula</servlet-name>
     <url-pattern>/InsertarPelicula</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>Servlets.Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
 </web-app>
