@@ -27,7 +27,7 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 
 		// json de respuesta (posible: sucess, error, redirect)
-		Map<String, String> data = new HashMap<>();
+		Map<String, String> data = new HashMap<String, String>();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 

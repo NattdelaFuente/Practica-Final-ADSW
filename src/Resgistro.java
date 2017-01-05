@@ -30,7 +30,7 @@ public class Resgistro extends HttpServlet {
 		String password2 = request.getParameter("password_confirm");
 
 		// json de respuesta (posible: sucess, error, redirect)
-		Map<String, String> data = new HashMap<>();
+		Map<String, String> data = new HashMap<String, String>();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 

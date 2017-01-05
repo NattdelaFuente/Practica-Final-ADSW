@@ -50,7 +50,7 @@ public class InsertarPelicula extends HttpServlet {
 		String trailer = request.getParameter("trailer");
 
 		// json de respuesta (posible: sucess, error, redirect)
-		Map<String, String> data = new HashMap<>();
+		Map<String, String> data = new HashMap<String, String>();
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 
