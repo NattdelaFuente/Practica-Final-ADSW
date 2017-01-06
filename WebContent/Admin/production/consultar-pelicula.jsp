@@ -49,7 +49,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-ticket"></i> <span>Administración</span></a>
+              <a href="index.jsp" class="site_title"><i class="fa fa-ticket"></i> <span>Administración</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -73,38 +73,38 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="index.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="index.jsp"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;&nbsp;Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-pelicula.html">Insertar</a></li>
+                      <li><a href="insertar-pelicula.jsp">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
                       
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Gestión Salas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-sala.html">Insertar</a></li>
-                      <li><a href="consultar-sala.html">Consultar/Modificar</a></li>
+                      <li><a href="insertar-sala.jsp">Insertar</a></li>
+                      <li><a href="consultar-sala.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Gestión Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-sesion.html">Insertar</a></li>
-                      <li><a href="consultar-sesion.html">Consultar/Modificar</a></li>
+                      <li><a href="insertar-sesion.jsp">Insertar</a></li>
+                      <li><a href="consultar-sesion.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Gestión Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="reserva-entradas.html">Entradas</a></li>
-                      <li><a href="reserva-salas.html">Salas</a></li>
+                      <li><a href="reserva-entradas.jsp">Entradas</a></li>
+                      <li><a href="reserva-salas.jsp">Salas</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Gestión de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                       <li><a href="generos.html">Por genero</a></li>
-                      <li><a href="por-sala.html">Por sala</a></li>
+                       <li><a href="generos.jsp">Por genero</a></li>
+                      <li><a href="por-sala.jsp">Por sala</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -143,7 +143,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="login.html" class="user-profile button-toggle"  aria-expanded="false">
+                  <a  class="user-profile button-toggle"  aria-expanded="false">
                     <i class="fa fa-sign-out pull-right"></i>Cerrar Sesión
                     
                   </a>

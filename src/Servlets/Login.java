@@ -54,7 +54,7 @@ public class Login extends HttpServlet {
 					// devolvemos la url
 					String redirectURL;
 					if (username.equals("admin"))
-						redirectURL = "Admin/production/index.html";
+						redirectURL = "Admin/production/index.jsp";
 					else
 						redirectURL = "index.jsp";
 

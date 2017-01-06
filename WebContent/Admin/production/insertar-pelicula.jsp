@@ -1,4 +1,21 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+            <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
+    {
+    	response.sendRedirect("../../index.jsp");
+    	
+    }
+    else
+    {
+    	//prueba de sesion;
+    	 
+    	
+    }
+        
+        %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,7 +45,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci贸n</span></a>
+              <a href="index.jsp" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci髇</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -52,38 +69,38 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="index.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="index.jsp"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;&nbsp;Gesti贸n Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gesti髇 Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-pelicula.html">Insertar</a></li>
+                      <li><a href="insertar-pelicula.jsp">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Gesti贸n Salas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Gesti髇 Salas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-sala.html">Insertar</a></li>
-                      <li><a href="consultar-sala.html">Consultar/Modificar</a></li>
+                      <li><a href="insertar-sala.jsp">Insertar</a></li>
+                      <li><a href="consultar-sala.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                   <li><a><i class="fa fa-table"></i> Gesti贸n Sesiones <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-table"></i> Gesti髇 Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-sesion.html">Insertar</a></li>
-                      <li><a href="consultar-sesion.html">Consultar/Modificar</a></li>
+                      <li><a href="insertar-sesion.jsp">Insertar</a></li>
+                      <li><a href="consultar-sesion.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti贸n Reservas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti髇 Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="reserva-entradas.html">Entradas</a></li>
-                      <li><a href="reserva-salas.html">Salas</a></li>
+                      <li><a href="reserva-entradas.jsp">Entradas</a></li>
+                      <li><a href="reserva-salas.jsp">Salas</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-clone"></i>Gesti贸n de Informes<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-clone"></i>Gesti髇 de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="generos.html">Por genero</a></li>
-                      <li><a href="por-sala.html">Por sala</a></li>
+                      <li><a href="generos.jsp">Por genero</a></li>
+                      <li><a href="por-sala.jsp">Por sala</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -122,8 +139,8 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="login.html" class="user-profile button-toggle"  aria-expanded="false">
-                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi贸n
+                  <a href="login.jsp" class="user-profile button-toggle"  aria-expanded="false">
+                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi髇
                     
                   </a>
                   
@@ -148,7 +165,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Pel铆cula nueva </h2>
+                    <h2>Pel韈ula nueva </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -161,9 +178,9 @@
 
                     <form class="form-horizontal form-label-left" method="POST" action= "/Practica-Final-ADSW/InsertarPelicula" novalidate>
 
-                      <p>A帽ada los campos de la nueva pel铆cula</a>
+                      <p>A馻da los campos de la nueva pel韈ula</a>
                       </p>
-                      <span class="section">Informaci贸n</span>
+                      <span class="section">Informaci髇</span>
 
 
 
@@ -171,7 +188,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12"  name="name" placeholder="T铆tulo pel铆cula" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12"  name="name" placeholder="T韙ulo pel韈ula" required="required" type="text">
                         </div>
                       </div>
 
@@ -189,7 +206,7 @@
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">P谩gina Oficial <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">P醙ina Oficial <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
@@ -199,24 +216,24 @@
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">T铆tulo Original <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">T韙ulo Original <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="original" class="form-control col-md-7 col-xs-12" name="original" placeholder="T铆tulo original" required="required" type="text">
+                          <input id="original" class="form-control col-md-7 col-xs-12" name="original" placeholder="T韙ulo original" required="required" type="text">
                         </div>
                       </div>
 
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">G茅nero</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">G閚ero</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control required" id="genero" name="genero">
-                            <option>Elige una opci贸n</option>
+                            <option>Elige una opci髇</option>
                             <option>Comedia</option>
-                            <option>Acci贸n</option>
-                            <option>Animaci贸n</option>
-                            <option>Ciencia Ficci贸n</option>
+                            <option>Acci髇</option>
+                            <option>Animaci髇</option>
+                            <option>Ciencia Ficci髇</option>
                             <option>Drama</option>
                             <option>Terror</option>
                           </select>
@@ -229,7 +246,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nacionalidad <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="nacionalidad" class="form-control col-md-7 col-xs-12"  name="nacionalidad" placeholder="Espa帽ola" required="required" type="text">
+                          <input id="nacionalidad" class="form-control col-md-7 col-xs-12"  name="nacionalidad" placeholder="Espa駉la" required="required" type="text">
                         </div>
                       </div>
 
@@ -237,7 +254,7 @@
 
                       
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Duraci贸n <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Duraci髇 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="number" id="duracion" name="duracion" placeholder="10 - 300 Minutos" required="required" data-validate-minmax="10,300" class="form-control col-md-7 col-xs-12">
@@ -248,7 +265,7 @@
 
 
                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">A帽o<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">A駉<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="number" id="anyo" name="anyo" placeholder="1940-2017" required="required" data-validate-minmax="1940,2017" class="form-control col-md-7 col-xs-12">
@@ -299,11 +316,11 @@
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Clasificaci贸n edad</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Clasificaci髇 edad</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control required" id="edad" name="edad">
-                            <option>Elige una opci贸n</option>
-                            <option>Todos los p煤blicos</option>
+                            <option>Elige una opci髇</option>
+                            <option>Todos los p鷅licos</option>
                             <option>+7</option>
                             <option>+12</option>
                             <option>+16</option>
@@ -428,7 +445,7 @@
     	        if (response.success)   
    	        	{
     	        	$form.trigger('reset');  //esto reiniciaria el formulario
-    	        	swal("Pel铆cula insertada", response.success, "success");
+    	        	swal("Pel韈ula insertada", response.success, "success");
    	        	}
     	                 	
     	        else        	

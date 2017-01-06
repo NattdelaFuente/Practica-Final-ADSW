@@ -1,4 +1,21 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+            <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
+    {
+    	response.sendRedirect("../../index.jsp");
+    	
+    }
+    else
+    {
+    	//prueba de sesion;
+    	 
+    	
+    }
+        
+        %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Insertar Sesi贸n | </title>
+    <title>Insertar Sesi髇 | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +43,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci贸n</span></a>
+              <a href="index.jsp" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci髇</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -50,38 +67,38 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="insertar-pelicula.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="index.jsp"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;&nbsp;Gesti贸n Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gesti髇 Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-pelicula.html">Insertar</a></li>
+                      <li><a href="insertar-pelicula.jsp">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Gesti贸n Salas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Gesti髇 Salas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-sala.html">Insertar</a></li>
-                      <li><a href="consultar-sala.html">Consultar/Modificar</a></li>
+                      <li><a href="insertar-sala.jsp">Insertar</a></li>
+                      <li><a href="consultar-sala.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Gesti贸n Sesiones <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i> Gesti髇 Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-entrada.html">Insertar</a></li>
-                      <li><a href="consultar-entrada.html">Consultar/Modificar</a></li>
+                      <li><a href="insertar-entrada.jsp">Insertar</a></li>
+                      <li><a href="consultar-entrada.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti贸n Reservas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti髇 Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="consultar-reserva.html">Entradas</a></li>
-                      <li><a href="consultar-reserva.html">Salas</a></li>
+                      <li><a href="consultar-reserva.jsp">Entradas</a></li>
+                      <li><a href="consultar-reserva.jsp">Salas</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-clone"></i>Gesti贸n de Informes<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-clone"></i>Gesti髇 de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                       <li><a href="generos.html">Por genero</a></li>
-                      <li><a href="por-sala.html">Por sala</a></li>
+                       <li><a href="generos.jsp">Por genero</a></li>
+                      <li><a href="por-sala.jsp">Por sala</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -120,8 +137,8 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="login.html" class="user-profile button-toggle"  aria-expanded="false">
-                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi贸n
+                  <a href="login.jsp" class="user-profile button-toggle"  aria-expanded="false">
+                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi髇
                     
                   </a>
                   
@@ -138,7 +155,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Sesi贸n Nueva</h3>
+                <h3>Sesi髇 Nueva</h3>
               </div>
 
               <div class="title_right">
@@ -158,7 +175,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Insertar sesi贸n </h2>
+                    <h2>Insertar sesi髇 </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -180,15 +197,15 @@
 
                     <form class="form-horizontal form-label-left" novalidate>
 
-                      <p>A帽ada los campos de la nueva sesi贸n</a>
+                      <p>A馻da los campos de la nueva sesi髇</a>
                       </p>
-                      <span class="section">Informaci贸n</span>
+                      <span class="section">Informaci髇</span>
 
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Sala</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control">
-                            <option>Elige una opci贸n</option>
+                            <option>Elige una opci髇</option>
                             <option>Sala 1</option>
                             <option>Sala 2</option>
                             <option>Sala 3</option>
@@ -221,7 +238,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre Pelicula<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="T铆tulo pel铆cula" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="T韙ulo pel韈ula" required="required" type="text">
                         </div>
                       </div>
                                                                                    
@@ -270,199 +287,9 @@
     <script src="../build/js/custom.min.js"></script>
 
 <!-- bootstrap-daterangepicker -->
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange_right span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
+ 
 
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2020',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'right',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-
-        $('#reportrange_right span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-
-        $('#reportrange_right').daterangepicker(optionSet1, cb);
-
-        $('#reportrange_right').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange_right').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange_right').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange_right').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-
-        $('#options1').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-
-        $('#options2').click(function() {
-          $('#reportrange_right').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-
-        $('#destroy').click(function() {
-          $('#reportrange_right').data('daterangepicker').remove();
-        });
-
-      });
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        var cb = function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        };
-
-        var optionSet1 = {
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment(),
-          minDate: '01/01/2012',
-          maxDate: '12/31/2020',
-          dateLimit: {
-            days: 60
-          },
-          showDropdowns: true,
-          showWeekNumbers: true,
-          timePicker: false,
-          timePickerIncrement: 1,
-          timePicker12Hour: true,
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          opens: 'left',
-          buttonClasses: ['btn btn-default'],
-          applyClass: 'btn-small btn-primary',
-          cancelClass: 'btn-small',
-          format: 'MM/DD/YYYY',
-          separator: ' to ',
-          locale: {
-            applyLabel: 'Submit',
-            cancelLabel: 'Clear',
-            fromLabel: 'From',
-            toLabel: 'To',
-            customRangeLabel: 'Custom',
-            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            firstDay: 1
-          }
-        };
-        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
-        $('#reportrange').daterangepicker(optionSet1, cb);
-        $('#reportrange').on('show.daterangepicker', function() {
-          console.log("show event fired");
-        });
-        $('#reportrange').on('hide.daterangepicker', function() {
-          console.log("hide event fired");
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
-        });
-        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
-          console.log("cancel event fired");
-        });
-        $('#options1').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-        });
-        $('#options2').click(function() {
-          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-        });
-        $('#destroy').click(function() {
-          $('#reportrange').data('daterangepicker').remove();
-        });
-      });
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        $('#single_cal1').daterangepicker({
-          singleDatePicker: true,
-          singleClasses: "picker_1"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal2').daterangepicker({
-          singleDatePicker: true,
-          singleClasses: "picker_2"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal3').daterangepicker({
-          singleDatePicker: true,
-          singleClasses: "picker_3"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-        $('#single_cal4').daterangepicker({
-          singleDatePicker: true,
-          singleClasses: "picker_4"
-        }, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-      });
-    </script>
-
-    <script>
-      $(document).ready(function() {
-        $('#reservation').daterangepicker(null, function(start, end, label) {
-          console.log(start.toISOString(), end.toISOString(), label);
-        });
-
-        $('#reservation-time').daterangepicker({
-          timePicker: true,
-          timePickerIncrement: 30,
-          locale: {
-            format: 'MM/DD/YYYY h:mm A'
-          }
-        });
-      });
-    </script>
+   
     <!-- /bootstrap-daterangepicker -->
     <!-- validator -->
     <script>
