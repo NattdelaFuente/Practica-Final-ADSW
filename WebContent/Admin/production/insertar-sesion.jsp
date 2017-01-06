@@ -41,8 +41,8 @@
     <link href="../build/css/custom.min.css" rel="stylesheet">
     <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css">
     <link href="../../css/chosen.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" media="all" type="text/css" href="http://code.jquery.com/ui/1.9.1/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" media="all" type="text/css" href="../../css/jquery-ui-timepicker-addon.css" />
     
   </head>
 
@@ -312,7 +312,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Cinesa Cines
+            Cinesa Cinesa
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -322,9 +322,11 @@
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-addon-i18n.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-es.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="../../js/jquery-ui-timepicker-addon.js"></script> 
+<script type="text/javascript" src="../../js/jquery-ui-sliderAccess.js"></script>
+   
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -353,7 +355,18 @@
     
     $(".chosen-select").chosen();
     //$( "#fechaHora" ).datepicker();
-    $('#fechaHora').datetimepicker();
+    $('#fechaHora').datetimepicker({
+    	dateFormat: 'dd/mm/yy',
+    	numberOfMonths: 1,
+    	firstDay: 1,
+    	minDate: 0,
+    	maxDate: 14
+
+    
+    });
+   // $('#fechaHora').datetimepicker(
+   // 		$.timepicker.regional['es']
+   // 	);
     //$('#selectPelicula').val()
     
     
