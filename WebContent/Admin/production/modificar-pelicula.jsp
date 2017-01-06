@@ -1,4 +1,35 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+    <%@page import="ClasesModelo.Pelicula"%>
+<%@page import="ClasesModelo.CineDAO"%>
+    
+    <% 
+    
+    if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
+    {
+    	//sesion no existe (intenta meterse sin admin)
+    	response.sendRedirect("../../index.jsp");
+    	
+    }
+    else
+    {
+    	//prueba de sesion;
+    	if (request.getParameter("id") == null || request.getParameter("id").equals("")) //no existe el parametro id o no tiene numero
+    		response.sendRedirect("consultar-pelicula.jsp");
+    	else
+    	{
+        	int idPelicula = Integer.parseInt(request.getParameter("id"));
+       	 	CineDAO cine = new CineDAO();
+        	Pelicula pelicula = cine.getPelicula(idPelicula);
+        	if (pelicula == null) //no existe pelicula con ese ID
+        		response.sendRedirect("consultar-pelicula.jsp");
+        	
+        	
+      	 %>
+        	
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +38,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Insertar Pelicula | </title>
+    <title>Modificar Pelicula | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +59,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci贸n</span></a>
+              <a href="index.html" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci髇</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -55,32 +86,32 @@
                   <li><a href="index.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> Gesti贸n Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> Gesti髇 Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-pelicula.html">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Gesti贸n Salas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Gesti髇 Salas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sala.html">Insertar</a></li>
                       <li><a href="consultar-sala.html">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                   <li><a><i class="fa fa-table"></i> Gesti贸n Sesiones <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-table"></i> Gesti髇 Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sesion.html">Insertar</a></li>
                       <li><a href="consultar-sesion.html">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti贸n Reservas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti髇 Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reserva-entradas.html">Entradas</a></li>
                       <li><a href="reserva-salas.html">Salas</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-clone"></i>Gesti贸n de Informes<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-clone"></i>Gesti髇 de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="generos.html">Por genero</a></li>
                       <li><a href="por-sala.html">Por sala</a></li>
@@ -123,7 +154,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="login.html" class="user-profile button-toggle"  aria-expanded="false">
-                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi贸n
+                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi髇
                     
                   </a>
                   
@@ -148,7 +179,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Pel铆cula nueva </h2>
+                    <h2>Modificaci髇 </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -159,19 +190,20 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" method="POST" action= "/Practica-Final-ADSW/InsertarPelicula" novalidate>
+                    <form class="form-horizontal form-label-left" method="POST" action= "/Practica-Final-ADSW/ModificarPelicula" novalidate>
 
-                      <p>A帽ada los campos de la nueva pel铆cula</a>
+                      <p>Cambie los campos de la pel韈ula</a>
                       </p>
-                      <span class="section">Informaci贸n</span>
-
-
+                      <span class="section">Informaci髇</span>
+					
+					
+					  <input value="<%=pelicula.getId() %>"  type="hidden" id="idPelicula" name="idPelicula"  >						
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12"  name="name" placeholder="T铆tulo pel铆cula" required="required" type="text">
+                          <input value="<%=pelicula.getName() %>"   id="name" class="form-control col-md-7 col-xs-12"  name="name" placeholder="T韙ulo pel韈ula" required="required" type="text">
                         </div>
                       </div>
 
@@ -181,7 +213,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Sinopsis <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="sinopsis" required="required" name="sinopsis" class="form-control col-md-7 col-xs-12"></textarea>
+                          <textarea   id="sinopsis" required="required" name="sinopsis" class="form-control col-md-7 col-xs-12"><%=pelicula.getSinopsis() %> </textarea>
                         </div>
                       </div>
 
@@ -189,36 +221,38 @@
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">P谩gina Oficial <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">P醙ina Oficial <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=pelicula.getWebsite() %>"  type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">T铆tulo Original <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">T韙ulo Original <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="original" class="form-control col-md-7 col-xs-12" name="original" placeholder="T铆tulo original" required="required" type="text">
+                          <input value="<%=pelicula.getOriginal() %>" "id="original" class="form-control col-md-7 col-xs-12" name="original" placeholder="T韙ulo original" required="required" type="text">
                         </div>
                       </div>
 
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">G茅nero</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">G閚ero</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control required" id="genero" name="genero">
-                            <option>Elige una opci贸n</option>
-                            <option>Comedia</option>
-                            <option>Acci贸n</option>
-                            <option>Animaci贸n</option>
-                            <option>Ciencia Ficci贸n</option>
-                            <option>Drama</option>
-                            <option>Terror</option>
+                          
+                            <option <%= (pelicula.getGenero().equals("Elige una opci髇") ?"selected='selected'" : "") %>>Elige una opci髇</option>
+							<option <%= (pelicula.getGenero().equals("Comedia") ?"selected='selected'" : "") %>>Comedia</option>
+							<option <%= (pelicula.getGenero().equals("Acci髇") ?"selected='selected'" : "") %>>Acci髇</option>
+							<option <%= (pelicula.getGenero().equals("Animaci髇") ?"selected='selected'" : "") %>>Animaci髇</option>
+							<option <%= (pelicula.getGenero().equals("Ciencia Ficci髇") ?"selected='selected'" : "") %>>Ciencia Ficci髇</option>
+							<option <%= (pelicula.getGenero().equals("Drama") ?"selected='selected'" : "") %>>Drama</option>
+							<option <%= (pelicula.getGenero().equals("Terror") ?"selected='selected'" : "") %>>Terror</option>
+
                           </select>
                         </div>
                       </div>
@@ -229,7 +263,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nacionalidad <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="nacionalidad" class="form-control col-md-7 col-xs-12"  name="nacionalidad" placeholder="Espa帽ola" required="required" type="text">
+                          <input value="<%=pelicula.getNacionalidad() %>" id="nacionalidad" class="form-control col-md-7 col-xs-12"  name="nacionalidad" placeholder="Espa駉la" required="required" type="text">
                         </div>
                       </div>
 
@@ -237,10 +271,10 @@
 
                       
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Duraci贸n <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Duraci髇 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="duracion" name="duracion" placeholder="10 - 300 Minutos" required="required" data-validate-minmax="10,300" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=pelicula.getDuracion() %>" type="number" id="duracion" name="duracion" placeholder="10 - 300 Minutos" required="required" data-validate-minmax="10,300" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -248,10 +282,10 @@
 
 
                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">A帽o<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">A駉<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="anyo" name="anyo" placeholder="1940-2017" required="required" data-validate-minmax="1940,2017" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=pelicula.getAnyo() %>" type="number" id="anyo" name="anyo" placeholder="1940-2017" required="required" data-validate-minmax="1940,2017" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -262,7 +296,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Distribuidora <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="distribuidora" class="form-control col-md-7 col-xs-12" name="distribuidora"  required="required" type="text">
+                          <input value="<%=pelicula.getDistribuidora() %>" id="distribuidora" class="form-control col-md-7 col-xs-12" name="distribuidora"  required="required" type="text">
                         </div>
                       </div>
 
@@ -274,7 +308,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Director <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="director" class="form-control col-md-7 col-xs-12" name="director"  required="required" type="text">
+                          <input value="<%=pelicula.getDirector() %>" id="director" class="form-control col-md-7 col-xs-12" name="director"  required="required" type="text">
                         </div>
                       </div>
 
@@ -286,7 +320,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Actores <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="actores" required="required" name="actores" class="form-control col-md-7 col-xs-12"></textarea>
+                          <textarea id="actores" required="required" name="actores" class="form-control col-md-7 col-xs-12"><%=pelicula.getActores() %></textarea>
                         </div>
                       </div>
 
@@ -299,16 +333,19 @@
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Clasificaci贸n edad</label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Clasificaci髇 edad</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control required" id="edad" name="edad">
-                            <option>Elige una opci贸n</option>
-                            <option>Todos los p煤blicos</option>
-                            <option>+7</option>
-                            <option>+12</option>
-                            <option>+16</option>
-                            <option>+18</option>
-                            <option>X</option>
+                          
+                          
+                            <option <%= (pelicula.getEdad().equals("Elige una opci髇") ?"selected='selected'" : "") %>>Elige una opci髇</option>
+							<option <%= (pelicula.getEdad().equals("Todos los p鷅licos") ?"selected='selected'" : "") %>>Todos los p鷅licos</option>
+							<option <%= (pelicula.getEdad().equals("+7") ?"selected='selected'" : "") %>>+7</option>
+							<option <%= (pelicula.getEdad().equals("+12") ?"selected='selected'" : "") %>>+12</option>
+							<option <%= (pelicula.getEdad().equals("+16") ?"selected='selected'" : "") %>>+16</option>
+							<option <%= (pelicula.getEdad().equals("+18") ?"selected='selected'" : "") %>>+18</option>
+							<option <%= (pelicula.getEdad().equals("X") ?"selected='selected'" : "") %>>X</option>
+							
                           </select>
                         </div>
                       </div>
@@ -319,7 +356,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Imagen <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="imagen" class="form-control col-md-7 col-xs-12" name="imagen"  placeholder="Link de la imagen" required="required" type="text">
+                          <input value="<%=pelicula.getImagen() %>" id="imagen" class="form-control col-md-7 col-xs-12" name="imagen"  placeholder="Link de la imagen" required="required" type="text">
                         </div>
                       </div>
 
@@ -327,7 +364,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Trailer <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="trailer" class="form-control col-md-7 col-xs-12" name="trailer"  placeholder="Link del trailer (youtube)" required="required" type="text">
+                          <input value="<%=pelicula.getTrailer() %>" id="trailer" class="form-control col-md-7 col-xs-12" name="trailer"  placeholder="Link del trailer (youtube)" required="required" type="text">
                         </div>
                       </div>
 
@@ -337,7 +374,7 @@
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Datos Interes</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="otros"  name="otros" class="form-control col-md-7 col-xs-12"></textarea>
+                          <textarea id="otros"  name="otros" class="form-control col-md-7 col-xs-12"><%=pelicula.getOtros() %></textarea>
                         </div>
                       </div>
 
@@ -355,8 +392,8 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                
-                          <button id="send"  type="submit" class="btn btn-success">Enviar</button>
+                		  <button  onclick="window.location='consultar-pelicula.jsp'" class="btn btn-primary">Volver</button>
+                          <button id="send"  type="submit" class="btn btn-success">Guardar</button>
                         </div>
                       </div>
                     </form>
@@ -427,12 +464,12 @@
          	    console.log (response);
     	        if (response.success)   
    	        	{
-    	        	$form.trigger('reset');  //esto reiniciaria el formulario
-    	        	swal("Pel铆cula insertada", response.success, "success");
+    	        	
+    	        	swal("Pel韈ula modificada", response.success, "success");
    	        	}
     	                 	
     	        else        	
-    	        	swal("Error al guardar", response.error, "error");
+    	        	swal("Error al modificar", response.error, "error");
           	
     	    	
     	    });
@@ -455,3 +492,12 @@
     <!-- /validator -->
   </body>
 </html>
+
+  	<%
+    	}
+    	
+
+    	
+    }
+    
+    %>

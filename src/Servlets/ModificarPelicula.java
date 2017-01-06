@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 import ClasesModelo.CineDAO;
 
-public class InsertarPelicula extends HttpServlet {
+public class ModificarPelicula extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
@@ -24,7 +24,6 @@ public class InsertarPelicula extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		/*
 		 * Enumeration attributeNames = request.getParameterNames();
 		 * 
@@ -35,7 +34,9 @@ public class InsertarPelicula extends HttpServlet {
 		 * 
 		 * }
 		 */
+
 		// guardar parametros
+		int id = Integer.parseInt(request.getParameter("idPelicula"));
 		String name = request.getParameter("name");
 		String sinopsis = request.getParameter("sinopsis");
 		String website = request.getParameter("website");
@@ -60,18 +61,18 @@ public class InsertarPelicula extends HttpServlet {
 		boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 		if (ajax) { // Handle ajax (JSON or XML) response.
 			CineDAO dao = new CineDAO();
-			if (dao.insertarPelicula(name, sinopsis, website, original, genero, nacionalidad, duracion, anyo,
+			if (dao.modificarPelicula(id, name, sinopsis, website, original, genero, nacionalidad, duracion, anyo,
 					distribuidora, director, actores, edad, otros, imagen, trailer)) {
 
-				System.out.println("Creada la pelicula " + name);
-				data.put("success", name + " guardada con éxito");
+				System.out.println("modificada la pelicula " + name);
+				data.put("success", name + " modificada con éxito");
 				String json = new Gson().toJson(data);
 				response.getWriter().write(json);
 			}
 
 			else {
-				System.out.println("Fallo al crear pelicula");
-				data.put("error", name + " no ha podido ser guardada");
+				System.out.println("Fallo al modificar la pelicula");
+				data.put("error", name + " no ha podido ser modificada");
 				String json = new Gson().toJson(data);
 				response.getWriter().write(json);
 

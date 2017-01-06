@@ -49,4 +49,24 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BorrarPelicula</display-name>
+    <servlet-name>BorrarPelicula</servlet-name>
+    <servlet-class>Servlets.BorrarPelicula</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BorrarPelicula</servlet-name>
+    <url-pattern>/BorrarPelicula</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarPelicula</display-name>
+    <servlet-name>ModificarPelicula</servlet-name>
+    <servlet-class>Servlets.ModificarPelicula</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarPelicula</servlet-name>
+    <url-pattern>/ModificarPelicula</url-pattern>
+  </servlet-mapping>
 </web-app>

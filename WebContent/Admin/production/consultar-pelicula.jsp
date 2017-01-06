@@ -40,6 +40,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+        <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css">
   </head>
 
   <body class="nav-md">
@@ -222,7 +223,7 @@
                         <thead>
                           <tr class="headings">
                             <th class="column-title">Nombre </th>
-                            <th class="column-title">Actores </th>
+                            <th class="column-title">Sinopsis </th>
                             <th class="column-title">Genero </th>
                             <th class="column-title">Año </th>
                             <th class="column-title">Director </th>
@@ -256,11 +257,11 @@
 								       	%>
 								            <tr class="even pointer">
 								            	<td><%=list.get(i).getName() %></td>
-								            	<td><%=list.get(i).getActores() %></td>
+								            	<td><%=list.get(i).getSinopsis() %></td>
 								            	<td><%=list.get(i).getGenero() %></td>	            									            	
 								            	<td><%=list.get(i).getAnyo() %></td>	            	
 								            	<td><%=list.get(i).getDirector() %></td>
-												<td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
+												<td data-pelicula="<%=list.get(i).getName() %>"  id="<%=list.get(i).getId() %>"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="modificar-pelicula.jsp?id=<%=list.get(i).getId() %>"><i class="fa fa-pencil-square"></i></a></td>
 								            	
 							            	</tr>
 								    	<%
@@ -269,15 +270,6 @@
 							        
                         
                         
-                          <tr class="even pointer">
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 </td>
-                            <td class=" ">John Blank L</td>
-                            <td class=" ">Paid</td>
-                           
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
                           
                           
                           
@@ -316,8 +308,67 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
-
+    <script src="../../js/sweetalert.min.js"></script> 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    
+    <script>
+    
+    
+
+    	
+    	
+    	
+    	var idPelicula =0;
+    	var td;
+        $(".fa-trash").click(function(){
+
+      	  	td = $(this).parent().parent();
+        	idPelicula = td.attr('id');
+			var nombrePeli = $(this).parent().parent().attr('data-pelicula');
+			console.log(idPelicula);
+			console.log(nombrePeli);
+			
+			
+	        swal({
+	        	  title: "Borrar",
+	        	  text: "Va a BORRAR la película " + nombrePeli ,
+	        	  type: "warning",
+	        	  showCancelButton: true,
+	        	  confirmButtonColor: "#DD6B55",
+	        	  confirmButtonText: "Si",		        	  
+	        	  closeOnConfirm: false,
+	        	  showLoaderOnConfirm: true,
+	        
+	        	},
+  			function(){
+	    			
+      			  setTimeout(function(){      				  
+      					var parametros = {
+      					    idPelicula: idPelicula
+      					};      				
+	      	    	    $.post("/Practica-Final-ADSW/BorrarPelicula", $.param(parametros), function(response) {
+	      	    	        
+	      	         	    console.log (response);
+	      	    	        if (response.success)   	      	
+      	    	        	{
+	    	    	        	td.parent().remove(); //borrar el td seleccionado (asi no se recarga pagina)
+	    	    	        	swal("Película borrada", response.success, "success");
+      	    	        	}
+	      	    	        		      	   	        		      	    	                 
+	      	    	        else        	
+	      	    	        	swal("Error al borrar", response.error, "error");
+	      	    	    });      	    	            
+      			  }, 1000);
+      			});
+      	  
+
+      	});
+
+
+    
+    
+    </script>
+    
   </body>
 </html>
