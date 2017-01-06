@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+<%@page import="ClasesModelo.Sala"%>
+<%@page import="ClasesModelo.CineDAO"%>
     
         <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
     {
@@ -35,7 +38,7 @@
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-
+        <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -140,7 +143,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="login.jsp" class="user-profile button-toggle"  aria-expanded="false">
+                  <a onClick=logout()  class="user-profile button-toggle"  aria-expanded="false">
                     <i class="fa fa-sign-out pull-right"></i>Cerrar Sesión
                     
                   </a>
@@ -205,15 +208,19 @@
                     <p>Salas en la base de datos.</p>
 
                     <div class="table-responsive">
+                    
+                    
+                              
+                    
                       <table class="table table-striped jambo_table bulk_action">
+                      
+                      
                         <thead>
                           <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
+                            <th class="column-title">ID </th>
                             <th class="column-title">Nombre </th>
                             <th class="column-title">Filas </th>
-                            <th class="column-title">Columnas </th>
+                            <th class="column-title">Columnas </th>                            
                             <th class="column-title no-link last"><span class="nobr">Acción</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
@@ -221,110 +228,33 @@
                             </th>
                           </tr>
                         </thead>
+                        
+                        
+                        
 
                         <tbody>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 </td>
-                                                     
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                                                        
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 24, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                                                       
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 24, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                           
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 24, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 26, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
-                            </td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 26, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 26, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            
-                           <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
+                        
+                        
+                                <%    
 
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 27, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 28, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
+							        	CineDAO dao = new CineDAO();      
+							       
+								        List<Sala> list = dao.getListaTodasSalas();
+								        for (int i=0; i<list.size();i++)
+								        {
+								        	
+								       	%>
+								            <tr class="even pointer">
+								            	<td><%=list.get(i).getIdSala() %></td>
+								            	<td><%=list.get(i).getNombreSala() %></td>
+								            	<td><%=list.get(i).getFilas() %></td>	            									            	
+								            	<td><%=list.get(i).getColumnas() %></td>	            									            	
+												<td data-sala="<%=list.get(i).getNombreSala() %>"  id="<%=list.get(i).getIdSala() %>"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="modificar-sala.jsp?id=<%=list.get(i).getIdSala() %>"><i class="fa fa-pencil-square"></i></a></td>
+								            	
+							            	</tr>
+								    	<%
+								        }      
+							        	%>
                         </tbody>
                       </table>
                     </div>
@@ -357,8 +287,70 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
-
+<script src="../../js/sweetalert.min.js"></script> 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    
+    
+    
+    
+      
+    <script>
+    
+    
+
+    	
+    	
+    	
+    	var idSala =0;
+    	var td;
+        $(".fa-trash").click(function(){
+
+      	  	td = $(this).parent().parent();
+        	idSala = td.attr('id');
+			var nombreSala = $(this).parent().parent().attr('data-sala');
+			console.log(idSala);
+			console.log(nombreSala);
+			
+			
+	        swal({
+	        	  title: "Borrar",
+	        	  text: "Va a BORRAR la sala " + nombreSala ,
+	        	  type: "warning",
+	        	  showCancelButton: true,
+	        	  confirmButtonColor: "#DD6B55",
+	        	  confirmButtonText: "Si",		        	  
+	        	  closeOnConfirm: false,
+	        	  showLoaderOnConfirm: true,
+	        
+	        	},
+  			function(){
+	    			
+      			  setTimeout(function(){      				  
+      					var parametros = {
+      					    idSala: idSala
+      					};      				
+	      	    	    $.post("/Practica-Final-ADSW/BorrarSala", $.param(parametros), function(response) {
+	      	    	        
+	      	         	    console.log (response);
+	      	    	        if (response.success)   	      	
+      	    	        	{
+	    	    	        	td.parent().remove(); //borrar el td seleccionado (asi no se recarga pagina)
+	    	    	        	swal("Sala borrada", response.success, "success");
+      	    	        	}
+	      	    	        		      	   	        		      	    	                 
+	      	    	        else        	
+	      	    	        	swal("Error al borrar", response.error, "error");
+	      	    	    });      	    	            
+      			  }, 1000);
+      			});
+      	  
+
+      	});
+
+
+    
+    
+    </script>
   </body>
 </html>

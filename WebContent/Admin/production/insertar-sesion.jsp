@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+<%@page import="ClasesModelo.Pelicula"%>
+<%@page import="ClasesModelo.Sala"%>
+<%@page import="ClasesModelo.CineDAO"%>
     
             <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
     {
@@ -35,6 +39,11 @@
     
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css">
+    <link href="../../css/chosen.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.min.css" rel="stylesheet" type="text/css">
+    
   </head>
 
   <body class="nav-md">
@@ -85,8 +94,8 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Gestión Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-entrada.jsp">Insertar</a></li>
-                      <li><a href="consultar-entrada.jsp">Consultar/Modificar</a></li>
+                      <li><a href="insertar-sesion.jsp">Insertar</a></li>
+                      <li><a href="consultar-sesion.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Gestión Reservas <span class="fa fa-chevron-down"></span></a>
@@ -137,7 +146,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="login.jsp" class="user-profile button-toggle"  aria-expanded="false">
+                  <a onClick=logout() class="user-profile button-toggle"  aria-expanded="false">
                     <i class="fa fa-sign-out pull-right"></i>Cerrar Sesión
                     
                   </a>
@@ -201,18 +210,66 @@
                       </p>
                       <span class="section">Información</span>
 
-                        <div class="form-group">
+
+
+                      <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Sala</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control">
-                            <option>Elige una opción</option>
-                            <option>Sala 1</option>
-                            <option>Sala 2</option>
-                            <option>Sala 3</option>
-                            <option>Sala 4</option>
+                          <select class="form-control chosen-select required" id="selectSala" name="selectSala">
+                                        <%    
+
+							        	CineDAO dao = new CineDAO();      
+							       
+								        List<Sala> listaSala = dao.getListaTodasSalas();
+								        for (int i=0; i<listaSala.size();i++)
+								        {
+								        	
+								       	%>
+								           
+								            	
+												<option value="<%=listaSala.get(i).getIdSala() %>"><%="#"+listaSala.get(i).getIdSala() + "- " + listaSala.get(i).getNombreSala() %></option>
+								            	
+		
+								    	<%
+								        }      
+							        	%>
                           </select>
                         </div>
                       </div>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12 ">Película</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <select id="selectPelicula" name="selectPelicula" class="chosen-select form-control required">
+                                        <%    
+
+							        	     
+							       
+								        List<Pelicula> list = dao.getListaTodasPeliculas();
+								        for (int i=0; i<list.size();i++)
+								        {
+								        	
+								       	%>
+								           
+								            	<option value="<%=list.get(i).getId() %>"><%=list.get(i).getName() %></option>
+												
+								            	
+		
+								    	<%
+								        }      
+							        	%>
+							        
+
+                          </select>
+                        </div>
+                      </div>
+                      
+                      
+                      
+                      <input type="text" id="fechaHora">
+                      
+                      
+                      
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Fecha <span class="required"></span>
                         </label>
@@ -234,13 +291,7 @@
                       </div>
                       </div>
 
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre Pelicula<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Título película" required="required" type="text">
-                        </div>
-                      </div>
+
                                                                                    
                       <div class="ln_solid"></div>
                       <div class="form-group">
@@ -271,6 +322,9 @@
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-addon-i18n.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/i18n/jquery-ui-timepicker-es.js"></script> -->
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -279,10 +333,11 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- validator -->
     <script src="../vendors/validator/validator.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js" type="text/javascript"> </script>	
+
+
+<script src="../../js/sweetalert.min.js"></script> 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
@@ -293,6 +348,15 @@
     <!-- /bootstrap-daterangepicker -->
     <!-- validator -->
     <script>
+    
+    
+    
+    $(".chosen-select").chosen();
+    //$( "#fechaHora" ).datepicker();
+    $('#fechaHora').datetimepicker();
+    //$('#selectPelicula').val()
+    
+    
       // initialize the validator function
       validator.message.date = 'not a real date';
 

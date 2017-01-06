@@ -172,6 +172,78 @@ public class CineDAO {
 		return false;
 	}
 
+	public boolean insertarSala(String name, int filas, int columnas) {
+
+		Connection c = null;
+
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c
+					.prepareStatement("INSERT INTO salas(filas, columnas, nombresala)" + "VALUES (?, ?, ?);");
+
+			ps.setInt(1, filas);
+			ps.setInt(2, columnas);
+			ps.setString(3, name);
+
+			int count = ps.executeUpdate();
+			return count == 1;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return false;
+	}
+
+	public boolean borrarSala(int id) {
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("DELETE FROM salas WHERE idsala=?");
+			ps.setInt(1, id);
+			int count = ps.executeUpdate();
+			return count == 1;
+		} catch (Exception e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionHelper.close(c);
+		}
+		return false;
+	}
+
+	public boolean modificarSala(int id, String name, int filas, int columnas) {
+
+		Connection c = null;
+
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c
+					.prepareStatement("UPDATE salas    SET nombresala=?,filas=?, columnas=? WHERE idsala=?;");
+			ps.setString(1, name);
+			ps.setInt(2, filas);
+			ps.setInt(3, columnas);
+			ps.setInt(4, id);
+			int count = ps.executeUpdate();
+			return count == 1;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return false;
+	}
+
 	// devuelve una lista que contendra todas las peliculas ordenadas por id
 	public List<Pelicula> getListaTodasPeliculas() {
 
@@ -185,6 +257,31 @@ public class CineDAO {
 			ResultSet rs = s.executeQuery(sql);
 			while (rs.next()) {
 				list.add(procesarResultSet(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return list;
+
+	}
+
+	// devuelve una lista que contendra todas las salas ordenadas por id
+	public List<Sala> getListaTodasSalas() {
+
+		List<Sala> list = new ArrayList<Sala>();
+		Connection c = null;
+		String sql = "SELECT * FROM salas ORDER BY idsala";
+
+		try {
+			c = ConnectionHelper.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			while (rs.next()) {
+				list.add(procesarSala(rs));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -221,6 +318,30 @@ public class CineDAO {
 
 	}
 
+	// devuelve la sala pedida por id
+	public Sala getSala(int id) {
+
+		Connection c = null;
+		try {
+
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("SELECT * FROM salas WHERE idsala=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return procesarSala(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return null;
+
+	}
+
 	// recibimos un resultSet que contiene una pelicula y lo convertimos en un
 	// Objeto de ese tipo, para devolverlo
 	private Pelicula procesarResultSet(ResultSet rs) throws SQLException {
@@ -245,4 +366,14 @@ public class CineDAO {
 		return pelicula;
 	}
 
+	// recibimos un resultSet que contiene una sala y lo convertimos en un
+	// Objeto de ese tipo, para devolverlo
+	private Sala procesarSala(ResultSet rs) throws SQLException {
+		Sala sala = new Sala();
+		sala.setColumnas(rs.getInt("columnas"));
+		sala.setFilas(rs.getInt("filas"));
+		sala.setIdSala(rs.getInt("idsala"));
+		sala.setNombreSala(rs.getString("nombresala"));
+		return sala;
+	}
 }

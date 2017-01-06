@@ -143,7 +143,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a  class="user-profile button-toggle"  aria-expanded="false">
+                  <a  onClick=logout() class="user-profile button-toggle"  aria-expanded="false">
                     <i class="fa fa-sign-out pull-right"></i>Cerrar Sesión
                     
                   </a>

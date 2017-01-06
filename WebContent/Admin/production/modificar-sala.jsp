@@ -1,21 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+    <%@page import="ClasesModelo.Sala"%>
+<%@page import="ClasesModelo.CineDAO"%>
     
-            <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
+    <% 
+    
+    if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
     {
+    	//sesion no existe (intenta meterse sin admin)
     	response.sendRedirect("../../index.jsp");
     	
     }
     else
     {
     	//prueba de sesion;
-    	 
-    	
-    }
-        
-        %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    	if (request.getParameter("id") == null || request.getParameter("id").equals("")) //no existe el parametro id o no tiene numero
+    		response.sendRedirect("consultar-sala.jsp");
+    	else
+    	{
+        	int idSala = Integer.parseInt(request.getParameter("id"));
+       	 	CineDAO cine = new CineDAO();
+        	Sala sala = cine.getSala(idSala);
+        	if (sala == null) //no existe pelicula con ese ID
+        		response.sendRedirect("consultar-sala.jsp");
+        	
+        	
+      	 %>
+        	
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,7 +38,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Insertar Pelicula | </title>
+    <title>Modificar Sala | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -165,7 +179,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Película nueva </h2>
+                    <h2>Modificación </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -176,189 +190,44 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" method="POST" action= "/Practica-Final-ADSW/InsertarPelicula" novalidate>
+                    <form class="form-horizontal form-label-left" method="POST" action= "/Practica-Final-ADSW/ModificarSala" novalidate>
 
-                      <p>Añada los campos de la nueva película</a>
+                      <p>Cambie los campos de la sala</a>
                       </p>
                       <span class="section">Información</span>
-
-
+					
+					
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">ID <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input readonly value="<%=sala.getIdSala() %>"  id="idSala" class="form-control col-md-7 col-xs-12" name="idSala" placeholder="" required="required" type="text">
+                        </div>
+                      </div>					
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12"  name="name" placeholder="Título película" required="required" type="text">
+                          <input value="<%=sala.getNombreSala() %>" id="name" class="form-control col-md-7 col-xs-12" name="name" placeholder="Sala 3D" required="required" type="text">
                         </div>
                       </div>
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Sinopsis <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea style="height: 150px;" id="sinopsis" required="required" name="sinopsis" class="form-control col-md-7 col-xs-12"></textarea>
-                        </div>
-                      </div>
-
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="website">Página Oficial <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="url" id="website" name="website" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Título Original <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="original" class="form-control col-md-7 col-xs-12" name="original" placeholder="Título original" required="required" type="text">
-                        </div>
-                      </div>
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Género</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control required" id="genero" name="genero">
-                            <option>Elige una opción</option>
-                            <option>Comedia</option>
-                            <option>Acción</option>
-                            <option>Animación</option>
-                            <option>Ciencia Ficción</option>
-                            <option>Drama</option>
-                            <option>Terror</option>
-                          </select>
-                        </div>
-                      </div>
-
-
-
-                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nacionalidad <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="nacionalidad" class="form-control col-md-7 col-xs-12"  name="nacionalidad" placeholder="Española" required="required" type="text">
-                        </div>
-                      </div>
-
-
-
+                      
                       
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Duración <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Filas <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="duracion" name="duracion" placeholder="10 - 300 Minutos" required="required" data-validate-minmax="10,300" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=sala.getFilas() %>" type="number" id="filas" name="filas" required="required" placeholder="6 - 20" data-validate-minmax="1,40" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-
-
-
-
                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Año<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Columnas<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="anyo" name="anyo" placeholder="1940-2017" required="required" data-validate-minmax="1940,2017" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=sala.getColumnas() %>" type="number" id="columnas" name="columnas" required="required" placeholder="6 - 20" data-validate-minmax="1,20" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Distribuidora <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="distribuidora" class="form-control col-md-7 col-xs-12" name="distribuidora"  required="required" type="text">
-                        </div>
-                      </div>
-
-
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Director <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="director" class="form-control col-md-7 col-xs-12" name="director"  required="required" type="text">
-                        </div>
-                      </div>
-
-
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Actores <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea style="height: 70px;" id="actores" required="required" name="actores" class="form-control col-md-7 col-xs-12"></textarea>
-                        </div>
-                      </div>
-
-
-
-
-
-
-
-
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Clasificación edad</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control required" id="edad" name="edad">
-                            <option>Elige una opción</option>
-                            <option>Todos los públicos</option>
-                            <option>+7</option>
-                            <option>+12</option>
-                            <option>+16</option>
-                            <option>+18</option>
-                            <option>X</option>
-                          </select>
-                        </div>
-                      </div>
-                      
-
-                      
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Imagen <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="imagen" class="form-control col-md-7 col-xs-12" name="imagen"  placeholder="Link de la imagen" required="required" type="text">
-                        </div>
-                      </div>
-
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Trailer <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="trailer" class="form-control col-md-7 col-xs-12" name="trailer"  placeholder="Link del trailer (youtube)" required="required" type="text">
-                        </div>
-                      </div>
-
-
-
-                      
-                      <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Datos Interes</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="otros"  name="otros" class="form-control col-md-7 col-xs-12"></textarea>
-                        </div>
-                      </div>
-
-
 
 
 
@@ -372,8 +241,9 @@
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                
-                          <button id="send"  type="submit" class="btn btn-success">Enviar</button>
+                        	
+                		  <button type="button" onclick="window.location='consultar-sala.jsp'" class="btn btn-primary">Volver</button>
+                          <button id="send"  type="submit" class="btn btn-success">Guardar</button>
                         </div>
                       </div>
                     </form>
@@ -444,12 +314,12 @@
          	    console.log (response);
     	        if (response.success)   
    	        	{
-    	        	$form.trigger('reset');  //esto reiniciaria el formulario
-    	        	swal("Película insertada", response.success, "success");
+    	        	
+    	        	swal("Sala modificada", response.success, "success");
    	        	}
     	                 	
     	        else        	
-    	        	swal("Error al guardar", response.error, "error");
+    	        	swal("Error al modificar", response.error, "error");
           	
     	    	
     	    });
@@ -472,3 +342,12 @@
     <!-- /validator -->
   </body>
 </html>
+
+  	<%
+    	}
+    	
+
+    	
+    }
+    
+    %>

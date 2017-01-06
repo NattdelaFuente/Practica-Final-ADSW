@@ -34,6 +34,8 @@
     
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+        
+    <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css">
   </head>
 
   <body class="nav-md">
@@ -84,8 +86,8 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Gestión Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertar-entrada.jsp">Insertar</a></li>
-                      <li><a href="consultar-entrada.jsp">Consultar/Modificar</a></li>
+                      <li><a href="insertar-sesion.jsp">Insertar</a></li>
+                      <li><a href="consultar-sesion.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i> Gestión Reservas <span class="fa fa-chevron-down"></span></a>
@@ -136,7 +138,7 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
-                  <a href="login.jsp" class="user-profile button-toggle"  aria-expanded="false">
+                  <a onClick=logout() class="user-profile button-toggle"  aria-expanded="false">
                     <i class="fa fa-sign-out pull-right"></i>Cerrar Sesión
                     
                   </a>
@@ -194,7 +196,7 @@
                   </div>
                   <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" novalidate>
+                    <form method="POST" action="/Practica-Final-ADSW/InsertarSala" class="form-horizontal form-label-left" novalidate>
 
                       <p>Añada los campos de la nueva sala</a>
                       </p>
@@ -204,7 +206,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="Sala1" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12" name="name" placeholder="Sala 3D" required="required" type="text">
                         </div>
                       </div>
                       
@@ -213,21 +215,21 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Filas <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="number" name="number" required="required" data-validate-minmax="1,20" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="filas" name="filas" required="required" placeholder="6 - 20" data-validate-minmax="1,40" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                      <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Columnas<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="number" name="number" required="required" data-validate-minmax="1,40" class="form-control col-md-7 col-xs-12">
+                          <input type="number" id="columnas" name="columnas" required="required" placeholder="6 - 20" data-validate-minmax="1,20" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">Cancelar</button>
+
                           <button id="send" type="submit" class="btn btn-success">Enviar</button>
                         </div>
                       </div>
@@ -243,7 +245,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -261,7 +263,7 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- validator -->
     <script src="../vendors/validator/validator.js"></script>
-
+    <script src="../../js/sweetalert.min.js"></script> 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
@@ -281,19 +283,42 @@
       });
 
       $('form').submit(function(e) {
-        e.preventDefault();
-        var submit = true;
+          e.preventDefault();
+  	    var $form = $(this);
+          var submit = true;
 
-        // evaluate the form using generic validaing
-        if (!validator.checkAll($(this))) {
-          submit = false;
-        }
+          // evaluate the form using generic validaing
+          if (!validator.checkAll($(this))) {
+            submit = false;
+          }
 
-        if (submit)
-          this.submit();
+          if (submit)
+         	{
+      	    $.post($form.attr("action"), $form.serialize(), function(response) {
+      	        
+           	    console.log (response);
+      	        if (response.success)   
+     	        	{
+      	        	$form.trigger('reset');  //esto reiniciaria el formulario
+      	        	swal("Sala insertada", response.success, "success");
+     	        	}
+      	                 	
+      	        else        	
+      	        	swal("Error al guardar", response.error, "error");
+            	
+      	    	
+      	    });
+         	}
+            
 
-        return false;
-      });
+          return false;
+        });
+        
+        
+
+
+  	
+
     </script>
     <!-- /validator -->
   </body>

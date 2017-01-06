@@ -2,7 +2,9 @@ function logout ()
 {
 	$.post("/Practica-Final-ADSW/Logout",  function(response) {
         
-
+		console.log(response);
+		window.location = response.redirect;
+		
     	
     	
     });

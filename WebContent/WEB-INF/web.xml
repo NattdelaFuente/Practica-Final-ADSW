@@ -69,4 +69,34 @@
     <servlet-name>ModificarPelicula</servlet-name>
     <url-pattern>/ModificarPelicula</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertarSala</display-name>
+    <servlet-name>InsertarSala</servlet-name>
+    <servlet-class>Servlets.InsertarSala</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertarSala</servlet-name>
+    <url-pattern>/InsertarSala</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BorrarSala</display-name>
+    <servlet-name>BorrarSala</servlet-name>
+    <servlet-class>Servlets.BorrarSala</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BorrarSala</servlet-name>
+    <url-pattern>/BorrarSala</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarSala</display-name>
+    <servlet-name>ModificarSala</servlet-name>
+    <servlet-class>Servlets.ModificarSala</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarSala</servlet-name>
+    <url-pattern>/ModificarSala</url-pattern>
+  </servlet-mapping>
 </web-app>

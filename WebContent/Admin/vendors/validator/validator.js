@@ -29,7 +29,7 @@ var validator = (function($){
         password_repeat : 'passwords do not match',
         repeat          : 'no match',
         complete        : 'input is not complete',
-        select          : 'Seleccione una opción'
+        select          : 'Seleccione una opci\u00f3n'
     };
 
     if(!window.console){
@@ -221,7 +221,8 @@ var validator = (function($){
             return true;
         },
         select : function(a){
-            if( a == "Elige una opción" ){
+        	
+            if( a == "Elige una opci\u00f3n" ){
                 alertTxt = message.select;
                 return false;
             }
