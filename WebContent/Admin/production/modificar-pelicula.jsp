@@ -86,7 +86,7 @@
                   <li><a href="index.html"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;&nbsp;Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-pelicula.html">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
@@ -213,7 +213,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Sinopsis <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea   id="sinopsis" required="required" name="sinopsis" class="form-control col-md-7 col-xs-12"><%=pelicula.getSinopsis() %> </textarea>
+                          <textarea  style="height: 150px;" id="sinopsis" required="required" name="sinopsis" class="form-control col-md-7 col-xs-12"><%=pelicula.getSinopsis() %> </textarea>
                         </div>
                       </div>
 
@@ -320,7 +320,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Actores <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="actores" required="required" name="actores" class="form-control col-md-7 col-xs-12"><%=pelicula.getActores() %></textarea>
+                          <textarea style="height: 70px;" id="actores" required="required" name="actores" class="form-control col-md-7 col-xs-12"><%=pelicula.getActores() %></textarea>
                         </div>
                       </div>
 
