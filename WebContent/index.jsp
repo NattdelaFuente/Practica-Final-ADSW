@@ -22,39 +22,42 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="carousel-content centered text-center" style="color:white;">
-                                    <h2 class="boxed animation animated-item-1" >LA VIDA DE PI</h2>
-                                    <p class="boxed animation animated-item-2" >La vida de Pi es una novela de aventuras escrita por el canadiense Yann Martel. En la historia, el protagonista Piscine Pi Molitor Patel (en honor a "Piscine Molitor" una piscina pública de París), un joven de la India, de Pondicherry, indaga sobre la religión, espiritualidad y lo factible desde una edad temprana, y sobrevive 227 días en un bote junto con un Tigre de Bengala después del naufragio de su barco en el Océano Pacífico.</p>
+                                <div class="carousel-content centered">
+                                    <h2 class="animation animated-item-1">La mirada del tigre 2</h2>
+                                    <p class="animation animated-item-2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div><!--/.item-->
-                <div class="item" style="background-image: url(stylePeli/images/4.jpg)">
+                <div class="item" style="background-image: url(images/slider/bg2.jpg)">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="carousel-content center centered">
-                                   
+                                    <h2 class="boxed animation animated-item-1">Clean, Crisp, Powerful and Responsive Web Design</h2>
+                                    <p class="boxed animation animated-item-2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                    <br>
+                                    <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div><!--/.item-->
-                <div class="item" style="background-image: url(images/tortugas-ninja-2.jpg)">
+                <div class="item" style="background-image: url(images/slider/bg3.jpg)">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="carousel-content centered">
-                                    <h2 class="animation animated-item-1">Tortugas ninja 2</h2>
-                                    <p class="animation animated-item-2" style="color:white;">La nueva película de la famosa saga... ¡No te la puedes perder!</p>
-                                    <a class="btn btn-md animation animated-item-3" href="#">Trailer <span class="glyphicon glyphicon-chevron-right"></span></a>
+                                    <h2 class="animation animated-item-1">Powerful and Responsive Web Design Theme</h2>
+                                    <p class="animation animated-item-2">Pellentesque habitant morbi tristique senectus et netus et malesuada fames</p>
+                                    <a class="btn btn-md animation animated-item-3" href="#">Learn More</a>
                                 </div>
                             </div>
                             <div class="col-sm-6 hidden-xs animation animated-item-4">
                                 <div class="centered">
                                     <div class="embed-container">
-                                        <iframe height="275" src="https://www.youtube.com/embed/rohrrpbKMdw" frameborder="0" allowfullscreen></iframe>
+                                        <iframe src="//player.vimeo.com/video/69421653?title=0&amp;byline=0&amp;portrait=0&amp;color=a22c2f" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -63,6 +66,12 @@
                 </div><!--/.item-->
             </div><!--/.carousel-inner-->
         </div><!--/.carousel-->
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="icon-angle-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="icon-angle-right"></i>
+        </a>
     </section><!--/#main-slider-->
     <div class="emerald2">
         <div class="container">
@@ -77,8 +86,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h3>Lo más visto</h3>
-                    <p>Estas son las películas más vistas por los usuarios de los cines CINESA.</p>
+                    <h3>Our Latest Project</h3>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
                     <div class="btn-group">
                         <a class="btn btn-danger" href="#scroller" data-slide="prev"><i class="icon-angle-left"></i></a>
                         <a class="btn btn-danger" href="#scroller" data-slide="next"><i class="icon-angle-right"></i></a>
@@ -93,12 +102,12 @@
                                     <div class="col-xs-4">
                                         <div class="portfolio-item">
                                             <div class="item-inner">
-                                                <img class="img-responsive" src="stylePeli/images/5.jpg" alt="">
+                                                <img class="img-responsive" src="images/portfolio/recent/item1.png" alt="">
                                                 <h5>
                                                     Nova - Corporate site template
                                                 </h5>
                                                 <div class="overlay">
-                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="stylePeli/images/5.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,12 +115,12 @@
                                     <div class="col-xs-4">
                                         <div class="portfolio-item">
                                             <div class="item-inner">
-                                                <img class="img-responsive" src="stylePeli/images/6.jpg" alt="">
+                                                <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
                                                 <h5>
                                                     Fornax - Apps site template
                                                 </h5>
                                                 <div class="overlay">
-                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="stylePeli/images/6.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,12 +128,12 @@
                                     <div class="col-xs-4">
                                         <div class="portfolio-item">
                                             <div class="item-inner">
-                                                <img class="img-responsive" src="stylePeli/images/7.jpg" alt="">
+                                                <img class="img-responsive" src="images/portfolio/recent/item2.png" alt="">
                                                 <h5>
                                                     Flat Theme - Business Theme
                                                 </h5>
                                                 <div class="overlay">
-                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="stylePeli/images/7.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -136,12 +145,12 @@
                                     <div class="col-xs-4">
                                         <div class="portfolio-item">
                                             <div class="item-inner">
-                                                <img class="img-responsive" src="stylePeli/images/4.jpg" alt="">
+                                                <img class="img-responsive" src="images/portfolio/recent/item2.png" alt="">
                                                 <h5>
                                                     Flat Theme - Business Theme
                                                 </h5>
                                                 <div class="overlay">
-                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="stylePeli/images/4.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,12 +158,12 @@
                                     <div class="col-xs-4">
                                         <div class="portfolio-item">
                                             <div class="item-inner">
-                                                <img class="img-responsive" src="stylePeli/images/3.jpg" alt="">
+                                                <img class="img-responsive" src="images/portfolio/recent/item1.png" alt="">
                                                 <h5>
                                                     Nova - Corporate site template
                                                 </h5>
                                                 <div class="overlay">
-                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="stylePeli/images/3.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,12 +171,12 @@
                                     <div class="col-xs-4">
                                         <div class="portfolio-item">
                                             <div class="item-inner">
-                                                <img class="img-responsive" src="stylePeli/images/2.jpg" alt="">
+                                                <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
                                                 <h5>
-                                                    MAXIMUM RIDE
+                                                    Fornax - Apps site template
                                                 </h5>
                                                 <div class="overlay">
-                                                    <a class="preview btn btn-danger" title="Escuadrón fantasma" href="stylePeli/images/2.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
+                                                    <a class="preview btn btn-danger" title="Malesuada fames ac turpis egestas" href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i class="icon-eye-open"></i></a>
                                                 </div>
                                             </div>
                                         </div>
