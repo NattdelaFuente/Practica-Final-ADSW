@@ -99,4 +99,34 @@
     <servlet-name>ModificarSala</servlet-name>
     <url-pattern>/ModificarSala</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertarSesion</display-name>
+    <servlet-name>InsertarSesion</servlet-name>
+    <servlet-class>Servlets.InsertarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertarSesion</servlet-name>
+    <url-pattern>/InsertarSesion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BorrarSesion</display-name>
+    <servlet-name>BorrarSesion</servlet-name>
+    <servlet-class>Servlets.BorrarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BorrarSesion</servlet-name>
+    <url-pattern>/BorrarSesion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarSesion</display-name>
+    <servlet-name>ModificarSesion</servlet-name>
+    <servlet-class>Servlets.ModificarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarSesion</servlet-name>
+    <url-pattern>/ModificarSesion</url-pattern>
+  </servlet-mapping>
 </web-app>

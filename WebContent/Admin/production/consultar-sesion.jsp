@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+        <%@page import="java.util.List"%>
+<%@page import="ClasesModelo.Sesion"%>
+<%@page import="ClasesModelo.CineDAO"%>
         <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
     {
     	response.sendRedirect("../../index.jsp");
@@ -35,7 +37,7 @@
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-
+        <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -202,18 +204,19 @@
 
                   <div class="x_content">
 
-                    <p>Sesiones en la base de datos.</p>
+                    <p>Sesiones ordenadas por Fecha inicio</p>
 
                     <div class="table-responsive">
                       <table class="table table-striped jambo_table bulk_action">
                         <thead>
                           <tr class="headings">
-                            <th>
-                              <input type="checkbox" id="check-all" class="flat">
-                            </th>
+           
+							<th class="column-title">ID </th>
                             <th class="column-title">Sala </th>
-                            <th class="column-title">Fecha </th>
                             <th class="column-title">Pelicula </th>
+                            <th class="column-title">Fecha Inicio </th>
+                            <th class="column-title">Fecha Fin </th>
+                            
                             <th class="column-title no-link last"><span class="nobr">Acción</span>
                             </th>
                             <th class="bulk-actions" colspan="7">
@@ -223,108 +226,32 @@
                         </thead>
 
                         <tbody>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210 </td>
-                                                     
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 23, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                                                        
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 24, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                                                       
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 24, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                           
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 24, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 26, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208 <i class="error fa fa-long-arrow-down"></i>
-                            </td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000038</td>
-                            <td class=" ">May 26, 2014 10:55:33 PM</td>
-                            <td class=" ">121000203</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000037</td>
-                            <td class=" ">May 26, 2014 10:52:44 PM</td>
-                            <td class=" ">121000204</td>
-                            
-                           <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
+                      
+                                            <%    
 
-                          <tr class="even pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000040</td>
-                            <td class=" ">May 27, 2014 11:47:56 PM </td>
-                            <td class=" ">121000210</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
-                          <tr class="odd pointer">
-                            <td class="a-center ">
-                              <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">121000039</td>
-                            <td class=" ">May 28, 2014 11:30:12 PM</td>
-                            <td class=" ">121000208</td>
-                            
-                            <td class=" last"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="#/pencil-square"><i class="fa fa-pencil-square"></i></a></td>
-                          </tr>
+							        	CineDAO dao = new CineDAO();      
+							       
+								        List<Sesion> list = dao.getListaTodasSesiones();
+								        for (int i=0; i<list.size();i++)
+								        {
+								        	
+								       	%>
+								            <tr class="even pointer">
+												<td><%=list.get(i).getIdSesion() %></td>
+								            	<td><%="#"+list.get(i).getIdSala() + "- " +list.get(i).getNombreSala() %></td>
+								            	<td><%="#" + list.get(i).getDuracionPelicula() + " min  -  " +list.get(i).getNombrePelicula() %></td>
+								            	<td><%=list.get(i).getFechaInicio() + "  " +  list.get(i).getHoraInicio()%></td>	            									            	
+								            	<td><%=list.get(i).getFechaFinal() + "  " +  list.get(i).getHoraFinal()%></td>		            									            	
+												<td  id="<%=list.get(i).getIdSesion() %>"><a href="#/trash"><i class="fa fa-trash"></i></a></br><a href="modificar-sesion.jsp?id=<%=list.get(i).getIdSesion() %>"><i class="fa fa-pencil-square"></i></a></td>
+								            	
+							            	</tr>
+								    	<%
+								        }      
+							        	%>
+                      
+                      
+                      
+                      
                         </tbody>
                       </table>
                     </div>
@@ -357,8 +284,67 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
-
+<script src="../../js/sweetalert.min.js"></script> 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    
+    
+    
+    
+    
+      <script>
+    
+    
+
+    	
+    	
+    	
+    	var idSesion =0;
+    	var td;
+        $(".fa-trash").click(function(){
+
+      	  	td = $(this).parent().parent();
+        	idSesion = td.attr('id');
+			
+			
+	        swal({
+	        	  title: "Borrar",
+	        	  text: "Va a BORRAR la sesion " + idSesion ,
+	        	  type: "warning",
+	        	  showCancelButton: true,
+	        	  confirmButtonColor: "#DD6B55",
+	        	  confirmButtonText: "Si",		        	  
+	        	  closeOnConfirm: false,
+	        	  showLoaderOnConfirm: true,
+	        
+	        	},
+  			function(){
+	    			
+      			  setTimeout(function(){      				  
+      					var parametros = {
+      							idSesion: idSesion
+      					};      				
+	      	    	    $.post("/Practica-Final-ADSW/BorrarSesion", $.param(parametros), function(response) {
+	      	    	        
+	      	         	    console.log (response);
+	      	    	        if (response.success)   	      	
+      	    	        	{
+	    	    	        	td.parent().remove(); //borrar el td seleccionado (asi no se recarga pagina)
+	    	    	        	swal("Sesion borrada", response.success, "success");
+      	    	        	}
+	      	    	        		      	   	        		      	    	                 
+	      	    	        else        	
+	      	    	        	swal("Error al borrar", response.error, "error");
+	      	    	    });      	    	            
+      			  }, 800);
+      			});
+      	  
+
+      	});
+
+
+    
+    
+    </script>
   </body>
 </html>

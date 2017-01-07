@@ -37,6 +37,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+
   </head>
 
    <body class="nav-md">
@@ -153,11 +154,12 @@
         <!-- /top navigation -->
 
         <!-- page content -->
+    <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Reservas <small>Entradas</small></h3>
+                <h3>Modificar/Consultar y borrar</small></h3>
               </div>
 
               <div class="title_right">
@@ -175,57 +177,11 @@
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-12">
-                <div class="">
-                  <div class="x_content">
-                    <div class="row">
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="icon"><i class="fa fa-caret-square-o-right"></i>
-                          </div>
-                          <div class="count">1500</div>
-
-                          <h3>Total entradas</h3>
-                          <p>Adultos y menores</p>
-                        </div>
-                      </div>
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="icon"><i class="fa fa-comments-o"></i>
-                          </div>
-                          <div class="count">502</div>
-
-                          <h3>Total entradas</h3>
-                          <p>Pack Familar</p>
-                        </div>
-                      </div>
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="icon"><i class="fa fa-sort-amount-desc"></i>
-                          </div>
-                          <div class="count">179</div>
-
-                          <h3>Total entradas</h3>
-                          <p>Pérdidas</p>
-                        </div>
-                      </div>
-                      <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                          <div class="icon"><i class="fa fa-check-square-o"></i>
-                          </div>
-                          <div class="count">179</div>
-
-                          <h3>Total entradas</h3>
-                          <p>Nuevos clientes</p>
-                        </div>
-                      </div>
-                    </div>
-
-                         
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+              
+              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Ventas entradas</h2>
+                    <h2>Salas</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -243,14 +199,20 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+
                   <div class="x_content">
-                    <canvas id="mybarChart"></canvas>
-                  </div>
-                </div>
-                </div>
-             
-            <div class="clearfix"></div>                                          
-                                                                
+
+                    <p>Reservas reazalidas</p>
+
+                    <div class="table-responsive">
+
+
+
+
+
+
+
+
                     </div>
                   </div>
                 </div>
@@ -291,54 +253,10 @@
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
-    <!-- chart js -->
-    <!-- <script type="text/javascript" src="js/moment/moment.min.js"></script> -->
-    <!-- <script src="js/chartjs/chart.min.js"></script> -->
-    <!-- bootstrap progress js -->
-    <!-- <script src="js/progressbar/bootstrap-progressbar.min.js"></script> -->
-    <!-- icheck -->
-    <!-- <script src="js/icheck/icheck.min.js"></script> -->
 
-    <!-- <script src="../build/js/custom.min.js"></script> -->
-
-    <!-- pace -->
-    <!-- <script src="js/pace/pace.min.js"></script> -->
-
-    <!-- sparkline -->
-    <!-- <script src="js/sparkline/jquery.sparkline.min.js"></script> -->
-    <!-- easypie -->
-    <!-- <script src="js/easypie/jquery.easypiechart.min.js"></script> -->
   
-<script>
-  // Bar chart
-      var ctx = document.getElementById("mybarChart");
-      var mybarChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
-          datasets: [{
-            label: 'Menores',
-            backgroundColor: "#26B99A",
-            data: [600, 300, 400, 280, 520, 500, 450,600,500,650,407,608]
-          }, {
-            label: 'Adultos',
-            backgroundColor: "#03586A",
-            data: [941, 1056, 1025, 948, 1172, 1234, 912,900,1005,899,798,1059]
-          }]
-        },
 
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    </script>
-    
+
    
   </body>
 </html>

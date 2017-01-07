@@ -1,19 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+    <%@page import="ClasesModelo.Sala"%>
+<%@page import="ClasesModelo.CineDAO"%>
     
-            <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
+    <% 
+    
+    if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
     {
+    	//sesion no existe (intenta meterse sin admin)
     	response.sendRedirect("../../index.jsp");
     	
     }
     else
     {
     	//prueba de sesion;
-    	 
-    	
-    }
-        
-        %>
+    	if (request.getParameter("id") == null || request.getParameter("id").equals("")) //no existe el parametro id o no tiene numero
+    		response.sendRedirect("consultar-sala.jsp");
+    	else
+    	{
+        	int idSala = Integer.parseInt(request.getParameter("id"));
+       	 	CineDAO cine = new CineDAO();
+        	Sala sala = cine.getSala(idSala);
+        	if (sala == null) //no existe pelicula con ese ID
+        		response.sendRedirect("consultar-sala.jsp");
+        	
+        	
+      	 %>
+        	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -23,7 +38,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Insertar Sala | </title>
+    <title>Modificar Sala | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +49,7 @@
     
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-        
+    
     <link href="../../css/sweetalert.css" rel="stylesheet" type="text/css">
   </head>
 
@@ -71,7 +86,7 @@
                   <li><a href="index.jsp"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i>&nbsp;&nbsp;&nbsp;&nbsp; Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-pelicula.jsp">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
@@ -84,7 +99,7 @@
                       <li><a href="consultar-sala.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Gestión Sesiones <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-table"></i> Gestión Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sesion.jsp">Insertar</a></li>
                       <li><a href="consultar-sesion.jsp">Consultar/Modificar</a></li>
@@ -93,12 +108,12 @@
                   <li><a><i class="fa fa-bar-chart-o"></i> Gestión Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reserva-entradas.jsp">Entradas</a></li>
-                      <li><a href="consultar-reserva.jsp">Salas</a></li>
+                      <li><a href="reserva-salas.jsp">Salas</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Gestión de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                       <li><a href="generos.jsp">Por genero</a></li>
+                      <li><a href="generos.jsp">Por genero</a></li>
                       <li><a href="por-sala.jsp">Por sala</a></li>
                     </ul>
                   </li>
@@ -155,20 +170,8 @@
         <div class="right_col" role="main">
           <div class="">
             <div class="page-title">
-              <div class="title_left">
-                <h3>Sala Nueva</h3>
-              </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                              <button class="btn btn-default" type="button">Go!</button>
-                          </span>
-                  </div>
-                </div>
-              </div>
+
             </div>
             <div class="clearfix"></div>
 
@@ -176,37 +179,37 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Insertar sala </h2>
+                    <h2>Modificación </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+
+
                     </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
 
-                    <form method="POST" action="/Practica-Final-ADSW/InsertarSala" class="form-horizontal form-label-left" novalidate>
+                    <form class="form-horizontal form-label-left" method="POST" action= "/Practica-Final-ADSW/ModificarSala" novalidate>
 
-                      <p>Añada los campos de la nueva sala</a>
+                      <p>Cambie los campos de la sala</a>
                       </p>
                       <span class="section">Información</span>
+					
+					
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">ID <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input readonly value="<%=sala.getIdSala() %>"  id="idSala" class="form-control col-md-7 col-xs-12" name="idSala" placeholder="" required="required" type="text">
+                        </div>
+                      </div>					
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" name="name" placeholder="Sala 3D" required="required" type="text">
+                          <input value="<%=sala.getNombreSala() %>" id="name" class="form-control col-md-7 col-xs-12" name="name" placeholder="Sala 3D" required="required" type="text">
                         </div>
                       </div>
                       
@@ -215,22 +218,32 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Filas <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="filas" name="filas" required="required" placeholder="6 - 20" data-validate-minmax="1,40" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=sala.getFilas() %>" type="number" id="filas" name="filas" required="required" placeholder="6 - 20" data-validate-minmax="1,40" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                      <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Columnas<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" id="columnas" name="columnas" required="required" placeholder="6 - 20" data-validate-minmax="1,20" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=sala.getColumnas() %>" type="number" id="columnas" name="columnas" required="required" placeholder="6 - 20" data-validate-minmax="1,20" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-                      
+
+
+
+
+
+
+
+
+
+
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-
-                          <button id="send" type="submit" class="btn btn-success">Enviar</button>
+                        	
+                		  <button type="button" onclick="window.location='consultar-sala.jsp'" class="btn btn-primary">Volver</button>
+                          <button id="send"  type="submit" class="btn btn-success">Guardar</button>
                         </div>
                       </div>
                     </form>
@@ -263,7 +276,9 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- validator -->
     <script src="../vendors/validator/validator.js"></script>
+    
     <script src="../../js/sweetalert.min.js"></script> 
+
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 
@@ -274,52 +289,65 @@
 
       // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
       $('form')
-        .on('blur', 'input[required], input.optional, select.required', validator.checkField)
+        .on('blur', 'input[required], textarea[required],  input.optional, select.required', validator.checkField)
         .on('change', 'select.required', validator.checkField)
-        .on('keypress', 'input[required][pattern]', validator.keypress);
+        .on('keypress', 'input[required][pattern], textarea[required][pattern]', validator.keypress);
 
       $('.multi.required').on('keyup blur', 'input', function() {
         validator.checkField.apply($(this).siblings().last()[0]);
       });
 
       $('form').submit(function(e) {
-          e.preventDefault();
-  	    var $form = $(this);
-          var submit = true;
+        e.preventDefault();
+	    var $form = $(this);
+        var submit = true;
 
-          // evaluate the form using generic validaing
-          if (!validator.checkAll($(this))) {
-            submit = false;
-          }
+        // evaluate the form using generic validaing
+        if (!validator.checkAll($(this))) {
+          submit = false;
+        }
 
-          if (submit)
-         	{
-      	    $.post($form.attr("action"), $form.serialize(), function(response) {
-      	        
-           	    console.log (response);
-      	        if (response.success)   
-     	        	{
-      	        	$form.trigger('reset');  //esto reiniciaria el formulario
-      	        	swal("Sala insertada", response.success, "success");
-     	        	}
-      	                 	
-      	        else        	
-      	        	swal("Error al guardar", response.error, "error");
-            	
-      	    	
-      	    });
-         	}
-            
+        if (submit)
+       	{
+    	    $.post($form.attr("action"), $form.serialize(), function(response) {
+    	        
+         	    console.log (response);
+    	        if (response.success)   
+   	        	{
+    	        	
+    	        	swal("Sala modificada", response.success, "success");
+   	        	}
+    	                 	
+    	        else        	
+    	        	swal("Error al modificar", response.error, "error");
+          	
+    	    	
+    	    });
+       	}
+          
 
-          return false;
-        });
-        
-        
+        return false;
+      });
+      
+      
 
 
-  	
+	
 
+	
+      
+      
+      
     </script>
     <!-- /validator -->
   </body>
 </html>
+
+  	<%
+    	}
+    	
+
+    	
+    }
+    
+    %>

@@ -200,23 +200,6 @@ public class CineDAO {
 		return false;
 	}
 
-	public boolean borrarSala(int id) {
-		Connection c = null;
-		try {
-			c = ConnectionHelper.getConnection();
-			PreparedStatement ps = c.prepareStatement("DELETE FROM salas WHERE idsala=?");
-			ps.setInt(1, id);
-			int count = ps.executeUpdate();
-			return count == 1;
-		} catch (Exception e) {
-			// e.printStackTrace();
-			System.out.println(e.getMessage());
-		} finally {
-			ConnectionHelper.close(c);
-		}
-		return false;
-	}
-
 	public boolean modificarSala(int id, String name, int filas, int columnas) {
 
 		Connection c = null;
@@ -244,6 +227,214 @@ public class CineDAO {
 		return false;
 	}
 
+	public boolean borrarSala(int id) {
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("DELETE FROM salas WHERE idsala=?");
+			ps.setInt(1, id);
+			int count = ps.executeUpdate();
+			return count == 1;
+		} catch (Exception e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionHelper.close(c);
+		}
+		return false;
+	}
+
+	// para crear una sesion, comprobara si la sala esta libre a esa hora
+	public boolean esPosibleSesion(int idSala, long sesionNuevaMilisInicio, long sesionNuevaMilisFinal) {
+
+		Connection c = null;
+
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("select * from sesiones WHERE idsala=? ");
+			ps.setInt(1, idSala);
+			ResultSet rs = ps.executeQuery();
+			long sesionFinal;
+			long sesionInicio;
+			while (rs.next()) {
+				sesionFinal = rs.getLong("milisfinal");
+				sesionInicio = rs.getLong("milisinicio");
+
+				// si el comienzo de la sesion nueva es mayor que cuando empiece
+				// otra Y A LA VEZ es menor que cuando termine, es que la sala
+				// estara ocupada
+				if (sesionNuevaMilisInicio >= sesionInicio && sesionNuevaMilisInicio <= sesionFinal)
+					return false;
+				if (sesionNuevaMilisFinal >= sesionInicio && sesionNuevaMilisFinal <= sesionFinal)
+					return false;
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return true;
+	}
+
+	// para modificar una sesion, comprobara si la sala esta libre, obviando la
+	// propia sesion que se modifica, por si el usuario no cambia la fecha
+	public boolean esPosibleModificarSesion(int idSala, long sesionNuevaMilisInicio, int idSesion,
+			long sesionNuevaMilisFinal) {
+
+		Connection c = null;
+
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("select * from sesiones WHERE idsala=? AND idsesion != ? ");
+			ps.setInt(1, idSala);
+			ps.setInt(2, idSesion);
+			ResultSet rs = ps.executeQuery();
+			long sesionFinal;
+			long sesionInicio;
+			while (rs.next()) {
+				sesionFinal = rs.getLong("milisfinal");
+				sesionInicio = rs.getLong("milisinicio");
+
+				// si el comienzo de la sesion nueva es mayor que cuando empiece
+				// otra Y A LA VEZ es menor que cuando termine, es que la sala
+				// estara ocupada
+				if (sesionNuevaMilisInicio >= sesionInicio && sesionNuevaMilisInicio <= sesionFinal)
+					return false;
+				if (sesionNuevaMilisFinal >= sesionInicio && sesionNuevaMilisFinal <= sesionFinal)
+					return false;
+
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return false;
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return true;
+	}
+
+	public boolean insertarSesion(int idPelicula, int idSala, String fechaInicio, String horaInicio, long milisInicio,
+			String fechaFinal, String horaFinal, long milisFinal) {
+
+		Connection c = null;
+
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("INSERT INTO sesiones(		  "
+					+ "          idpelicula, idsala, fechainicio, horainicio, fechafinal, 	"
+					+ "	            horafinal, milisinicio, milisfinal) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+
+			ps.setInt(1, idPelicula);
+			ps.setInt(2, idSala);
+			ps.setString(3, fechaInicio);
+			ps.setString(4, horaInicio);
+			ps.setString(5, fechaFinal);
+			ps.setString(6, horaFinal);
+			ps.setLong(7, milisInicio);
+			ps.setLong(8, milisFinal);
+			int count = ps.executeUpdate();
+			return count == 1;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return false;
+	}
+
+	public boolean modificarSesion(int idSesion, int idPelicula, int idSala, String fechaInicio, String horaInicio,
+			long milisInicio, String fechaFinal, String horaFinal, long milisFinal) {
+
+		Connection c = null;
+
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(
+					"UPDATE sesiones    " + "SET idpelicula=?, idsala=?, fechainicio=?, horainicio=?,     "
+							+ "    fechafinal=?, horafinal=?, milisinicio=?, milisfinal=?  " + "WHERE idsesion=?;");
+			ps.setInt(1, idPelicula);
+			ps.setInt(2, idSala);
+			ps.setString(3, fechaInicio);
+			ps.setString(4, horaInicio);
+			ps.setString(5, fechaFinal);
+			ps.setString(6, horaFinal);
+			ps.setLong(7, milisInicio);
+			ps.setLong(8, milisFinal);
+			ps.setInt(9, idSesion);
+			int count = ps.executeUpdate();
+			return count == 1;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return false;
+	}
+
+	public boolean borrarSesion(int id) {
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("DELETE FROM sesiones WHERE idsesion=?");
+			ps.setInt(1, id);
+			int count = ps.executeUpdate();
+			return count == 1;
+		} catch (Exception e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			ConnectionHelper.close(c);
+		}
+		return false;
+	}
+
+	// devuelve una lista que contendra todas las sesiones ordenadas por fecha
+	// de inicio
+	public List<Sesion> getListaTodasSesiones() {
+
+		List<Sesion> list = new ArrayList<Sesion>();
+		Connection c = null;
+		String sql = "SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal "
+				+ "FROM sesiones NATURAL JOIN peliculas NATURAL JOIN salas "
+				+ "ORDER BY TO_TIMESTAMP(  CONCAT ( CONCAT(fechainicio, ' '),horainicio), 'DD/MM/YYYY HH24:MI') ASC  ";
+
+		try {
+			c = ConnectionHelper.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			while (rs.next()) {
+				list.add(procesarSesion(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return list;
+
+	}
+
 	// devuelve una lista que contendra todas las peliculas ordenadas por id
 	public List<Pelicula> getListaTodasPeliculas() {
 
@@ -256,7 +447,7 @@ public class CineDAO {
 			Statement s = c.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			while (rs.next()) {
-				list.add(procesarResultSet(rs));
+				list.add(procesarPelicula(rs));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -305,7 +496,7 @@ public class CineDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				return procesarResultSet(rs);
+				return procesarPelicula(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -342,9 +533,34 @@ public class CineDAO {
 
 	}
 
+	// devuelve la sesion pedida por id
+	public Sesion getSesion(int id) {
+
+		Connection c = null;
+		try {
+
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(
+					"SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal from sesiones NATURAL JOIN peliculas NATURAL JOIN salas WHERE idsesion=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return procesarSesion(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return null;
+
+	}
+
 	// recibimos un resultSet que contiene una pelicula y lo convertimos en un
 	// Objeto de ese tipo, para devolverlo
-	private Pelicula procesarResultSet(ResultSet rs) throws SQLException {
+	private Pelicula procesarPelicula(ResultSet rs) throws SQLException {
 		Pelicula pelicula = new Pelicula();
 		pelicula.setId(rs.getInt("idpelicula"));
 		pelicula.setName(rs.getString("nombre"));
@@ -375,5 +591,31 @@ public class CineDAO {
 		sala.setIdSala(rs.getInt("idsala"));
 		sala.setNombreSala(rs.getString("nombresala"));
 		return sala;
+	}
+
+	// recibimos un resultSet que contiene una sala y lo convertimos en un
+	// Objeto de ese tipo, para devolverlo
+
+	private Sesion procesarSesion(ResultSet rs) throws SQLException {
+
+		Sesion sesion = new Sesion();
+
+		sesion.setNombrePelicula(rs.getString("nombre"));
+		sesion.setNombreSala(rs.getString("nombresala"));
+		sesion.setDuracionPelicula(rs.getInt("duracion"));
+
+		sesion.setIdSesion(rs.getInt("idsesion"));
+		sesion.setIdPelicula(rs.getInt("idpelicula"));
+		sesion.setIdSala(rs.getInt("idsala"));
+
+		sesion.setFechaInicio(rs.getString("fechainicio"));
+		sesion.setHoraInicio(rs.getString("horainicio"));
+		sesion.setMilisInicio(rs.getLong("milisinicio"));
+
+		sesion.setFechaFinal(rs.getString("fechafinal"));
+		sesion.setHoraFinal(rs.getString("horafinal"));
+		sesion.setMilisFinal(rs.getLong("milisfinal"));
+
+		return sesion;
 	}
 }
