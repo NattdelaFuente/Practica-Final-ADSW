@@ -1,10 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+    <%@page import="java.util.Locale"%>
+    <%@page import="ClasesModelo.Pelicula"%>
+    <%@page import="ClasesModelo.Sesion"%>
+    <%@page import="java.time.format.TextStyle"%>
+    
+    <%@page import="java.time.Month"%>
+<%@page import="ClasesModelo.CineDAO"%>
+    
+    <% 
+    
+
+    	//prueba de sesion;
+    	if (request.getParameter("pelicula") == null || request.getParameter("pelicula").equals("")) //no existe el parametro id o no tiene numero
+    		response.sendRedirect("cartelera.jsp");
+    	else
+    	{
+        	int idPelicula = Integer.parseInt(request.getParameter("pelicula"));
+       	 	CineDAO cine = new CineDAO();
+        	Pelicula pelicula = cine.getPelicula(idPelicula);
+        	List<Sesion> list = cine.getListaSesionesProyectanPelicula(idPelicula);        	
+        	if (pelicula == null) //no existe sesion con ese ID
+        		response.sendRedirect("cartelera.jsp");
+        	
+    	
+      	 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Plantilla</title>
+<title><%=pelicula.getName()%> </title>
 <%@ include file="principales/cabecerapeli.jsp"%>
 <%@ include file="principales/elementshead.jsp"%>
 
@@ -18,12 +44,12 @@
 	<div class="container">
 		<div class="row" style="padding-top: 30px;">
 			<div class="col-sm-6">
-				<h1>Nombre de la película</h1>
+				<h1><%=pelicula.getName()%></h1>
 			</div>
 			<div class="col-sm-6">
 				<ul class="breadcrumb pull-right">
 					<li><a href="index.html">Inicio</a></li>
-					<li class="active">Nombre de la película</li>
+					<li class="active"><%=pelicula.getName()%></li>
 				</ul>
 			</div>
 		</div>
@@ -32,42 +58,57 @@
 			style="padding: 20px; padding-top: 30px; background: #7b8ea0;">
 			<div class="col-sm-4">
 
-				<img alt="Nombreimagen" src="images/08D.jpg"
+				<img alt="Nombreimagen" src="<%=pelicula.getImagen()%>"
 					style="max-width: 420px;">
 
 			</div>
 			<div class="col-sm-1"></div>
 			<div class="col-sm-7">
 				<h4>
-					<strong class="colorinfo">Genero: </strong>Acción
+					<strong class="colorinfo">Título original: </strong><%=pelicula.getOriginal()%>
 				</h4>
 				<h4>
-					<strong class="colorinfo">Duración: </strong>116 min
+					<strong class="colorinfo">Genero: </strong><%=pelicula.getGenero()%>
 				</h4>
 				<h4>
-					<strong class="colorinfo">Edad: </strong>+16
+					<strong class="colorinfo">Duración: </strong><%=pelicula.getDuracion()%> min
 				</h4>
 				<h4>
-					<strong class="colorinfo">Director: </strong>Manuel Croman
+					<strong class="colorinfo">Clasificación: </strong><%=pelicula.getEdad()%>
+				</h4>				
+				<h4>
+					<strong class="colorinfo">Director: </strong><%=pelicula.getDirector()%>
+				</h4>
+
+				<h4>
+					<strong class="colorinfo">Nacionalidad: </strong><%=pelicula.getNacionalidad()%>
 				</h4>
 				<h4>
-					<strong class="colorinfo">Calificación: </strong>Buena
+					<strong class="colorinfo">Año: </strong><%=pelicula.getAnyo()%>
 				</h4>
+				<h4>
+					<strong class="colorinfo">Distribuidora: </strong><%=pelicula.getDistribuidora()%>
+				</h4>	
+				<h4>
+					<strong class="colorinfo">Otros: </strong><%=pelicula.getOtros()%>
+				</h4>
+				<h4>
+					<strong class="colorinfo">Página oficial: </strong><%=pelicula.getWebsite()%>
+				</h4>	
 				<p>
-					<strong>Sinopsis: </strong>Gracias a una tecnología revolucionaria
-					que permite el acceso a los recuerdos genéticos, Callum Lynch
-					(Michael Fassbender) revive las aventuras de Aguilar, un antepasado
-					suyo que vivió en la España del siglo XV. Así descubre que es
-					descendiente de una misteriosa organización secreta, los Asesinos,
-					y que posee las habilidades y los conocimientos necesarios para
-					enfrentarse a la poderosa y temible organización de los Templarios
-					en la época actual. Adaptación libre del videojuego homónimo.
+					<strong>Actores: </strong><%=pelicula.getActores()%>
+				</p>											
+				<p>
+					<strong>Sinopsis: </strong><%=pelicula.getSinopsis()%>
 				</p>
 				<h4>
 					<strong class="">TRAILER: </strong>
 				</h4>
+				
+				
+
 				<iframe width="560" height="315"
-					src="https://www.youtube.com/embed/fuGRN3dYHKg" frameborder="0"
+					src="<%=pelicula.getTrailer().replace("watch?v=","embed/")%>" frameborder="0"
 					allowfullscreen></iframe>
 			</div>
 		</div>
@@ -81,6 +122,29 @@
 					disponibles</a>
 				<div class="collapse in" id="collapseExample">
 					<div class="well">
+					
+					
+					  <% 
+					  
+					  if (list.isEmpty())
+					  {
+						 %>
+						 <strong>No hay sesiones para esta película disponibles</strong>
+						 <% 
+					  }
+					  else
+					  {
+						  
+					  
+					  %>  
+					
+					
+					
+					
+					
+					
+					
+					
 						<strong>Estos son los días disponibles:</strong>
 						<div style="margin-bottom: 10px;"></div>
 						<!-- 					<a class="btn btn-danger" role="button" data-toggle="collapse" href="#collapsehoras" aria-expanded="false" aria-controls="collapsehoras" >11 ENERO</a> -->
@@ -90,12 +154,21 @@
 
 
 						<div class="form-group">
-							<label for="sel1">Select list:</label> <select
-								class="form-control" id="sel1">
-								<option value="#collapsehoras">11 ENERO</option>
-								<option>12 ENERO</option>
-								<option>13 ENERO</option>
-								<option>14 ENERO</option>
+							 <select class="form-control" id="sel1">
+							 <%
+						        for (int i=0; i<list.size();i++)
+						        {
+						        	String fecha[]= list.get(i).getFechaInicio().split("/");
+
+						        	
+						        	
+						        	
+						        	
+							 %>							 
+									<option><%= fecha[0] + "/" + fecha[1] %></option>
+							<%
+						        }      
+				        	%>
 							</select>
 						</div>
 
@@ -117,12 +190,30 @@
 						<strong>Estos son las horas disponibles de sesión para el
 							día seleccionado</strong>
 						<div style="margin-bottom: 10px;"></div>
-						<input class="btn btn-danger" type="button" value="22:00">
-						<input class="btn btn-danger" type="button" value="20:00">
-						<input class="btn btn-danger" type="button" value="18:00">
+													 <%
+						        for (int i=0; i<list.size();i++)
+						        {
+						        	
+
+						        	
+						        	
+						        	
+						        	
+							 %>							 
+									<input class="btn btn-danger" type="button" value="<%= list.get(i).getHoraInicio() %>">
+							<%
+						        }      
+				        	%>
+
+						
 					</div>
 				</div>
 			</div>
+			
+			<%
+					  }
+			%>
+			
 		</div>
 	</section>
 	<!--/#title-->
@@ -176,3 +267,11 @@
 	<%@ include file="principales/footer.jsp"%>
 </body>
 </html>
+  	<%
+    	}
+    	
+
+    	
+    
+    
+    %>

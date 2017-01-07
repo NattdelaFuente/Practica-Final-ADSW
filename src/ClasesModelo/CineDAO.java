@@ -558,6 +558,36 @@ public class CineDAO {
 
 	}
 
+	// devuelve una lista que contendra todas las sesiones ordenadas por fecha
+	// de inicio QUE PROYECTAN LA PELICULA INDICADA
+	public List<Sesion> getListaSesionesProyectanPelicula(int idPelicula) {
+
+		List<Sesion> list = new ArrayList<Sesion>();
+		Connection c = null;
+		try {
+
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(
+					"SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal "
+							+ "FROM sesiones " + "NATURAL JOIN peliculas " + "NATURAL JOIN salas  "
+							+ "WHERE idpelicula = ?"
+							+ "ORDER BY TO_TIMESTAMP(  CONCAT ( CONCAT(fechainicio, ' '),horainicio), 'DD/MM/YYYY HH24:MI') ASC  ");
+			ps.setInt(1, idPelicula);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(procesarSesion(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return list;
+
+	}
+
 	// recibimos un resultSet que contiene una pelicula y lo convertimos en un
 	// Objeto de ese tipo, para devolverlo
 	private Pelicula procesarPelicula(ResultSet rs) throws SQLException {
