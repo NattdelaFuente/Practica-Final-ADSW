@@ -1,5 +1,5 @@
     <header class="navbar navbar-inverse navbar-fixed-top wet-asphalt " role="banner">
-        <div class="container">
+        <div class="container cabecarte">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle center" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -13,7 +13,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.jsp">Inicio</a></li>
                     <li><a href="cartelera.jsp">Cartelera</a></li>
-                    <li><a href="portfolio.html">Quienes Somos</a></li>
+                    <li><a href="quienes-somos.jsp">Quienes Somos</a></li>
                     <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="icon-angle-down"></i></a>
                         <ul class="dropdown-menu">
@@ -27,7 +27,7 @@
                             <li><a href="terms.html">Terms of Use</a></li>
                         </ul>
                     </li>-->
-                    <li><a href="contact-us.html">Contacto</a></li>                    
+                    <li><a href="contacto.jsp">Contacto</a></li>                    
                     
                         <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals(""))
 						   {						    	

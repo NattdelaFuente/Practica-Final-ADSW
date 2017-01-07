@@ -71,96 +71,106 @@
 					allowfullscreen></iframe>
 			</div>
 		</div>
-		<div class="row" style="padding: 10px; padding-top: 20px; background: #687989; margin-bottom:30px;">
+		<div class="row"
+			style="padding: 10px; padding-top: 20px; background: #687989; margin-bottom: 30px;">
 			<div class="col-sm-6 text-center">
 				<a class="btn btn-primary" role="button" data-toggle="collapse"
-					href="#collapseExample" aria-expanded="false"
+					href="#collapseExample" aria-expanded="true"
 					aria-controls="collapseExample"
 					style="background-color: #314456; border-color: #314456;">Días
 					disponibles</a>
-					
+				<div class="collapse in" id="collapseExample">
+					<div class="well">
+						<strong>Estos son los días disponibles:</strong>
+						<div style="margin-bottom: 10px;"></div>
+						<!-- 					<a class="btn btn-danger" role="button" data-toggle="collapse" href="#collapsehoras" aria-expanded="false" aria-controls="collapsehoras" >11 ENERO</a> -->
+						<!-- 					<input class="btn btn-danger" type="button" value="Campo input"> -->
+						<!-- 					<input class="btn btn-danger" type="button" value="Campo input"> -->
+						<!-- 					<input class="btn btn-danger" type="button" value="Campo input"> -->
 
-				<div class="collapse" id="collapseExample">
-					<div class="well"><strong>Estos son los días disponibles:</strong>
-					<div style="margin-bottom:10px;"></div>
-					<a class="btn btn-danger" role="button" href="#" >11 ENERO</a>
-					<a class="btn btn-danger" role="button" href="#" >12 ENERO</a>
-					<a class="btn btn-danger" role="button" href="#" ">13 ENERO</a>
-					<a class="btn btn-danger" role="button" href="#" ">14 ENERO</a>
-					<a class="btn btn-danger" role="button" href="#" ">15 ENERO</a>
+
+						<div class="form-group">
+							<label for="sel1">Select list:</label> <select
+								class="form-control" id="sel1">
+								<option value="#collapsehoras">11 ENERO</option>
+								<option>12 ENERO</option>
+								<option>13 ENERO</option>
+								<option>14 ENERO</option>
+							</select>
+						</div>
+
+
+
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-6 text-center">
-				<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapsehoras" aria-expanded="false" aria-controls="collapsehoras"
-					style="background-color: #314456; border-color: #314456;">Horas disponibles</a>
-				
-				
-				<div class="collapse" id="collapsehoras">
-					<div class="well"><strong>Estos son las horas disponibles de sesión para el día seleccionado</strong>
-					<div style="margin-bottom:10px;"></div>
-				<a class="btn btn-danger" role="button" href="#" >22:00</a>
-					<a class="btn btn-danger" role="button" href="#" >20:00</a>
-					<a class="btn btn-danger" role="button" href="#" ">18:00</a>
+				<a class="btn btn-primary" role="button" data-toggle="collapse"
+					href="#collapsehoras" aria-expanded="false"
+					aria-controls="collapsehoras"
+					style="background-color: #314456; border-color: #314456;">Horas
+					disponibles</a>
+
+
+				<div class="collapse in" id="collapsehoras">
+					<div class="well">
+						<strong>Estos son las horas disponibles de sesión para el
+							día seleccionado</strong>
+						<div style="margin-bottom: 10px;"></div>
+						<input class="btn btn-danger" type="button" value="22:00">
+						<input class="btn btn-danger" type="button" value="20:00">
+						<input class="btn btn-danger" type="button" value="18:00">
 					</div>
 				</div>
 			</div>
-			</div>
-			</section>
+		</div>
+	</section>
 	<!--/#title-->
 	<section class="container">
 	<h2>Comentarios de los usuarios</h2>
-		<div class="all-comments">
-						<div class="all-comments-info">
-							<a href="#">Envíe un comentario</a>
-							<div class="agile-info-wthree-box">
-								<form>
-									<textarea placeholder="Mensaje" required=""></textarea>
-									<input type="submit" value="Enviar">
-									<div class="clearfix"> </div>
-								</form>
-							</div>
-						</div>
-						<div class="media-grids">
-							<div class="media">
-								<h5>TOM BROWN</h5>
-								<div class="media-left">
-									<a href="#">
-										<img src="images/user.jpg" title="One movies" alt=" " />
-									</a>
-								</div>
-								<div class="media-body">
-									<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-									<span>View all posts by :<a href="#"> Admin </a></span>
-								</div>
-							</div>
-							<div class="media">
-								<h5>MARK JOHNSON</h5>
-								<div class="media-left">
-									<a href="#">
-									<img src="images/user.jpg" title="One movies" alt=" " />
-									</a>
-								</div>
-								<div class="media-body">
-									<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-									<span>View all posts by :<a href="#"> Admin </a></span>
-								</div>
-							</div>
-							<div class="media">
-								<h5>STEVEN SMITH</h5>
-								<div class="media-left">
-									<a href="#">
-									<img src="images/user.jpg" title="One movies" alt=" " />
-									</a>
-								</div>
-								<div class="media-body">
-									<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-									<span>View all posts by :<a href="#"> Admin </a></span>
-								</div>
-							</div>
+	<div class="all-comments">
+		<div class="all-comments-info">
+			<a href="#">Envíe un comentario</a>
+			<div class="agile-info-wthree-box">
+				<form>
+					<textarea placeholder="Mensaje" required=""></textarea>
+					<input type="submit" value="Enviar">
+					<div class="clearfix"></div>
+				</form>
+			</div>
+		</div>
+		<div class="media-grids">
+			<div class="media">
+				<h5>TOM BROWN</h5>
+				<div class="media-left">
+					<a href="#"> <img src="images/user.jpg" title="One movies"
+						alt=" " />
+					</a>
+				</div>
+				<div class="media-body">
+					<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet
+						ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex
+						pretium hendrerit</p>
+					<span>View all posts by :<a href="#"> Admin </a></span>
+				</div>
+			</div>
+			<div class="media">
+				<h5>MARK JOHNSON</h5>
+				<div class="media-left">
+					<a href="#"> <img src="images/user.jpg" title="One movies"
+						alt=" " />
+					</a>
+				</div>
+				<div class="media-body">
+					<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet
+						ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex
+						pretium hendrerit</p>
+					<span>View all posts by :<a href="#"> Admin </a></span>
+				</div>
+			</div>
 
-						</div>
-					</div>
+		</div>
+	</div>
 	</section>
 
 	<%@ include file="principales/footer.jsp"%>
