@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@page import="java.util.List"%>
+<%@page import="ClasesModelo.Pelicula"%>
+<%@page import="ClasesModelo.CineDAO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,7 +46,7 @@
 
 .profile-info h2 {
 	color: #E8E8E8;
-	letter-spacing: 4px;
+	
 	padding-bottom: 12px;
 }
 
@@ -127,6 +130,11 @@
 
 body > section {
     padding: 0px 0; 
+}
+
+.col-md-3 {
+    width: 25%;
+    margin-bottom: 4%;
 }
 
 </style>
@@ -242,74 +250,45 @@ body > section {
 						<div>
 
 
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
+                                <%    
 
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
+							        	CineDAO dao = new CineDAO();      
+							       
+								        List<Pelicula> list = dao.getListaTodasPeliculas();
+								        for (int i=0; i<list.size();i++)
+								        {
+								        	
+								       	%>
+								       	
+								       	
+			       								<div class="col-md-3">
+													<div class="profile-card text-center"
+														style="max-height: 650px; min-height: 650px;">
+														<img class="img-responsive"
+															style="max-height: 350px; width: 100%;"
+															src="<%=list.get(i).getImagen() %>">
+														<div class="profile-info">
+															<h2 class="hvr-underline-from-center altura">
+																<%=list.get(i).getName() %><span><%=list.get(i).getDuracion() %> / <%=list.get(i).getDirector() %></span>
+															</h2>
+															<a class="btn text-center botonReserva" href="pelicula.jsp?pelicula=<%=list.get(i).getId() %>"
+																style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
+																Entradas</a>
+														</div>
+					
+													</div>
+												</div>
+								       	
+								       	
+			
+								    	<%
+								        }      
+							        	%>
+							        
 
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
 
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
 
-								</div>
-							</div>
+
 
 
 						</div>
@@ -318,82 +297,7 @@ body > section {
 
 					<!-- fila 2 de pelis -->
 
-					<div class="col-lg-12">
-						<div>
 
-
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
-
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
-
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
-
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="profile-card text-center"
-									style="max-height: 650px; min-height: 650px;">
-									<img class="img-responsive"
-										style="max-height: 350px; min-height: 350px;"
-										src="https://www.cinesa.es/Manager/Peliculas/100metros/cartelera.jpg">
-									<div class="profile-info">
-										<h2 class="hvr-underline-from-center altura">
-											ANIMALES N.<span>116 min / D: Justin Kurzel</span>
-										</h2>
-										<a class="btn text-center botonReserva" href="pelicula.jsp"
-											style="background: #E8E8E8; color: #34495e; padding: 5px; margin-top: 20px;">Reservar
-											Entradas</a>
-									</div>
-
-								</div>
-							</div>
-
-
-						</div>
-					</div>
 
 				</div>
 			</div>
