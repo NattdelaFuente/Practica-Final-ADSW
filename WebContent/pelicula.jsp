@@ -5,6 +5,7 @@
 
     <%@page import="ClasesModelo.Pelicula"%>
     <%@page import="ClasesModelo.Sesion"%>
+    <%@page import="ClasesModelo.Comentario"%>
 
 <%@page import="ClasesModelo.CineDAO"%>
     
@@ -248,8 +249,8 @@
   {
 		 %>
                     <p>Para poder ver o escibir comentarios sobre películas debe antes ser un usuario registrado <strong><span class="glyphicon glyphicon-circle-arrow-down"></span></strong></p>
-                    <a class="btn btn-default btn-lg text-center" href="registro.jsp">
-                      <span class="">REGISTRO/LOGIN</span>
+                    <a class="btn btn-default btn-lg text-center" href="login.jsp">
+                      <span class="">LOGIN</span>
                     </a>
 		 <%
   }
@@ -262,46 +263,51 @@
 
 	<div class="all-comments">
 		<div class="all-comments-info">
-			<a href="#">Envíe un comentario</a>
+			Envíe un comentario
 			<div class="agile-info-wthree-box">
-				<form>
-					<textarea placeholder="Mensaje" required=""></textarea>
-					<input type="submit" value="Enviar">
+				<form method ="POST" action="/Practica-Final-ADSW/ComentarPelicula">
+					<textarea id="comentario" name="comentario" placeholder="Mensaje" required=""></textarea>
+					<input name="idPeli" type="hidden" value="<%= pelicula.getId() %>">
+					<input  type="submit" value="Enviar">
 					<div class="clearfix"></div>
 				</form>
 			</div>
 		</div>
-		<div class="media-grids">
-			<div class="media">
-				<h5>TOM BROWN</h5>
-				<div class="media-left">
-					<a href="#"> <img src="images/user.jpg" title="One movies"
-						alt=" " />
-					</a>
-				</div>
-				<div class="media-body">
-					<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet
-						ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex
-						pretium hendrerit</p>
-					<span>View all posts by :<a href="#"> Admin </a></span>
-				</div>
-			</div>
-			<div class="media">
-				<h5>MARK JOHNSON</h5>
-				<div class="media-left">
-					<a href="#"> <img src="images/user.jpg" title="One movies"
-						alt=" " />
-					</a>
-				</div>
-				<div class="media-body">
-					<p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet
-						ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex
-						pretium hendrerit</p>
-					<span>View all posts by :<a href="#"> Admin </a></span>
-				</div>
-			</div>
-
-		</div>
+		
+		
+		<%
+				List<Comentario> listaComentarios = cine.getListaComentariosPelicula(idPelicula);  
+		
+				if( ! listaComentarios.isEmpty())
+				{
+					
+				
+					for (int f=0; f<listaComentarios.size();f++)
+					{
+						String fechaTotal = listaComentarios.get(f).getFecha().toString();
+						String fecha = fechaTotal.substring(0,fechaTotal.indexOf('.'));
+					%>
+					
+					<div class="media-grids">
+						<div class="media">
+							<h5><%= listaComentarios.get(f).getUsuario() %></h5>
+							<div class="media-left">
+								<a href="#"> <img src="images/user.jpg" title="One movies"
+									alt=" " />
+								</a>
+							</div>
+							<div class="media-body">
+								<p><%= listaComentarios.get(f).getComentario() %></p>
+								<span><%= fecha %> </a></span>
+							</div>
+						</div>
+			
+			
+					</div>
+		
+		
+					<%} 
+				}%>
 	</div>
 		<%}
 	  %>
@@ -338,6 +344,52 @@
 	        $("#layout_select").html(addoptarr.join(''))
 	    }).change();
 	})
+	
+	
+	
+	$('form').submit(function(e) {
+	    e.preventDefault();
+	    var $form = $(this);
+	    var submit = true;
+	
+	    // evaluate the form using generic validaing
+	    if ($("#comentario").val() =="" || $("#comentario").val()== null ) {
+	      submit = false;
+	    }
+	
+	    if (submit)
+	   	{
+	    	
+		    $.post($form.attr("action"), $form.serialize(), function(response) {
+		        
+	     	    console.log (response);
+		        if (response.success)   
+		        	{
+		        	
+		        		$form.trigger('reset');  //esto reiniciaria el formulario
+			        	swal("Comentario registrado", response.success, "success");
+		        	}
+		                 	
+		        else        	
+		        	swal("Error al comentar", response.error, "error");
+	      	
+		    	
+		    });
+	   	}
+	    else
+	    	swal("Error", "Rellene el campo de su comentario", "error");
+	      
+	
+	    return false;
+  });
+	
+	
+	
+	
+	
+	
+	
+	
 	</script>
 	
 </body>

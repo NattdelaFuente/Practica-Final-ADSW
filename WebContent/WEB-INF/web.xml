@@ -139,4 +139,14 @@
     <servlet-name>ReservarEntrada</servlet-name>
     <url-pattern>/ReservarEntrada</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ComentarPelicula</display-name>
+    <servlet-name>ComentarPelicula</servlet-name>
+    <servlet-class>Servlets.ComentarPelicula</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ComentarPelicula</servlet-name>
+    <url-pattern>/ComentarPelicula</url-pattern>
+  </servlet-mapping>
 </web-app>

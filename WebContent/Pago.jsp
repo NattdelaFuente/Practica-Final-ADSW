@@ -46,21 +46,21 @@
      
       <div class="row ">
               <div class="col-md-12">
-                  <input type="text" id="numeroTarjeta" name="numeroTarjeta" class="form-control" placeholder="Nº de la tarjeta" />
+                  <input required="" type="text" id="numeroTarjeta" name="numeroTarjeta" class="form-control" placeholder="Nº de la tarjeta" />
               </div>
           </div>
      <div class="row ">
               <div class="col-md-3 col-sm-3 col-xs-3">
                   <span class="help-block text-muted small-font" > Mes caducidad</span>
-                  <input type="text" class="form-control" placeholder="MM" />
+                  <input required="" type="text" class="form-control" placeholder="MM" />
               </div>
          <div class="col-md-3 col-sm-3 col-xs-3">
                   <span class="help-block text-muted small-font" >  Año caducidad</span>
-                  <input type="text" class="form-control" placeholder="YY" />
+                  <input required=""  type="text" class="form-control" placeholder="YY" />
               </div>
         <div class="col-md-3 col-sm-3 col-xs-3">
                   <span class="help-block text-muted small-font" >  CCV</span>
-                  <input type="text" class="form-control" placeholder="CCV" />
+                  <input required="" type="text" class="form-control" placeholder="CCV" />
               </div>
          <div class="col-md-3 col-sm-3 col-xs-3">
 <img src="images/mano-tarjeta-2.png" class="img-rounded img-responsive" style="max-width:40px;" />
@@ -69,7 +69,7 @@
      <div class="row ">
               <div class="col-md-12 pad-adjust">
 
-                  <input type="text" class="form-control" placeholder="Nombre del titular" />
+                  <input required="" type="text" class="form-control" placeholder="Nombre del titular" />
               </div>
           </div>
      <div class="row">

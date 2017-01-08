@@ -173,6 +173,33 @@ public class CineDAO {
 		return false;
 	}
 
+	public boolean comentarPelicula(String name, String comentario, int idPelicula) {
+
+		Connection c = null;
+
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(
+					"	INSERT INTO comentarios( idpelicula, comentario, fecha,  username)  VALUES (?, ?, CURRENT_TIMESTAMP, ?);");
+
+			ps.setInt(1, idPelicula);
+			ps.setString(2, comentario);
+			ps.setString(3, name);
+
+			int count = ps.executeUpdate();
+			return count == 1;
+
+		} catch (SQLException e) { // e.printStackTrace();
+			System.out.println(e.getMessage());
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return false;
+	}
+
 	public boolean insertarSala(String name, int filas, int columnas) {
 
 		Connection c = null;
@@ -670,6 +697,33 @@ public class CineDAO {
 
 	}
 
+	// devuelve una lista que contendra todas las sesiones ordenadas por fecha
+	// de inicio QUE PROYECTAN LA PELICULA INDICADA
+	public List<Comentario> getListaComentariosPelicula(int idPelicula) {
+
+		List<Comentario> list = new ArrayList<Comentario>();
+		Connection c = null;
+		try {
+
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c
+					.prepareStatement("SELECT * FROM comentarios " + "WHERE idpelicula = ?" + "ORDER BY fecha ASC  ");
+			ps.setInt(1, idPelicula);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				list.add(procesarComentario(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return list;
+
+	}
+
 	// recibimos un resultSet que contiene una pelicula y lo convertimos en un
 	// Objeto de ese tipo, para devolverlo
 	private Pelicula procesarPelicula(ResultSet rs) throws SQLException {
@@ -704,6 +758,19 @@ public class CineDAO {
 		sala.setNombreSala(rs.getString("nombresala"));
 		sala.setMap(rs.getString("map"));
 		return sala;
+	}
+
+	// recibimos un resultSet que contiene un comentario y lo convertimos en un
+	// Objeto de ese tipo, para devolverlo
+	private Comentario procesarComentario(ResultSet rs) throws SQLException {
+		Comentario comentario = new Comentario();
+		comentario.setComentario(rs.getString("comentario"));
+		comentario.setFecha(rs.getTimestamp("fecha"));
+		comentario.setIdComentario(rs.getInt("idcomentario"));
+		comentario.setIdPelicula(rs.getInt("idpelicula"));
+		comentario.setUsuario(rs.getString("username"));
+
+		return comentario;
 	}
 
 	// recibimos un resultSet que contiene una sala y lo convertimos en un
