@@ -368,6 +368,7 @@
 		        	
 		        		$form.trigger('reset');  //esto reiniciaria el formulario
 			        	swal("Comentario registrado", response.success, "success");
+			        	location.reload(); 
 		        	}
 		                 	
 		        else        	
