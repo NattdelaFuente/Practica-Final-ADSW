@@ -1,19 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-        <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
-    {
-    	response.sendRedirect("../../index.jsp");
-    	
-    }
-    else
-    {
-    	//prueba de sesion;
-    	 
-    	
-    }
-    	
-    	%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -25,23 +12,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Reservas </title>
+    <title>Informes Salas</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="Admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="Admin/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="Admin/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    
+
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="Admin/build/css/custom.min.css" rel="stylesheet">
   </head>
 
-   <body class="nav-md">
-    <div class="container body">
+   <body class="nav-md" style="padding-top: 0px;">
+    <div class="container body" style="margin-right:0px; margin-left:0px;">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
@@ -158,23 +151,99 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Reservas <small>Salas</small></h3>
-              </div>
-
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
+                <h3>Informes <small>por Salas</small></h3>
               </div>
             </div>
 
             <div class="clearfix"></div>
+<section id="portfolio" class="container" style="padding-top:20px;">
+	<ul class="portfolio-filter">
+		<li><a class="btn btn-default active" href="#" data-filter="*">Todas
+				las salas</a></li>
+		<li><a class="btn btn-default" href="#" data-filter=".bootstrap">3D</a></li>
+		<li><a class="btn btn-default" href="#" data-filter=".html">Comedia</a></li>
+		<li><a class="btn btn-default" href="#" data-filter=".wordpress">Drama</a></li>
+				<li><a class="btn btn-default" href="#" data-filter=".bootstrap">Terror</a></li>
+		<li><a class="btn btn-default" href="#" data-filter=".html">Acción</a></li>
+		<li><a class="btn btn-default" href="#" data-filter=".wordpress">Animación</a></li>
+	</ul>
+	<!--/#portfolio-filter-->
 
+	<ul class="portfolio-items col-3">
+		<li class="portfolio-item apps">
+			<div class="item-inner">
+				<img src="images/portfolio/thumb/item1.jpg" alt="">
+				<h5>Lorem ipsum dolor sit amet</h5>
+				<div class="overlay">
+					<a class="preview btn btn-danger"
+						href="images/portfolio/full/item1.jpg" rel="prettyPhoto"><i
+						class="icon-eye-open"></i></a>
+				</div>
+			</div>
+		</li>
+		<!--/.portfolio-item-->
+		<li class="portfolio-item joomla bootstrap">
+			<div class="item-inner">
+				<img src="images/portfolio/thumb/item2.jpg" alt="">
+				<h5>Lorem ipsum dolor sit amet</h5>
+				<div class="overlay">
+					<a class="preview btn btn-danger"
+						href="images/portfolio/full/item2.jpg" rel="prettyPhoto"><i
+						class="icon-eye-open"></i></a>
+				</div>
+			</div>
+		</li>
+		<!--/.portfolio-item-->
+		<li class="portfolio-item bootstrap wordpress">
+			<div class="item-inner">
+				<img src="images/portfolio/thumb/item3.jpg" alt="">
+				<h5>Lorem ipsum dolor sit amet</h5>
+				<div class="overlay">
+					<a class="preview btn btn-danger"
+						href="images/portfolio/full/item3.jpg" rel="prettyPhoto"><i
+						class="icon-eye-open"></i></a>
+				</div>
+			</div>
+		</li>
+		<!--/.portfolio-item-->
+		<li class="portfolio-item joomla wordpress apps">
+			<div class="item-inner">
+				<img src="images/portfolio/thumb/item4.jpg" alt="">
+				<h5>Lorem ipsum dolor sit amet</h5>
+				<div class="overlay">
+					<a class="preview btn btn-danger"
+						href="images/portfolio/full/item4.jpg" rel="prettyPhoto"><i
+						class="icon-eye-open"></i></a>
+				</div>
+			</div>
+		</li>
+		<!--/.portfolio-item-->
+		<li class="portfolio-item joomla html">
+			<div class="item-inner">
+				<img src="images/portfolio/thumb/item5.jpg" alt="">
+				<h5>Lorem ipsum dolor sit amet</h5>
+				<div class="overlay">
+					<a class="preview btn btn-danger"
+						href="images/portfolio/full/item5.jpg" rel="prettyPhoto"><i
+						class="icon-eye-open"></i></a>
+				</div>
+			</div>
+		</li>
+		<!--/.portfolio-item-->
+		<li class="portfolio-item wordpress html">
+			<div class="item-inner">
+				<img src="images/portfolio/thumb/item6.jpg" alt="">
+				<h5>Lorem ipsum dolor sit amet</h5>
+				<div class="overlay">
+					<a class="preview btn btn-danger"
+						href="images/portfolio/full/item6.jpg" rel="prettyPhoto"><i
+						class="icon-eye-open"></i></a>
+				</div>
+			</div>
+		</li>
+		<!--/.portfolio-item-->
+	</ul>
+	</section>
            
             <div class="clearfix"></div>                                          
                                                                 
@@ -185,9 +254,10 @@
             </div>
           </div>
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
+	<!-- /page content -->
+	
+	<!--/#portfolio-->
+	<!-- footer content -->
         <footer>
           <div class="pull-right">
             Cinesa Cines
@@ -199,24 +269,24 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="Admin/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="Admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="Admin/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>    
+    <script src="Admin/vendors/nprogress/nprogress.js"></script>    
     <!-- Chart.js -->
-    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="Admin/vendors/Chart.js/dist/Chart.min.js"></script>
     <!-- jQuery Sparklines -->
     
     <!-- easy-pie-chart -->
    
     <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="Admin/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="Admin/build/js/custom.min.js"></script>
 
     <!-- chart js -->
     <!-- <script type="text/javascript" src="js/moment/moment.min.js"></script> -->
@@ -266,6 +336,11 @@
       });
     </script>
     
+        <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.prettyPhoto.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/main.js"></script>
    
   </body>
 </html>
