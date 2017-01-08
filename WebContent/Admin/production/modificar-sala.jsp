@@ -218,14 +218,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Filas <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input value="<%=sala.getFilas() %>" type="number" id="filas" name="filas" required="required" placeholder="6 - 20" data-validate-minmax="1,40" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=sala.getFilas() %>" type="number" id="filas" name="filas" required="required" placeholder="8 - 20" data-validate-minmax="8,20" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                      <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">Columnas<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input value="<%=sala.getColumnas() %>" type="number" id="columnas" name="columnas" required="required" placeholder="6 - 20" data-validate-minmax="1,20" class="form-control col-md-7 col-xs-12">
+                          <input value="<%=sala.getColumnas() %>" type="number" id="columnas" name="columnas" required="required" placeholder="8 - 20" data-validate-minmax="8,20" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 

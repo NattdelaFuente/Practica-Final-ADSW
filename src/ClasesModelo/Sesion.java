@@ -14,6 +14,7 @@ public class Sesion {
 	private String nombrePelicula;
 	private String nombreSala;
 	private int duracionPelicula;
+	private String map;
 
 	public int getDuracionPelicula() {
 		return duracionPelicula;
@@ -113,6 +114,14 @@ public class Sesion {
 
 	public void setMilisFinal(long milisFinal) {
 		this.milisFinal = milisFinal;
+	}
+
+	public String getMap() {
+		return map;
+	}
+
+	public void setMap(String map) {
+		this.map = map;
 	}
 
 }

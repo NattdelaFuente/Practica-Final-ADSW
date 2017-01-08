@@ -129,4 +129,14 @@
     <servlet-name>ModificarSesion</servlet-name>
     <url-pattern>/ModificarSesion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReservarEntrada</display-name>
+    <servlet-name>ReservarEntrada</servlet-name>
+    <servlet-class>Servlets.ReservarEntrada</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReservarEntrada</servlet-name>
+    <url-pattern>/ReservarEntrada</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -8,7 +8,7 @@
     
 
     	//prueba de sesion;
-    	if (request.getParameter("sesion") == null || request.getParameter("sesion").equals("")) //no existe el parametro id o no tiene numero
+    	if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || request.getParameter("sesion") == null || request.getParameter("sesion").equals("")) //no existe el parametro id o no tiene numero
     		response.sendRedirect("cartelera.jsp");
     	else
     	{
@@ -85,22 +85,40 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title" >Datos de tu pase</h3>
+    <h3 class="panel-title" >Selecciona tus butacas</h3>
   </div>
   <div class="panel-body" style="height: 600px;">
     
  
  	
-    <object type="text/html" data="pricing.html" width="100%" height="100%"> </object> 
-
+    <object type="text/html" data="butacas.jsp?sesion=<%=sesion.getIdSesion()%>" width="100%" height="100%"> </object> 
+	<form id="formSesion" method="POST" action="Pago.jsp" ></form>
 
   </div>
 </div>
+</div>
+
+<%@ include file="principales/footer.jsp" %>
+<script>
+function error(msg)
+{
+	swal("Error", "Selecciona al menos un asiento", "error");
+}
+
+
+function success( objt , sesion)
+{
+	
+	//console.log (sesion);
+	window.location = "Pago.jsp?sesion="+sesion+"&"+$.param(objt);
+
+	
+}
 
 
 
 
-
+</script>
 		
 
 	</body>

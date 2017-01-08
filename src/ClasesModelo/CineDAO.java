@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CineDAO {
@@ -179,17 +180,17 @@ public class CineDAO {
 		try {
 			c = ConnectionHelper.getConnection();
 			PreparedStatement ps = c
-					.prepareStatement("INSERT INTO salas(filas, columnas, nombresala)" + "VALUES (?, ?, ?);");
+					.prepareStatement("INSERT INTO salas(filas, columnas, nombresala, map)" + "VALUES (?, ?, ?, ?);");
 
 			ps.setInt(1, filas);
 			ps.setInt(2, columnas);
 			ps.setString(3, name);
+			ps.setString(4, Sala.calcularMap(filas, columnas));
 
 			int count = ps.executeUpdate();
 			return count == 1;
 
-		} catch (SQLException e) {
-			// e.printStackTrace();
+		} catch (SQLException e) { // e.printStackTrace();
 			System.out.println(e.getMessage());
 
 		} finally {
@@ -207,11 +208,12 @@ public class CineDAO {
 		try {
 			c = ConnectionHelper.getConnection();
 			PreparedStatement ps = c
-					.prepareStatement("UPDATE salas    SET nombresala=?,filas=?, columnas=? WHERE idsala=?;");
+					.prepareStatement("UPDATE salas    SET nombresala=?,filas=?, columnas=?, map=? WHERE idsala=?;");
 			ps.setString(1, name);
 			ps.setInt(2, filas);
 			ps.setInt(3, columnas);
-			ps.setInt(4, id);
+			ps.setString(4, Sala.calcularMap(filas, columnas));
+			ps.setInt(5, id);
 			int count = ps.executeUpdate();
 			return count == 1;
 
@@ -407,13 +409,64 @@ public class CineDAO {
 		return false;
 	}
 
+	public int reservarEntrada(int idSesion, String numeroTarjeta, ArrayList<String> butacas, String usuario) {
+
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("INSERT INTO reservas(		  "
+					+ "          username, idsesion, tarjeta	" + "	            ) VALUES (?, ?, ?);",
+					Statement.RETURN_GENERATED_KEYS);
+
+			ps.setString(1, usuario);
+			ps.setInt(2, idSesion);
+			ps.setString(3, numeroTarjeta);
+
+			int count = ps.executeUpdate();
+			// ponerle el id a la plantilla con el ultimo id del insert
+			if (count == 1) {
+
+				ResultSet generatedKeys = ps.getGeneratedKeys();
+				if (generatedKeys.next()) {
+					int idReservaGenerado = generatedKeys.getInt(1);
+					ps = c.prepareStatement("INSERT INTO entradas (  fila, columna, idreserva) VALUES (?,?,?)");
+					int fila = 0;
+					int columna = 0;
+					count = 0;
+					for (int i = 0; i < butacas.size(); i++) {
+						String butac[] = butacas.get(i).split("_");
+						ps.setInt(1, Integer.parseInt(butac[0]));
+						ps.setInt(2, Integer.parseInt(butac[1]));
+						ps.setInt(3, idReservaGenerado);
+
+						count = count + ps.executeUpdate();
+					}
+
+					if (count == butacas.size())
+						return idReservaGenerado;
+				}
+			}
+			return 0;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			System.out.println(e.getMessage());
+
+		} finally {
+			ConnectionHelper.close(c);
+
+		}
+
+		return 0;
+	}
+
 	// devuelve una lista que contendra todas las sesiones ordenadas por fecha
 	// de inicio
 	public List<Sesion> getListaTodasSesiones() {
 
 		List<Sesion> list = new ArrayList<Sesion>();
 		Connection c = null;
-		String sql = "SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal "
+		String sql = "SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal,map "
 				+ "FROM sesiones NATURAL JOIN peliculas NATURAL JOIN salas "
 				+ "ORDER BY TO_TIMESTAMP(  CONCAT ( CONCAT(fechainicio, ' '),horainicio), 'DD/MM/YYYY HH24:MI') ASC  ";
 
@@ -485,6 +538,35 @@ public class CineDAO {
 
 	}
 
+	public String getButacasOcupadas(int idSesion) {
+
+		ArrayList<String> ocupadas = new ArrayList<String>();
+		Connection c = null;
+		try {
+
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c
+					.prepareStatement("select fila,columna from reservas natural join entradas where idsesion = ?");
+			ps.setInt(1, idSesion);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String butaca = "'" + String.valueOf(rs.getInt("fila")) + "_" + String.valueOf(rs.getInt("columna"))
+						+ "'";
+				ocupadas.add(butaca);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return Arrays.toString(ocupadas.toArray());
+		// return "fila_columna";
+	}
+
 	// devuelve la pelicula pedida por id
 	public Pelicula getPelicula(int id) {
 
@@ -541,7 +623,7 @@ public class CineDAO {
 
 			c = ConnectionHelper.getConnection();
 			PreparedStatement ps = c.prepareStatement(
-					"SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal from sesiones NATURAL JOIN peliculas NATURAL JOIN salas WHERE idsesion=?");
+					"SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal,map from sesiones NATURAL JOIN peliculas NATURAL JOIN salas WHERE idsesion=?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -568,7 +650,7 @@ public class CineDAO {
 
 			c = ConnectionHelper.getConnection();
 			PreparedStatement ps = c.prepareStatement(
-					"SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal "
+					"SELECT idsala,idpelicula,fechainicio,horainicio,idsesion,fechafinal,horafinal,nombre,nombresala,duracion,milisinicio,milisfinal,map "
 							+ "FROM sesiones " + "NATURAL JOIN peliculas " + "NATURAL JOIN salas  "
 							+ "WHERE idpelicula = ?"
 							+ "ORDER BY TO_TIMESTAMP(  CONCAT ( CONCAT(fechainicio, ' '),horainicio), 'DD/MM/YYYY HH24:MI') ASC  ");
@@ -620,6 +702,7 @@ public class CineDAO {
 		sala.setFilas(rs.getInt("filas"));
 		sala.setIdSala(rs.getInt("idsala"));
 		sala.setNombreSala(rs.getString("nombresala"));
+		sala.setMap(rs.getString("map"));
 		return sala;
 	}
 
@@ -633,6 +716,7 @@ public class CineDAO {
 		sesion.setNombrePelicula(rs.getString("nombre"));
 		sesion.setNombreSala(rs.getString("nombresala"));
 		sesion.setDuracionPelicula(rs.getInt("duracion"));
+		sesion.setMap(rs.getString("map"));
 
 		sesion.setIdSesion(rs.getInt("idsesion"));
 		sesion.setIdPelicula(rs.getInt("idpelicula"));
