@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.util.List"%>
-    <%@page import="java.util.Locale"%>
+    <%@page import="java.util.ArrayList"%>
+
     <%@page import="ClasesModelo.Pelicula"%>
     <%@page import="ClasesModelo.Sesion"%>
-    <%@page import="java.time.format.TextStyle"%>
-    
-    <%@page import="java.time.Month"%>
+
 <%@page import="ClasesModelo.CineDAO"%>
     
     <% 
@@ -20,7 +19,10 @@
         	int idPelicula = Integer.parseInt(request.getParameter("pelicula"));
        	 	CineDAO cine = new CineDAO();
         	Pelicula pelicula = cine.getPelicula(idPelicula);
-        	List<Sesion> list = cine.getListaSesionesProyectanPelicula(idPelicula);        	
+        	List<Sesion> list = cine.getListaSesionesProyectanPelicula(idPelicula);  
+        	
+
+        	
         	if (pelicula == null) //no existe sesion con ese ID
         		response.sendRedirect("cartelera.jsp");
         	
@@ -125,16 +127,32 @@
 					
 					
 					  <% 
-					  
-					  if (list.isEmpty())
+					  if(session.getAttribute("username") == null  || session.getAttribute("username").equals("") || session.getAttribute("username").equals("admin"))
+					  {
+							 %>
+							 <strong>Para poder acceder a la plataforma debe antes <a style="color: #06b0ff;" href="login.jsp">logearse</a> como usuario o <a style="color: #06b0ff;" href="registro.jsp">registrarse</a> si aun no tiene cuenta </strong>
+							 <%
+					  }
+					  else if (list.isEmpty())
 					  {
 						 %>
 						 <strong>No hay sesiones para esta película disponibles</strong>
 						 <% 
 					  }
+
 					  else
 					  {
-						  
+				        	
+			            	List<String> listaUnicaFecha = new ArrayList<String>();
+			            	String fechaComprobar="";
+			            	for (int i=0; i<list.size(); i++)
+			            	{
+			            		fechaComprobar = list.get(i).getFechaInicio();
+			            		if (! listaUnicaFecha.contains(fechaComprobar))
+			            			listaUnicaFecha.add(fechaComprobar);
+			            	}
+			            	
+			            	 
 					  
 					  %>  
 					
@@ -154,18 +172,18 @@
 
 
 						<div class="form-group">
-							 <select class="form-control" id="sel1">
+							 <select name="column_select" id="column_select" class="form-control" >
 							 <%
-						        for (int i=0; i<list.size();i++)
+						        for (int i=0; i<listaUnicaFecha.size();i++)
 						        {
-						        	String fecha[]= list.get(i).getFechaInicio().split("/");
+						        	String fecha[]= listaUnicaFecha.get(i).split("/");
 
 						        	
 						        	
 						        	
 						        	
 							 %>							 
-									<option><%= fecha[0] + "/" + fecha[1] %></option>
+									<option value="fecha<%=i+1%>" ><%= fecha[0] + "/" + fecha[1] %></option>
 							<%
 						        }      
 				        	%>
@@ -186,26 +204,32 @@
 
 
 				<div class="collapse in" id="collapsehoras">
-					<div class="well">
-						<strong>Estos son las horas disponibles de sesión para el
-							día seleccionado</strong>
-						<div style="margin-bottom: 10px;"></div>
+					<div class="well" >
+						<strong>Estas son las sesiones disponibles para el día seleccionado</strong>
+						<div  name="layout_select" id="layout_select" style="margin-bottom: 10px;">
 													 <%
-						        for (int i=0; i<list.size();i++)
+						        for (int i=0; i<listaUnicaFecha.size();i++)
 						        {
-						        	
+						        	 for (int g=0; g<list.size();g++)
+							         {
 
 						        	
 						        	
-						        	
-						        	
-							 %>							 
-									<input class="btn btn-danger" type="button" value="<%= list.get(i).getHoraInicio() %>">
+								        	String idFecha="fecha"+(i+1);
+								        	
+								        	if(list.get(g).getFechaInicio().equals(listaUnicaFecha.get(i)) )
+								        	{
+								        	
+						 %>			
+									 					
+													<input data-sesion="<%= list.get(g).getIdSesion() %>"  name="<%= idFecha %>" class="btn btn-danger" type="button" value="<%= list.get(g).getHoraInicio() %>">
 							<%
-						        }      
+								        	}
+					        		 }   
+						        }
 				        	%>
 
-						
+						</div>
 					</div>
 				</div>
 			</div>
@@ -219,6 +243,23 @@
 	<!--/#title-->
 	<section class="container">
 	<h2>Comentarios de los usuarios</h2>
+	  <% 
+  if(session.getAttribute("username") == null  || session.getAttribute("username").equals("") || session.getAttribute("username").equals("admin"))
+  {
+		 %>
+                    <p>Para poder ver o escibir comentarios sobre películas debe antes ser un usuario registrado <strong><span class="glyphicon glyphicon-circle-arrow-down"></span></strong></p>
+                    <a class="btn btn-default btn-lg text-center" href="registro.jsp">
+                      <span class="">REGISTRO/LOGIN</span>
+                    </a>
+		 <%
+  }
+  else
+  {
+	  
+  
+	 %> 
+						  
+
 	<div class="all-comments">
 		<div class="all-comments-info">
 			<a href="#">Envíe un comentario</a>
@@ -262,9 +303,43 @@
 
 		</div>
 	</div>
+		<%}
+	  %>
 	</section>
+	
+
 
 	<%@ include file="principales/footer.jsp"%>
+	
+	<script>
+	
+	
+	$(document).ready(function() {
+	    var optarray = $("#layout_select").children('input').map(function() {
+
+	    	
+	        return {
+	            "value": this.value,
+	            "name": this.name,	            
+	            "input": "<input onclick=\"location.href='reservar.jsp?sesion="+ $(this).data("sesion") +  "';\" data-sesion='" + $(this).data("sesion") + "'style='margin-right: 16px;margin-top: 15px;' type='button'  class='btn btn-danger'  name='" + this.name + "' value='" + this.value + "'>"
+	        }
+	    });
+	    
+	    console.log (optarray);
+	       
+	    $("#column_select").change(function() {
+	        $("#layout_select").children('input').remove();
+	        var addoptarr = [];
+	        for (i = 0; i < optarray.length; i++) {
+	            if (optarray[i].name.indexOf($(this).val()) > -1) {
+	                addoptarr.push(optarray[i].input);
+	            }
+	        }
+	        $("#layout_select").html(addoptarr.join(''))
+	    }).change();
+	})
+	</script>
+	
 </body>
 </html>
   	<%
