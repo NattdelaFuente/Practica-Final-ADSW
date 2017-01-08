@@ -154,7 +154,7 @@ body > section {
 			</div>
 			<div class="col-sm-6">
 				<ul class="breadcrumb pull-right">
-					<li><a href="index.html">Inicio</a></li>
+					<li><a href="index.jsp">Inicio</a></li>
 					<li class="active">Cartelera</li>
 				</ul>
 			</div>

@@ -77,7 +77,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h3>Lo más visto</h3>
+                    <h3>Lo más visto de Diciembre</h3>
                     <p>Estas son las películas más vistas por los usuarios de los cines CINESA.</p>
                     <div class="btn-group">
                         <a class="btn btn-danger" href="#scroller" data-slide="prev"><i class="icon-angle-left"></i></a>
