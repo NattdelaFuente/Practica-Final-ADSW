@@ -1,79 +1,70 @@
     <section id="bottom" class="wet-asphalt">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <h4>About Us</h4>
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-                    <p>Pellentesque habitant morbi tristique senectus.</p>
+                <div class="col-md-3 col-sm-6 justificar">
+                    <h4>Sobre Nosotros</h4>
+                    <p class="justificar">Más de 17 millones de espectadores y 300 películas estrenadas al año avalan el compromiso con el cine y la gestión de CINESA, empresa líder de exhibición cinematográfica en España.</p>
+                    <p class="justificar">Actualmente, gestiona más de 500 pantallas del circuito español con más de 100.000 butacas en unas instalaciones que priman la comodidad del espectador, el servicio personalizado y la calidad de imagen y sonido.</p>
                 </div><!--/.col-md-3-->
 
                 <div class="col-md-3 col-sm-6">
-                    <h4>Company</h4>
+                    <h4>Compañía</h4>
                     <div>
                         <ul class="arrow">
-                            <li><a href="#">Company Overview</a></li>
-                            <li><a href="#">Meet The Team</a></li>
-                            <li><a href="#">Our Awesome Partners</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Frequently Asked Questions</a></li>
-                            <li><a href="#">Conatct Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Nuestra Compañía</a></li>
+                            <li><a href="#">Conoce el Equipo</a></li>
+                            <li><a href="#">Nuestros Servicios</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Contactanos</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                            <li><a href="#">Términos y condiciones</a></li>
                             <li><a href="#">Copyright</a></li>
                         </ul>
                     </div>
                 </div><!--/.col-md-3-->
 
                 <div class="col-md-3 col-sm-6">
-                    <h4>Latest Blog</h4>
+                    <h4>Opiniones</h4>
                     <div>
                         <div class="media">
                             <div class="pull-left">
-                                <img src="images/blog/thumb1.jpg" alt="">
+                                <img src="" alt="">
                             </div>
                             <div class="media-body">
-                                <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique senectus</a></span>
-                                <small class="muted">Posted 17 Aug 2013</small>
+                                <span class="media-heading"><a href="">Experiencia cinematográfica increíble, sonido estereo espactucalar.</a></span>
+                                <small class="muted">Luis García 17 Agosto 2016</small>
                             </div>
                         </div>
                         <div class="media">
                             <div class="pull-left">
-                                <img src="images/blog/thumb2.jpg" alt="">
+                                <img src="" alt="">
                             </div>
                             <div class="media-body">
-                                <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique senectus</a></span>
-                                <small class="muted">Posted 13 Sep 2013</small>
+                                <span class="media-heading"><a href="">La mejor calidad audiovisual y una comodidad que nadie aún me había ofrecido.</a></span>
+                                <small class="muted">Luisa 13 Sep 2016</small>
                             </div>
                         </div>
                         <div class="media">
                             <div class="pull-left">
-                                <img src="images/blog/thumb3.jpg" alt="">
+                                <img src="" alt="">
                             </div>
                             <div class="media-body">
-                                <span class="media-heading"><a href="#">Pellentesque habitant morbi tristique senectus</a></span>
-                                <small class="muted">Posted 11 Jul 2013</small>
+                                <span class="media-heading"><a href="">Las butacas son de la mejor calidad, te hacen sentirte como en casa.</a></span>
+                                <small class="muted">Marcos Arraez 11 Jul 2016</small>
                             </div>
                         </div>
                     </div>  
                 </div><!--/.col-md-3-->
 
                 <div class="col-md-3 col-sm-6">
-                    <h4>Address</h4>
+                    <h4>Información</h4>
                     <address>
-                        <strong>Twitter, Inc.</strong><br>
-                        795 Folsom Ave, Suite 600<br>
-                        San Francisco, CA 94107<br>
-                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                        <strong>Dirección</strong><br>
+                        Universidad de Alcalá<br>
+                        Ctra. Madrid-Barcelona, Km. 33,600, 28805 Alcalá de Henares, Madrid<br>
+                        <abbr title="Phone">P:</abbr> (+34) 918 85 65 05
                     </address>
-                    <h4>Newsletter</h4>
-                    <form role="form">
-                        <div class="input-group">
-                            <input type="text" class="form-control" autocomplete="off" placeholder="Enter your email">
-                            <span class="input-group-btn">
-                                <button class="btn btn-danger" type="button">Go!</button>
-                            </span>
-                        </div>
-                    </form>
+
                 </div> <!--/.col-md-3-->
             </div>
         </div>
@@ -83,14 +74,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
+                    &copy; 2017 <a target="_blank" href="#" title="ADSW">Arquitectura y Diseño Web</a>. Todos los derechos reservados.
                 </div>
                 <div class="col-sm-6">
                     <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="index.jsp">Inicio</a></li>
+                        <li><a href="cartelera.jsp">Cartelera</a></li>
+                        <li><a href="contacto.jsp">Contacto</a></li>
+                        <li><a href="#">FAQ</a></li>
                         <li><a id="gototop" class="gototop" href="#"><i class="icon-chevron-up"></i></a></li><!--#gototop-->
                     </ul>
                 </div>
