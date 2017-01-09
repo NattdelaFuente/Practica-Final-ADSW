@@ -3,7 +3,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 justificar">
                     <h4>Sobre Nosotros</h4>
-                    <p class="justificar">Más de 17 millones de espectadores y 300 películas estrenadas al año avalan el compromiso con el cine y la gestión de CINESA, empresa líder de exhibición cinematográfica en España.</p>
+                    <p class="justify">Más de 17 millones de espectadores y 300 películas estrenadas al año avalan el compromiso con el cine y la gestión de CINESA, empresa líder de exhibición cinematográfica en España.</p>
                     <p class="justificar">Actualmente, gestiona más de 500 pantallas del circuito español con más de 100.000 butacas en unas instalaciones que priman la comodidad del espectador, el servicio personalizado y la calidad de imagen y sonido.</p>
                 </div><!--/.col-md-3-->
 
@@ -28,7 +28,7 @@
                     <div>
                         <div class="media">
                             <div class="pull-left">
-                                <img src="" alt="">
+                                
                             </div>
                             <div class="media-body">
                                 <span class="media-heading"><a href="">Experiencia cinematográfica increíble, sonido estereo espactucalar.</a></span>
@@ -37,7 +37,7 @@
                         </div>
                         <div class="media">
                             <div class="pull-left">
-                                <img src="" alt="">
+                                
                             </div>
                             <div class="media-body">
                                 <span class="media-heading"><a href="">La mejor calidad audiovisual y una comodidad que nadie aún me había ofrecido.</a></span>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="media">
                             <div class="pull-left">
-                                <img src="" alt="">
+                                
                             </div>
                             <div class="media-body">
                                 <span class="media-heading"><a href="">Las butacas son de la mejor calidad, te hacen sentirte como en casa.</a></span>
