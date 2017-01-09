@@ -28,13 +28,18 @@
         	if (sesion == null) //no existe sesion con ese ID
         		response.sendRedirect("cartelera.jsp");
         	
+        	
+        	List<Entrada> listaEntradas = cine.getListaEntradasReserva(idReserva);
+        	if (listaEntradas.isEmpty())
+        		response.sendRedirect("cartelera.jsp");
+        	
     	
       	 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Plantilla</title>
+<title>Resumen de reserva</title>
 <%@ include file="principales/elementshead.jsp" %>
 <link href="css/pelis.css" rel="stylesheet" type="text/css">
 <style type="text/css">
@@ -105,35 +110,36 @@ color:#222e3a;
 					<div class="col-lg-12" >
 					<h3><strong class="colorinfo">Nombre de la Película:</strong> <%=sesion.getNombrePelicula() %></h3>
 					<h3><strong class="colorinfo">Sala:</strong> <%=sesion.getNombreSala() + " (#"+ sesion.getIdSala() +  ")" %></h3>
-					<h3><strong class="colorinfo">Número de entradas:</strong> 2</h3>
+					<h3><strong class="colorinfo">Fecha:</strong> <%=sesion.getFechaInicio() + " a las "+ sesion.getHoraInicio()  %></h3>
+					<h3><strong class="colorinfo">Número de entradas:</strong>  <%=listaEntradas.size()%></h3>
 						<table class="table table-inverse" style="max-width: 320px; margin-top:15px; margin-top: 15px; margin-bottom: 30px;">
 							<thead>
 								<tr>
-									<th>Entradas</th>
+									<th>Entrada</th>
 									<th>Fila</th>
 									<th>Columna</th>
 
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>32</td>
-									<td>3</td>
-
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>45</td>
-									<td>12</td>
-
-								</tr>
+							
+							<%    for (int i=0;i<listaEntradas.size();i++ )
+								{
+								%>
+							
+										<tr>
+											<th scope="row"><%= (i+1)%></th>
+											<td><%=listaEntradas.get(i).getFila()%></td>
+											<td><%=listaEntradas.get(i).getColumna()%></td>
+		
+										</tr>
+								<%} %>
 
 							</tbody>
 						</table>
 					</div>
 					<div class="col-lg-12" >
-					<h1><strong class="colorinfo">Precio: </strong><%= cine.getListaEntradasReserva(idReserva).size() * 6 %></h1>
+					<h1><strong class="colorinfo">Precio: </strong><%= listaEntradas.size() * 6 %> &euro;</h1>
 					<h1><strong class="colorinfo">Código de Reserva: </strong><%= idReserva%></h1>
 					</div>
 					

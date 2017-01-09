@@ -6,6 +6,19 @@
 <%@page import="ClasesModelo.Sesion"%>
 <%@page import="ClasesModelo.CineDAO"%>
 
+        <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
+    {
+    	response.sendRedirect("../../index.jsp");
+    	
+    }
+    else
+    {
+    	//prueba de sesion;
+    	 
+    	
+    }
+        %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
@@ -89,7 +102,7 @@
 							<h3>General</h3>
 							<ul class="nav side-menu">
 								<li><a href="index.jsp"><i class="fa fa-home"></i> Home
-										<span class="fa fa-chevron-down"></span></a></li>
+										</a></li>
 								<li><a><i class="glyphicon glyphicon-film"></i>&nbsp;&nbsp;&nbsp;&nbsp;
 										Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
@@ -113,7 +126,7 @@
 										Reservas <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="reserva-entradas.jsp">Entradas</a></li>
-										<li><a href="reserva-salas.jsp">Salas</a></li>
+										
 									</ul></li>
 								<li><a><i class="fa fa-clone"></i>Gestión de Informes<span
 										class="fa fa-chevron-down"></span></a>

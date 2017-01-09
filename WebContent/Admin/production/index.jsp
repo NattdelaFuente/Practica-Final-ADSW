@@ -24,7 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>AdministraciÃ³n Cine | </title>
+    <title>Administración Cine | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.jsp" class="site_title"><i class="fa fa-ticket"></i> <span>AdministraciÃ³n</span></a>
+              <a href="index.jsp" class="site_title"><i class="fa fa-ticket"></i> <span>Administración</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -74,35 +74,35 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href=""><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a href=""><i class="fa fa-home"></i> Home</a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;GestiÃ³n Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-pelicula.jsp">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> GestiÃ³n Salas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Gestión Salas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sala.jsp">Insertar</a></li>
                       <li><a href="consultar-sala.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                   <li><a><i class="fa fa-table"></i> GestiÃ³n Sesiones <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-table"></i> Gestión Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sesion.jsp">Insertar</a></li>
                       <li><a href="consultar-sesion.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> GestiÃ³n Reservas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Gestión Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reserva-entradas.jsp">Entradas</a></li>
-                      <li><a href="reserva-salas.jsp">Salas</a></li>
+                      
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-clone"></i>GestiÃ³n de Informes<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-clone"></i>Gestión de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a href="generos.jsp">Por genero</a></li>
                       <li><a href="por-sala.jsp">Por sala</a></li>
@@ -145,7 +145,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a onClick=logout() class="user-profile button-toggle"  aria-expanded="false">
-                    <i class="fa fa-sign-out pull-right"></i>Cerrar SesiÃ³n
+                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesión
                     
                   </a>
                   
@@ -164,8 +164,8 @@
 
                   <div class="bs-example" data-example-id="simple-jumbotron">
                     <div class="jumbotron">
-                      <h1>Bienvenido a la pÃ¡gina de administraciÃ³n</h1>
-                      <p>Desde nuestro menÃº podras hacer todas las tareas necesarias para la gestiÃ³n de la web del cine.</p>
+                      <h1>Bienvenido a la página de administración</h1>
+                      <p>Desde nuestro menú podras hacer todas las tareas necesarias para la gestión de la web del cine.</p>
                     </div>
                   </div>
 

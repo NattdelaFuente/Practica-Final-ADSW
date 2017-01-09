@@ -72,7 +72,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="index.jsp"><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="index.jsp"><i class="fa fa-home"></i> Home </a>
                     
                   </li>
                   <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gestión Peliculas <span class="fa fa-chevron-down"></span></a>
@@ -97,7 +97,7 @@
                   <li><a><i class="fa fa-bar-chart-o"></i> Gestión Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reserva-entradas.jsp">Entradas</a></li>
-                      <li><a href="reserva-salas.jsp">Salas</a></li>
+                      
                     </ul>
                   </li>
                   <li><a><i class="fa fa-clone"></i>Gestión de Informes<span class="fa fa-chevron-down"></span></a>
