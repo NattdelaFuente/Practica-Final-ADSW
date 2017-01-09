@@ -594,6 +594,33 @@ public class CineDAO {
 		// return "fila_columna";
 	}
 
+	public List<Entrada> getListaEntradasReserva(int idReserva) {
+
+		List<Entrada> list = new ArrayList<Entrada>();
+		Connection c = null;
+		try {
+
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("select * from entradas where idreserva = ?");
+			ps.setInt(1, idReserva);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				list.add(procesarEntrada(rs));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return list;
+		//
+	}
+
 	// devuelve la pelicula pedida por id
 	public Pelicula getPelicula(int id) {
 
@@ -697,8 +724,8 @@ public class CineDAO {
 
 	}
 
-	// devuelve una lista que contendra todas las sesiones ordenadas por fecha
-	// de inicio QUE PROYECTAN LA PELICULA INDICADA
+	// devuelve una lista que contendra todos los comentarios de una peli
+	//
 	public List<Comentario> getListaComentariosPelicula(int idPelicula) {
 
 		List<Comentario> list = new ArrayList<Comentario>();
@@ -712,6 +739,31 @@ public class CineDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				list.add(procesarComentario(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return list;
+
+	}
+
+	// devuelve una lista que contendra todas las reservas realizadas
+	public List<Reserva> getListaReservas() {
+
+		List<Reserva> list = new ArrayList<Reserva>();
+		Connection c = null;
+		String sql = "SELECT *" + "FROM reservas ";
+
+		try {
+			c = ConnectionHelper.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			while (rs.next()) {
+				list.add(procesarReserva(rs));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -758,6 +810,30 @@ public class CineDAO {
 		sala.setNombreSala(rs.getString("nombresala"));
 		sala.setMap(rs.getString("map"));
 		return sala;
+	}
+
+	// recibimos un resultSet que contiene una entrada y lo convertimos en un
+	// Objeto de ese tipo, para devolverlo
+	private Entrada procesarEntrada(ResultSet rs) throws SQLException {
+		Entrada entrada = new Entrada();
+		entrada.setColumna(rs.getInt("columna"));
+		entrada.setFila(rs.getInt("fila"));
+		entrada.setIdEntrada(rs.getInt("identrada"));
+		entrada.setIdReserva(rs.getInt("idreserva"));
+
+		return entrada;
+	}
+
+	// recibimos un resultSet que contiene una reserva y lo convertimos en un
+	// Objeto de ese tipo, para devolverlo
+	private Reserva procesarReserva(ResultSet rs) throws SQLException {
+		Reserva reserva = new Reserva();
+		reserva.setIdRreserva(rs.getInt("idreserva"));
+		reserva.setIdSesion(rs.getInt("idsesion"));
+		reserva.setTarjeta(rs.getString("tarjeta"));
+		reserva.setUsername(rs.getString("username"));
+
+		return reserva;
 	}
 
 	// recibimos un resultSet que contiene un comentario y lo convertimos en un

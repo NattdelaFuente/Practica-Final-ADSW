@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+
+<%@page import="ClasesModelo.Entrada"%>
+<%@page import="ClasesModelo.Reserva"%>
+<%@page import="ClasesModelo.CineDAO"%>
         <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals("") || ! session.getAttribute("username").equals("admin") )
     {
     	response.sendRedirect("../../index.jsp");
@@ -37,6 +42,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap-table.css" rel="stylesheet">
 
   </head>
 
@@ -176,6 +182,7 @@
 
             <div class="clearfix"></div>
 
+
             <div class="row">
               
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -207,7 +214,8 @@
                     <div class="table-responsive">
 
 
-
+<table border="1" id="table">
+</table>
 
 
 
@@ -252,10 +260,137 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script src="../../js/bootstrap-table.js"></script>
 
 
   
+ <script>
+ 
+ 
 
+
+//Bootstrap Table - subtable example with real data, forked from http://jsfiddle.net/myvykf24/1/ and created for https://github.com/wenzhixin/bootstrap-table/issues/2121
+
+ var data = [ 
+				<%
+
+				CineDAO cine = new CineDAO();
+				List<Reserva> listaReservas = cine.getListaReservas();
+				
+		        for (int i=0; i<listaReservas.size();i++)
+		        {
+		        	List<Entrada> listaEntradasReserva = cine.getListaEntradasReserva(listaReservas.get(i).getIdRreserva());
+		   
+
+		       	%>      
+             
+					  {
+						   'Dummy': '',
+						   'ID reserva': '<%=listaReservas.get(i).getIdRreserva() %>',
+						   'Usuario': '<%=listaReservas.get(i).getUsername() %>',
+						   'Tarjeta': '<%=listaReservas.get(i).getTarjeta() %>',
+						   'ID sesion': '<%=listaReservas.get(i).getIdSesion() %>',
+						   'Nº Entradas': '<%=listaEntradasReserva.size() %>',
+					   
+					   	   'nested': 
+					   		  [
+					   		   
+				<%
+				
+	        	
+	        	for (int u=0;u<listaEntradasReserva.size();u++)
+	        	{
+	        		
+	        	
+	        	
+				%> 
+					   		   
+					   		   
+					   			{
+					
+								     'Fila': '<%=listaEntradasReserva.get(u).getFila() %>',
+								     'Columna': '<%=listaEntradasReserva.get(u).getColumna() %>'
+					   			},
+		
+	   		<% }%>	
+					   			
+					          ]
+					
+					 },
+             
+             
+             <% }%>
+             ]
+             
+             
+             
+             
+             
+             
+
+
+ var $table = $('#table');
+ $(function() {
+
+   $table.bootstrapTable({
+     columns: [{
+    	 
+         field: 'ID reserva',
+         title: '' 
+
+     }, {
+         field: 'ID sesion',
+         title: 'ID reserva'
+     },
+     {
+	     field: 'Usuario',
+	     title: 'ID sesion'
+     },{
+    	 
+         field: 'Tarjeta',
+         title: 'Usuario'
+
+    	 
+     }, {
+         field: 'Nº Entradas',
+         title: 'Tarjeta'
+    	 
+     },
+     {
+         field: 'Dummy',
+         title: 'Nº Entradas'
+    	 
+     }
+     
+     
+     ],
+     data: data,
+     detailView: true,
+     onExpandRow: function(index, row, $detail) {
+       console.log(row)
+       $detail.html('<table></table>').find('table').bootstrapTable({
+         columns: [ {
+           field: 'Fila',
+           title: 'Fila'
+
+         }, {
+           field: 'Columna',
+           title: 'Columna'
+         }],
+         data: row.nested,
+
+       });
+
+     }
+   });
+ });
+
+ 
+ 
+ 
+ 
+ 
+ </script>
 
    
   </body>

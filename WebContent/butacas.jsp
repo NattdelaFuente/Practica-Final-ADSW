@@ -278,7 +278,7 @@ span.seatCharts-legendDescription {
 
 							
 							//let's create a new <li> which we'll add to the cart items
-							$('<li name="' +this.settings.id +'">'+this.data().category+' #'+this.settings.label+' <br> Fila: ' + this.settings.row  +'    -    Columna: ' + this.settings.column  +'<br> <b>&euro;'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[cancelar]</a></li>')
+							$('<li name="' +this.settings.id +'">'+this.data().category+' #'+this.settings.label+'<br> <b>&euro;'+this.data().price+'</b> <a href="#" class="cancel-cart-item">[cancelar]</a></li>')
 								.attr('id', 'cart-item-'+this.settings.id)
 								.data('seatId', this.settings.id)
 								.appendTo($cart);
