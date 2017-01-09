@@ -24,7 +24,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Administraci髇 Cine | </title>
+    <title>Administraci贸n Cine | </title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.jsp" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci髇</span></a>
+              <a href="index.jsp" class="site_title"><i class="fa fa-ticket"></i> <span>Administraci贸n</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -77,32 +77,32 @@
                   <li><a href=""><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     
                   </li>
-                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gesti髇 Peliculas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-film"></i> &nbsp;&nbsp;&nbsp;Gesti贸n Peliculas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-pelicula.jsp">Insertar</a></li>
                       <li><a href="consultar-pelicula.jsp">Consultar/Modificar</a></li>
                       
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-desktop"></i> Gesti髇 Salas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-desktop"></i> Gesti贸n Salas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sala.jsp">Insertar</a></li>
                       <li><a href="consultar-sala.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                   <li><a><i class="fa fa-table"></i> Gesti髇 Sesiones <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-table"></i> Gesti贸n Sesiones <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertar-sesion.jsp">Insertar</a></li>
                       <li><a href="consultar-sesion.jsp">Consultar/Modificar</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti髇 Reservas <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Gesti贸n Reservas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="reserva-entradas.jsp">Entradas</a></li>
                       <li><a href="reserva-salas.jsp">Salas</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-clone"></i>Gesti髇 de Informes<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-clone"></i>Gesti贸n de Informes<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                        <li><a href="generos.jsp">Por genero</a></li>
                       <li><a href="por-sala.jsp">Por sala</a></li>
@@ -145,7 +145,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a onClick=logout() class="user-profile button-toggle"  aria-expanded="false">
-                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi髇
+                    <i class="fa fa-sign-out pull-right"></i>Cerrar Sesi贸n
                     
                   </a>
                   
@@ -160,12 +160,171 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <!-- top tiles -->
-          <!-- Bar chart -->
-          
-          <!-- /top tiles -->
+          <div class="x_content">
 
-        <!-- /page content -->
+                  <div class="bs-example" data-example-id="simple-jumbotron">
+                    <div class="jumbotron">
+                      <h1>Bienvenido a la p谩gina de administraci贸n</h1>
+                      <p>Desde nuestro men煤 podras hacer todas las tareas necesarias para la gesti贸n de la web del cine.</p>
+                    </div>
+                  </div>
 
+                </div>
+                <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Pel铆culas</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div class="row">
+
+                      <p>Algunas de la pel铆culas que se encuentran en la base de datos</p>
+
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://jadiberita.com/wp-content/uploads/2015/06/interstellar.png" alt="image" />
+                            
+                          </div>
+                          <div class="caption">
+                            <p>Interstellar</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://cdn.images.express.co.uk/img/dynamic/36/590x/secondary/Avatar-poster-421587.jpg" alt="image" />
+                            
+                          </div>
+                          <div class="caption">
+                            <p>Avatar</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://www.labutaca.net/peliculas/wp-content/uploads/2009/12/origen-incepcion-cartel.jpg" alt="image" />
+                            
+                          </div>
+                          <div class="caption">
+                            <p>Origen</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://howdoesthemovieend.com/images/jmovies/img_pictures/in-time-poster.jpg" alt="image" />
+                            
+                          </div>
+                          <div class="caption">
+                            <p>In Time</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://www.elmulticine.com/imagenes/carteles/2/cisne-negro-b.jpg" alt="image" />
+                           
+                          </div>
+                          <div class="caption">
+                            <p>El cisne negro</p>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://es.web.img3.acsta.net/pictures/210/096/21009604_20130530232058293.jpg" alt="image" />
+                          </div>
+                          <div class="caption">
+                           <p>El gran torino</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://www.labutaca.net/peliculas/wp-content/uploads/2011/03/super-8-pelicula-cartel-poster.jpg" alt="image" />
+                          </div>  
+                          <div class="caption">
+                            
+                            <p>Super 8</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="https://a.disquscdn.com/get?url=http%3A%2F%2Fpad.mymovies.it%2Ffilmclub%2F2015%2F07%2F116%2Flocandina.jpg&key=z7Q9DhUNuFm2EfRLlA_hxQ" alt="image" />
+                            
+                          </div>
+                          <div class="caption">
+                            
+                            <p>Joy</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="http://www.007museum.com/SKYFALL_UK_POSTER.jpg" alt="image" />
+                            
+                              
+                           
+                          </div>
+                          <div class="caption">
+                            
+                            <p>SkyFall</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-55">
+                        <div class="thumbnail">
+                          <div class="image view view-first">
+                            <img style="width: 100%; display: block;" src="https://static.posters.cz/image/750/poster/frozen-el-reino-del-hielo-lakeside-i28739.jpg" alt="image" />
+                            
+                          
+                          </div>
+                          <div class="caption">
+                           
+                            <p>Frozen</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+             
         <!-- footer content -->
         <footer>
           <div class="pull-right">
