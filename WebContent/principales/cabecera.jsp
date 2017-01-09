@@ -13,7 +13,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.jsp">Inicio</a></li>
                     <li><a href="cartelera.jsp">Cartelera</a></li>
-                    <li><a href="quienes-somos.jsp">Quienes Somos</a></li>
+                    <li><a href="quienes-somos.jsp">Quiénes Somos</a></li>
                     <li><a href="contacto.jsp">Contacto</a></li>                    
                     
                         <% if (session.getAttribute("username") == null  || session.getAttribute("username").equals(""))

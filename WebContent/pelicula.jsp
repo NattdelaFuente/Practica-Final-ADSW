@@ -33,7 +33,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title><%=pelicula.getName()%> </title>
+<title>CINESA | <%=pelicula.getName()%> </title>
 <%@ include file="principales/cabecerapeli.jsp"%>
 <%@ include file="principales/elementshead.jsp"%>
 
@@ -51,7 +51,8 @@
 			</div>
 			<div class="col-sm-6">
 				<ul class="breadcrumb pull-right">
-					<li><a href="index.html">Inicio</a></li>
+					<li><a href="index.jsp">Inicio</a></li>
+					<li><a href="cartelera.jsp">Cartelera</a></li>
 					<li class="active"><%=pelicula.getName()%></li>
 				</ul>
 			</div>
@@ -293,7 +294,7 @@
 							<h5><%= listaComentarios.get(f).getUsuario() %></h5>
 							<div class="media-left">
 								<a href="#"> <img src="images/user.jpg" title="One movies"
-									alt=" " />
+									alt=" " style="max-height: 25px;"/>
 								</a>
 							</div>
 							<div class="media-body">

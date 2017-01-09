@@ -24,7 +24,7 @@
 
 <html>
 <head>
-<title>Pase</title>
+<title>CINESA | Reserva</title>
 
 <link href='http://fonts.googleapis.com/css?family=Lato:400,700'
 	rel='stylesheet' type='text/css'>
