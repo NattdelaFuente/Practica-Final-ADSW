@@ -191,7 +191,7 @@
 							data-filter=".Terror">Terror</a></li>
 					</ul>
 					<!--/#portfolio-filter-->
-					<ul class="portfolio-items col-5">
+					<ul class="portfolio-items col-8">
 						<!-- FIN MODAL -->
 						
 						

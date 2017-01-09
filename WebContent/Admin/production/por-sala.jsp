@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@page import="java.util.List"%>
+<%@page import="ClasesModelo.Pelicula"%>
+<%@page import="ClasesModelo.Sala"%>
+<%@page import="ClasesModelo.Sesion"%>
+<%@page import="ClasesModelo.CineDAO"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -175,36 +179,85 @@
 					<div class="clearfix"></div>
 					<section id="portfolio" class="container" style="padding-top:20px;">
 					<ul class="portfolio-filter">
-						<li><a class="btn btn-default active" href="#"
-							data-filter="*">Todas las salas</a></li>
-						<li><a class="btn btn-default" href="#" data-filter=".3d">Comedia</a></li>
-						<li><a class="btn btn-default" href="#"
-							data-filter=".comdeia">XXX</a></li>
-						<li><a class="btn btn-default" href="#" data-filter=".drama">Drama</a></li>
-						<li><a class="btn btn-default" href="#" data-filter=".terror">Terror</a></li>
-						<li><a class="btn btn-default" href="#" data-filter=".accion">Acción</a></li>
-						<li><a class="btn btn-default" href="#"
-							data-filter=".animacion">Animación</a></li>
+											<li><a class="btn btn-default active" href="#" data-filter="*">Todas las salas</a></li>
+												                        
+                                <%    
+
+							        	CineDAO dao = new CineDAO();      
+							       
+								        List<Pelicula> list = dao.getListaTodasPeliculas();
+								        List<Sala> listaSala = dao.getListaTodasSalas();
+								        
+								        for (int i=0; i<listaSala.size();i++)
+								        {
+								        
+								        	
+						        %>
+						
+
+											<li><a class="btn btn-default" href="#" data-filter=".<%=listaSala.get(i).getIdSala()%>"><%=listaSala.get(i).getNombreSala() + "  (#"+listaSala.get(i).getIdSala()+")" %></a></li> 
+									<%  }
+								%>
+						
+								
 					</ul>
 					<!--/#portfolio-filter-->
-					<ul class="portfolio-items col-3">
+					<ul class="portfolio-items col-8">
 						<!-- FIN MODAL -->
-						<li class="portfolio-item animacion">
-							<div class="item-inner">
-								<img class="responsive"
-									style="max-height: 350px; min-height: 350px; widht: 100%;"
-									src="stylePeli/images/c10.jpg" alt="">
-								<h5>Nombre de la sala Animación (ejemplo: Sala Animación -
-									Roca)</h5>
-								<div class="overlay">
-									<a class="preview btn btn-danger" type="button"
-										data-toggle="modal" data-target="#1"><i
-										class="icon-eye-open"></i></a>
+						
+										<%
 
-								</div>
-							</div>
-						</li>
-						<div id="1" class="modal fade" role="dialog">
+								        for (int i=0; i<list.size();i++)
+								        {
+								        	List<Sesion> listaSesionesPelicula = dao.getListaSesionesProyectanPelicula(list.get(i).getId());
+								        	String salas= "";
+								        	
+								        	for (int u=0;u<listaSesionesPelicula.size();u++)
+								        	{
+								        		salas = salas +" "+ listaSesionesPelicula.get(u).getIdSala();
+								        	}
+								        	
+								       	%>
+											<li class="portfolio-item <%=salas %>">
+												<div class="item-inner">
+													<img class="responsive"
+														style="max-height: 350px; min-height: 350px; widht: 100%;"
+														src="<%=list.get(i).getImagen() %>" alt="">
+													<h5><%=list.get(i).getName() %></h5>
+													<div class="overlay">
+														<a class="preview btn btn-danger" type="button"
+															data-toggle="modal" data-target="#<%=i %>"><i
+															class="icon-eye-open"></i></a>
+					
+													</div>
+												</div>
+											</li>
+						
+		
+						
+						
+						
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						<div id="<%=i %>" class="modal fade" role="dialog">
 							<div class="modal-dialog">
 
 								<!-- Modal content-->
@@ -212,7 +265,7 @@
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
 										<h3 class="modal-title colorinfo3">
-											<strong>Nombre de la pelíula</strong>
+											<strong><%=list.get(i).getName() %></strong>
 										</h3>
 									</div>
 									<div class="modal-body">
@@ -225,72 +278,52 @@
 															style="border-bottom: 1px solid white;">INFORMACIÓN</strong>
 													</h4>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Título original: </strong> 1
+														<strong class="colorinfo2">Título original: </strong> <%=list.get(i).getOriginal() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Género: </strong> 12
+														<strong class="colorinfo2">Género: </strong> <%=list.get(i).getGenero() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Duración: </strong> 23
+														<strong class="colorinfo2">Duración: </strong> <%=list.get(i).getDuracion() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Clasificación: </strong> 60
+														<strong class="colorinfo2">Clasificación: </strong> <%=list.get(i).getEdad() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Director: </strong> 60
+														<strong class="colorinfo2">Director: </strong> <%=list.get(i).getDirector() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Nacionalidad: </strong> 60
+														<strong class="colorinfo2">Nacionalidad: </strong> <%=list.get(i).getNacionalidad() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Año: </strong> 60
+														<strong class="colorinfo2">Año: </strong> <%=list.get(i).getAnyo() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Distribuidora: </strong> 60
+														<strong class="colorinfo2">Distribuidora: </strong> <%=list.get(i).getDistribuidora() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Otros: </strong> 60
+														<strong class="colorinfo2">Otros: </strong> <%=list.get(i).getOtros() %>
 													</p>
 													<p class="colorinfo3">
 														<strong class="colorinfo2">Página oficial: </strong>
-														602222222222 22 2 2 2 2 33324r42f sdasa asdasdasda assa
-														asd
+														<%=list.get(i).getWebsite() %>
 													</p>
 													<p class="colorinfo3">
-														<strong class="colorinfo2">Actores: </strong> 602222222222
-														22 2 2 2 2 33324r42f sdasa asdasdasda aafas asdasfa asda
-														aaasdacsc acaassa asd
+														<strong class="colorinfo2">Actores: </strong> <%=list.get(i).getActores() %>
 													</p>
 												</div>
 												<div class="col-sm-1"></div>
 												<div class="col-sm-5" style="margin-top: 20px;">
 													<img class="responsive"
 														style="max-height: 350px; min-height: 350px;"
-														src="stylePeli/images/c10.jpg" alt="">
+														src="<%=list.get(i).getImagen() %>" alt="">
 												</div>
 											</div>
 											<!--FIN parte PELI -->
 										</div>
 										<hr>
 										<h5>
-											<strong>Datos de interés: </strong>PONER AQUÍ UN COMENTARIO
-											SOBRE LA SALASI LO TIENE Y SINO LO TIENE PONER POR DEFECTO:
-											ESTA SALA NO TIENE INFORMACIÓN ADICIONAL 602222222222 22 2 2
-											2 2 33324r42f sdasa asdasdasda aafas asdasfa asda aaasdacsc
-											acaassa asd602222222222 22 2 2 2 2 33324r42f sdasa asdasdasda
-											aafas asdasfa asda aaasdacsc acaassa asd602222222222 22 2 2 2
-											2 33324r42f sdasa asdasdasda aafas asdasfa asda aaasdacsc
-											acaassa asd602222222222 22 2 2 2 2 33324r42f sdasa asdasdasda
-											aafas asdasfa asda aaasdacsc acaassa asd602222222222 22 2 2 2
-											2 33324r42f sdasa asdasdasda aafas asdasfa asda aaasdacsc
-											acaassa asd602222222222 22 2 2 2 2 33324r42f sdasa asdasdasda
-											aafas asdasfa asda aaasdacsc acaassa asd602222222222 22 2 2 2
-											2 33324r42f sdasa asdasdasda aafas asdasfa asda aaasdacsc
-											acaassa asd602222222222 22 2 2 2 2 33324r42f sdasa asdasdasda
-											aafas asdasfa asda aaasdacsc acaassa asd602222222222 22 2 2 2
-											2 33324r42f sdasa asdasdasda aafas asdasfa asda aaasdacsc
-											acaassa asd602222222222 22 2 2 2 2 33324r42f sdasa asdasdasda
-											aafas asdasfa asda aaasdacsc acaassa asd
+											<strong>Sinopsis: </strong><%=list.get(i).getSinopsis() %>
 										</h5>
 									</div>
 									<div class="modal-footer">
@@ -302,67 +335,30 @@
 							</div>
 						</div>
 
-						<!-- FIN MODAL -->
-						<!--/.portfolio-item-->
-						<li class="portfolio-item joomla drama">
-							<div class="item-inner">
-								<img src="images/portfolio/thumb/item2.jpg" alt="">
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<div class="overlay">
-									<a class="preview btn btn-danger"
-										href="images/portfolio/full/item2.jpg" rel="prettyPhoto"><i
-										class="icon-eye-open"></i></a>
-								</div>
-							</div>
-						</li>
-						<!--/.portfolio-item-->
-						<li class="portfolio-item 3d wordpress">
-							<div class="item-inner">
-								<img src="images/portfolio/thumb/item3.jpg" alt="">
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<div class="overlay">
-									<a class="preview btn btn-danger"
-										href="images/portfolio/full/item3.jpg" rel="prettyPhoto"><i
-										class="icon-eye-open"></i></a>
-								</div>
-							</div>
-						</li>
-						<!--/.portfolio-item-->
-						<li class="portfolio-item joomla drama apps">
-							<div class="item-inner">
-								<img src="images/portfolio/thumb/item4.jpg" alt="">
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<div class="overlay">
-									<a class="preview btn btn-danger"
-										href="images/portfolio/full/item4.jpg" rel="prettyPhoto"><i
-										class="icon-eye-open"></i></a>
-								</div>
-							</div>
-						</li>
-						<!--/.portfolio-item-->
-						<li class="portfolio-item 3d html">
-							<div class="item-inner">
-								<img src="images/portfolio/thumb/item5.jpg" alt="">
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<div class="overlay">
-									<a class="preview btn btn-danger"
-										href="images/portfolio/full/item5.jpg" rel="prettyPhoto"><i
-										class="icon-eye-open"></i></a>
-								</div>
-							</div>
-						</li>
-						<!--/.portfolio-item-->
-						<li class="portfolio-item wordpress html">
-							<div class="item-inner">
-								<img src="images/portfolio/thumb/item6.jpg" alt="">
-								<h5>Lorem ipsum dolor sit amet</h5>
-								<div class="overlay">
-									<a class="preview btn btn-danger"
-										href="images/portfolio/full/item6.jpg" rel="prettyPhoto"><i
-										class="icon-eye-open"></i></a>
-								</div>
-							</div>
-						</li>
+
+
+
+
+
+						    	<%
+								        }      
+							        	%>
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 						<!--/.portfolio-item-->
 					</ul>
 					</section>
