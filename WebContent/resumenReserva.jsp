@@ -101,14 +101,42 @@ color:#222e3a;
 			<p style="margin-top: 20px;"></p>
 			<div class="row">
 			
-				<div class="col-lg-6" style="margin-top: 42px;">
-					
+				<div class="col-lg-6" style="margin-top: 20px;">
+					<div class="col-lg-12" >
 					<h3><strong class="colorinfo">Nombre de la Película:</strong> <%=sesion.getNombrePelicula() %></h3>
 					<h3><strong class="colorinfo">Sala:</strong> <%=sesion.getNombreSala() + " (#"+ sesion.getIdSala() +  ")" %></h3>
-					<h3><strong class="colorinfo">Columna:</strong> 2</h3>
-					<h3><strong class="colorinfo">Fila:</strong> 3</h3>
+					<h3><strong class="colorinfo">Número de entradas:</strong> 2</h3>
+						<table class="table table-inverse" style="max-width: 320px; margin-top:15px; margin-top: 15px; margin-bottom: 30px;">
+							<thead>
+								<tr>
+									<th>Entradas</th>
+									<th>Fila</th>
+									<th>Columna</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">1</th>
+									<td>32</td>
+									<td>3</td>
+
+								</tr>
+								<tr>
+									<th scope="row">2</th>
+									<td>45</td>
+									<td>12</td>
+
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<div class="col-lg-12" >
 					<h1><strong class="colorinfo">Precio: </strong><%= cine.getListaEntradasReserva(idReserva).size() * 6 %></h1>
 					<h1><strong class="colorinfo">Código de Reserva: </strong><%= idReserva%></h1>
+					</div>
+					
 				</div>
 				<div class="col-lg-6 center">
 					<img class="responsive" alt="" src="<%=cine.getPelicula(sesion.getIdPelicula()).getImagen() %>" style="max-height:400px; min-height:400px; margin-top:20px; border:2px solid #34495e; border-radius:15px;">
@@ -116,7 +144,7 @@ color:#222e3a;
 
 			</div>
 			<hr>
-			<div class="row" style="padding-top:20px;">
+			<div class="row" style="padding-top:20px;padding-bottom:60px;">
 			<div class="col-lg-4">
 					
 				</div>
