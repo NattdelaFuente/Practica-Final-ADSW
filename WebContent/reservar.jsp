@@ -76,7 +76,7 @@
 				<ul class="list-inline nav-justified wizard text-center">
 					<li><h4 class="text-primary">1. Seleccionar Asientos</h4></li>
 					<li><h4 class="text-muted">2. Pago</h4></li>
-					<li><h4 class="text-muted">3. Confirmación Reserva</h4></li>
+					<li><h4 class="text-muted">3. Completado</h4></li>
 				</ul>
 			</div>
 		</div>

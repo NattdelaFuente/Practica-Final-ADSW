@@ -669,6 +669,30 @@ public class CineDAO {
 
 	}
 
+	// devuelve la sala sesion por id
+	public Reserva getReserva(int id) {
+
+		Connection c = null;
+		try {
+
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("SELECT * FROM reservas WHERE idreserva=?");
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				return procesarReserva(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return null;
+
+	}
+
 	// devuelve la sesion pedida por id
 	public Sesion getSesion(int id) {
 

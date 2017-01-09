@@ -91,7 +91,7 @@ background-color:#34495e; border:2px solid #ddd; color:white; border-radius: 15p
 				<ul class="list-inline nav-justified wizard text-center">
 					<li><h4 class="text-muted">1. Seleccionar Asientos</h4></li>
 					<li><h4 class="text-primary">2. Pago</h4></li>
-					<li><h4 class="text-muted">3. Confirmación Reserva</h4></li>
+					<li><h4 class="text-muted">3. Completado</h4></li>
 				</ul>
 			</div>
 		</div>
@@ -167,8 +167,8 @@ background-color:#34495e; border:2px solid #ddd; color:white; border-radius: 15p
 		</form>
 		<div class="row">
 			<div class="col-sm-4 text-center">
-				<h2 style="background-color:#34495e; border:2px solid #ddd; color:white; border-radius: 10px; padding:10px;">
-					<strong>Precio a cobrar: </strong>22&euro;
+				<h2  style="background-color:#34495e; border:2px solid #ddd; color:white; border-radius: 10px; padding:10px;">
+					<strong>Precio a cobrar: </strong><span id="precio">22</span>&euro;
 				</h2>
 
 			</div>
@@ -190,6 +190,12 @@ function volver()
 	params = window.location.href.split("jsp?")[1];
 	location.href="reservar.jsp?" + params;
 }
+
+var url = window.location.href;
+var arr = url.split('&');
+
+$("#precio").html( (arr.length - 1) * 6);
+
 $('form').submit(function(e) {
     e.preventDefault();
     var $form = $(this);
@@ -226,7 +232,7 @@ $('form').submit(function(e) {
 	        			  closeOnConfirm: false	        			  	        			 
 	        		  	},
 	        		  	function(){
-	        		  		window.location ="cartelera.jsp";
+	        		  		window.location ="resumenReserva.jsp?reserva="+response.success;
 	        		  	});
 	        		});
 	        	}

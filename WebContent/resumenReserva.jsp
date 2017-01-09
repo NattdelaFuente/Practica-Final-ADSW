@@ -1,5 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.util.List"%>
+    <%@page import="java.util.ArrayList"%>
+	<%@page import="ClasesModelo.Reserva"%>
+    <%@page import="ClasesModelo.Pelicula"%>
+    <%@page import="ClasesModelo.Sesion"%>
+    <%@page import="ClasesModelo.Entrada"%>
+
+<%@page import="ClasesModelo.CineDAO"%>
+    
+    <% 
+    
+
+    	//prueba de sesion;
+    	if (request.getParameter("reserva") == null || request.getParameter("reserva").equals("")) //no existe el parametro id o no tiene numero
+    		response.sendRedirect("cartelera.jsp");
+    	else
+    	{
+        	int idReserva = Integer.parseInt(request.getParameter("reserva"));
+       	 	CineDAO cine = new CineDAO();
+       	 	Reserva reserva = cine.getReserva(idReserva);
+       	 	
+        	if (reserva == null) //no existe sesion con ese ID
+        		response.sendRedirect("cartelera.jsp");
+       	 	Sesion sesion = cine.getSesion(reserva.getIdSesion());        
+        	
+        	if (sesion == null) //no existe sesion con ese ID
+        		response.sendRedirect("cartelera.jsp");
+        	
+    	
+      	 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,7 +74,7 @@ color:#222e3a;
 				<ul class="list-inline nav-justified wizard text-center">
 					<li><h4 class="text-muted">1. Seleccionar Asientos</h4></li>
 					<li><h4 class="text-muted">2. Pago</h4></li>
-					<li><h4 class="text-primary">3. Confirmación Reserva</h4></li>
+					<li><h4 class="text-primary">3. Completado</h4></li>
 				</ul>
 			</div>
 		</div>
@@ -73,15 +103,15 @@ color:#222e3a;
 			
 				<div class="col-lg-6" style="margin-top: 42px;">
 					
-					<h3><strong class="colorinfo">Nombre de la Película:</strong> El señor de los anillos</h3>
-					<h3><strong class="colorinfo">Sala:</strong> sala1</h3>
+					<h3><strong class="colorinfo">Nombre de la Película:</strong> <%=sesion.getNombrePelicula() %></h3>
+					<h3><strong class="colorinfo">Sala:</strong> <%=sesion.getNombreSala() + " (#"+ sesion.getIdSala() +  ")" %></h3>
 					<h3><strong class="colorinfo">Columna:</strong> 2</h3>
 					<h3><strong class="colorinfo">Fila:</strong> 3</h3>
-					<h1><strong class="colorinfo">Precio: </strong>22&euro;</h1>
-					<h1><strong class="colorinfo">Código de Reserva: </strong>22342</h1>
+					<h1><strong class="colorinfo">Precio: </strong><%= cine.getListaEntradasReserva(idReserva).size() * 6 %></h1>
+					<h1><strong class="colorinfo">Código de Reserva: </strong><%= idReserva%></h1>
 				</div>
 				<div class="col-lg-6 center">
-					<img class="responsive" alt="" src="http://allcalidad.com/wp-content/uploads/2016/05/1-511.jpg" style="max-height:400px; min-height:400px; margin-top:20px; border:2px solid #34495e; border-radius:15px;">
+					<img class="responsive" alt="" src="<%=cine.getPelicula(sesion.getIdPelicula()).getImagen() %>" style="max-height:400px; min-height:400px; margin-top:20px; border:2px solid #34495e; border-radius:15px;">
 				</div>
 
 			</div>
@@ -91,7 +121,7 @@ color:#222e3a;
 					
 				</div>
 				<div class="col-lg-4">
-					<a class="btn btn-lg btn-default" href="index.jsp" role="button" style="width:100%;">Confirmar</a>
+					<a class="btn btn-lg btn-default" href="index.jsp" role="button" style="width:100%;">Inicio</a>
 				</div>
 				<div class="col-lg-4">
 					
@@ -102,4 +132,13 @@ color:#222e3a;
 	</div>
 	<%@ include file="principales/footer.jsp" %>
 </body>
-</html>			
+</html>	
+
+  	<%
+    	}
+    	
+
+    	
+    
+    
+    %>		
