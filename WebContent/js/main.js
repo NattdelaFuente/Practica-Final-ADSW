@@ -40,7 +40,7 @@ jQuery(function($) {
 		});
 	});
 
-	
+
 
 	//contact form
 	var form = $('.contact-form');

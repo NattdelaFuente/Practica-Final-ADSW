@@ -392,39 +392,7 @@
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 	<script>
-		// Bar chart
-		var ctx = document.getElementById("mybarChart");
-		var mybarChart = new Chart(ctx, {
-			type : 'bar',
-			data : {
-				labels : [ "Enero", "Febrero", "Marzo", "Abril", "Mayo",
-						"Junio", "Julio", "Agosto", "Septiembre", "Octubre",
-						"Noviembre", "Diciembre" ],
-				datasets : [
-						{
-							label : 'Menores',
-							backgroundColor : "#26B99A",
-							data : [ 600, 300, 400, 280, 520, 500, 450, 600,
-									500, 650, 407, 608 ]
-						},
-						{
-							label : 'Adultos',
-							backgroundColor : "#03586A",
-							data : [ 941, 1056, 1025, 948, 1172, 1234, 912,
-									900, 1005, 899, 798, 1059 ]
-						} ]
-			},
 
-			options : {
-				scales : {
-					yAxes : [ {
-						ticks : {
-							beginAtZero : true
-						}
-					} ]
-				}
-			}
-		});
 	</script>
 
 	<script src="../../js/jquery.js"></script>
@@ -432,6 +400,27 @@
 	<script src="../../js/jquery.prettyPhoto.js"></script>
 	<script src="../../js/jquery.isotope.min.js"></script>
 	<script src="../../js/main.js"></script>
+	
+	<script>
+		//portfolio
+	$(window).load(function(){
+		$portfolio_selectors = $('.portfolio-filter >li>a');
+		if($portfolio_selectors!='undefined'){
+			$portfolio = $('.portfolio-items');
+			$portfolio.isotope({
+				itemSelector : 'li',
+				layoutMode : 'fitRows'
+			});
+			$portfolio_selectors.on('click', function(){
+				$portfolio_selectors.removeClass('active');
+				$(this).addClass('active');
+				var selector = $(this).attr('data-filter');
+				$portfolio.isotope({ filter: selector });
+				return false;
+			});
+		}
+	});
+	</script>
 
 </body>
 </html>
