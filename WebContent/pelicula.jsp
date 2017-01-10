@@ -368,8 +368,20 @@
 		        	{
 		        	
 		        		$form.trigger('reset');  //esto reiniciaria el formulario
-			        	swal("Comentario registrado", response.success, "success");
-			        	location.reload(); 
+		        		swal({
+			        		  title: "Comentario registrado",
+			        		  text: response.success,
+			        		  type: "success",
+			        		  confirmButtonColor: "#DD6B55",
+			        		  confirmButtonText: "Aceptar",
+			        		  closeOnConfirm: false
+			        		},
+			        		function(){
+			    
+			        			location.reload();
+			        		  
+			        		});
+		        		
 		        	}
 		                 	
 		        else        	
